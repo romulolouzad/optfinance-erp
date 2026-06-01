@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Despesas por Mês | Optsolv ERP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#783200",
+                        "on-background": "#141b2b",
+                        "surface-container-low": "#f1f3ff",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#dce2f7",
+                        "surface-container-high": "#e1e8fd",
+                        "surface-variant": "#dce2f7",
+                        "on-tertiary-fixed": "#001d32",
+                        "primary": "#9d4300",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#dce2f7",
+                        "on-secondary-fixed": "#141b2b",
+                        "on-surface-variant": "#584237",
+                        "inverse-on-surface": "#edf0ff",
+                        "surface-dim": "#d3daef",
+                        "outline": "#8c7164",
+                        "surface-container": "#e9edff",
+                        "on-primary-container": "#582200",
+                        "on-primary-fixed": "#341100",
+                        "surface-bright": "#f9f9ff",
+                        "secondary": "#575e70",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#ffb690",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "surface": "#f9f9ff",
+                        "secondary-container": "#d9dff5",
+                        "on-tertiary-container": "#003554",
+                        "background": "#f9f9ff",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "on-secondary-container": "#5c6274",
+                        "surface-tint": "#9d4300",
+                        "outline-variant": "#e0c0b1",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#ffdbca",
+                        "inverse-primary": "#ffb690",
+                        "on-surface": "#141b2b",
+                        "inverse-surface": "#293040",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#00a2f4",
+                        "on-secondary-fixed-variant": "#404758",
+                        "tertiary": "#006398",
+                        "primary-container": "#f97316",
+                        "tertiary-fixed": "#cde5ff",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-background min-h-screen">
+<!-- SideNavBar (Authority: JSON & Design System) -->
+<aside class="w-[220px] h-screen fixed left-0 top-0 bg-gray-950 flex flex-col h-full z-50">
+<div class="p-6">
+<h1 class="text-xl font-bold text-white tracking-tighter">Optsolv ERP</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-medium">Precision Architect</p>
+</div>
+<nav class="flex-1 mt-4">
+<!-- Dashboard (Inactive) -->
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-900 hover:text-white transition-colors font-inter text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Despesas (Active) -->
+<a class="flex items-center gap-3 px-4 py-3 text-white border-l-4 border-orange-500 bg-gray-900 font-inter text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span>Despesas</span>
+</a>
+<!-- Receitas (Inactive) -->
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-900 hover:text-white transition-colors font-inter text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span>Receitas</span>
+</a>
+<!-- Projetos (Inactive) -->
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-900 hover:text-white transition-colors font-inter text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span>Projetos</span>
+</a>
+<!-- Relatórios (Inactive) -->
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-900 hover:text-white transition-colors font-inter text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span>Relatórios</span>
+</a>
+<!-- Configurações (Inactive) -->
+<div class="mt-auto">
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-900 hover:text-white transition-colors font-inter text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Configurações</span>
+</a>
+</div>
+</nav>
+<div class="p-4 bg-gray-900/50 flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-orange-500 flex items-center justify-center text-white font-bold text-xs">OA</div>
+<div class="flex flex-col">
+<span class="text-xs text-white font-semibold">Admin Optsolv</span>
+<span class="text-[10px] text-gray-500">Master Account</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-[220px] min-h-screen">
+<!-- TopNavBar (Authority: JSON) -->
+<header class="h-16 w-full sticky top-0 z-40 bg-white/80 backdrop-blur-md flex justify-between items-center px-8 border-b border-gray-200/15">
+<div class="flex items-center gap-6">
+<h2 class="text-lg font-bold text-gray-900 tracking-tight">Despesas</h2>
+<div class="h-6 w-[1px] bg-gray-200"></div>
+<div class="flex items-center gap-2 bg-surface-container-low px-3 py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-gray-400 text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm p-0 w-48 text-on-surface" placeholder="Buscar despesa..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-gray-500 hover:text-primary transition-colors">notifications</button>
+<button class="material-symbols-outlined text-gray-500 hover:text-primary transition-colors">help_outline</button>
+<button class="bg-primary-container text-white px-4 py-2 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                    Nova Despesa
+                </button>
+</div>
+</header>
+<div class="p-8 space-y-8">
+<!-- Tab Navigation Section -->
+<div class="flex items-center gap-8 border-b border-gray-200">
+<button class="pb-4 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Todas</button>
+<button class="pb-4 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Previstas</button>
+<button class="pb-4 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Pagas</button>
+<button class="pb-4 text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">Por Categoria</button>
+<button class="pb-4 text-sm font-bold text-primary-container border-b-2 border-primary-container">Por Mês</button>
+</div>
+<!-- Accordion Monthly View -->
+<div class="space-y-4">
+<!-- Accordion Header: Extended -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<button class="w-full flex items-center justify-between p-5 hover:bg-row_hover transition-colors group">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary transition-transform duration-300 rotate-90">play_arrow</span>
+<span class="text-lg font-bold text-on-surface tracking-tight">Abril / 2026</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex flex-col items-end">
+<span class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Previsto</span>
+<span class="text-sm font-semibold text-gray-700">R$ 48.320,00</span>
+</div>
+<div class="w-px h-6 bg-gray-200"></div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] uppercase tracking-widest text-primary-container font-bold">Pago</span>
+<span class="text-sm font-bold text-primary-container">R$ 31.200,00</span>
+</div>
+</div>
+</button>
+<!-- Expanded Mini-Table Content -->
+<div class="px-5 pb-5 border-t border-gray-100/50">
+<div class="bg-surface-container-low rounded-lg overflow-hidden mt-4">
+<table class="w-full text-sm text-left">
+<thead class="bg-gray-100/50 text-[10px] uppercase font-bold text-gray-500 tracking-widest">
+<tr>
+<th class="px-4 py-3">Vencimento</th>
+<th class="px-4 py-3">Descrição</th>
+<th class="px-4 py-3">Categoria</th>
+<th class="px-4 py-3 text-right">Valor</th>
+<th class="px-4 py-3 text-center">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200/10">
+<tr class="hover:bg-white transition-colors">
+<td class="px-4 py-3 font-medium">10/04/2026</td>
+<td class="px-4 py-3">Salários Equipe Dev</td>
+<td class="px-4 py-3"><span class="px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-[10px] font-bold">SALÁRIOS</span></td>
+<td class="px-4 py-3 text-right font-semibold">R$ 25.000,00</td>
+<td class="px-4 py-3 text-center"><span class="material-symbols-outlined text-green-500" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+</tr>
+<tr class="hover:bg-white transition-colors">
+<td class="px-4 py-3 font-medium">15/04/2026</td>
+<td class="px-4 py-3">Servidores AWS Enterprise</td>
+<td class="px-4 py-3"><span class="px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-[10px] font-bold">INFRAESTRUTURA</span></td>
+<td class="px-4 py-3 text-right font-semibold">R$ 6.200,00</td>
+<td class="px-4 py-3 text-center"><span class="material-symbols-outlined text-green-500" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+</tr>
+<tr class="hover:bg-white transition-colors">
+<td class="px-4 py-3 font-medium">28/04/2026</td>
+<td class="px-4 py-3">Campanha Google Ads - Q2</td>
+<td class="px-4 py-3"><span class="px-2 py-1 rounded-full bg-orange-100 text-orange-700 text-[10px] font-bold">MARKETING</span></td>
+<td class="px-4 py-3 text-right font-semibold">R$ 17.120,00</td>
+<td class="px-4 py-3 text-center"><span class="material-symbols-outlined text-gray-300">schedule</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Accordion Header: Closed -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<button class="w-full flex items-center justify-between p-5 hover:bg-gray-50 transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-gray-400">play_arrow</span>
+<span class="text-lg font-bold text-on-surface tracking-tight">Março / 2026</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex flex-col items-end opacity-50">
+<span class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Previsto</span>
+<span class="text-sm font-semibold text-gray-700">R$ 42.100,00</span>
+</div>
+<div class="w-px h-6 bg-gray-200"></div>
+<div class="flex items-col items-end">
+<span class="text-[10px] uppercase tracking-widest text-primary-container font-bold">Pago</span>
+<span class="text-sm font-bold text-primary-container">R$ 42.100,00</span>
+</div>
+</div>
+</button>
+</div>
+<!-- Accordion Header: Closed 2 -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<button class="w-full flex items-center justify-between p-5 hover:bg-gray-50 transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-gray-400">play_arrow</span>
+<span class="text-lg font-bold text-on-surface tracking-tight">Fevereiro / 2026</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex flex-col items-end opacity-50">
+<span class="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Previsto</span>
+<span class="text-sm font-semibold text-gray-700">R$ 39.450,00</span>
+</div>
+<div class="w-px h-6 bg-gray-200"></div>
+<div class="flex flex-col items-end">
+<span class="text-[10px] uppercase tracking-widest text-primary-container font-bold">Pago</span>
+<span class="text-sm font-bold text-primary-container">R$ 39.450,00</span>
+</div>
+</div>
+</button>
+</div>
+</div>
+<!-- Charts Section: Bento Style -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl shadow-sm">
+<div class="flex justify-between items-center mb-10">
+<div>
+<h3 class="text-xl font-bold text-on-surface tracking-tight">Despesas Mensais por Categoria</h3>
+<p class="text-sm text-gray-500 mt-1">Visão consolidada do primeiro quadrimestre de 2026</p>
+</div>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-blue-500"></div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Salários</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-purple-500"></div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Infra</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-orange-400"></div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">Marketing</span>
+</div>
+</div>
+</div>
+<!-- Custom Stacked Bar Chart Simulation -->
+<div class="relative h-64 flex items-end justify-around px-8 border-b border-gray-100 pb-2">
+<!-- Grid Lines -->
+<div class="absolute inset-x-0 bottom-2 top-0 flex flex-col justify-between pointer-events-none opacity-20">
+<div class="border-t border-gray-300 w-full"></div>
+<div class="border-t border-gray-300 w-full"></div>
+<div class="border-t border-gray-300 w-full"></div>
+<div class="border-t border-gray-300 w-full"></div>
+</div>
+<!-- Jan -->
+<div class="group relative w-16 flex flex-col justify-end items-center gap-1">
+<div class="w-full flex flex-col-reverse rounded-t-lg overflow-hidden h-40">
+<div class="bg-blue-500 h-[60%] w-full" title="Salários: R$ 22k"></div>
+<div class="bg-purple-500 h-[20%] w-full" title="Infra: R$ 8k"></div>
+<div class="bg-orange-400 h-[15%] w-full" title="Marketing: R$ 4k"></div>
+<div class="bg-gray-300 h-[5%] w-full" title="Outros: R$ 1k"></div>
+</div>
+<span class="text-[10px] font-bold text-gray-400 uppercase mt-2">Jan</span>
+</div>
+<!-- Fev -->
+<div class="group relative w-16 flex flex-col justify-end items-center gap-1">
+<div class="w-full flex flex-col-reverse rounded-t-lg overflow-hidden h-44">
+<div class="bg-blue-500 h-[55%] w-full"></div>
+<div class="bg-purple-500 h-[22%] w-full"></div>
+<div class="bg-orange-400 h-[18%] w-full"></div>
+<div class="bg-gray-300 h-[5%] w-full"></div>
+</div>
+<span class="text-[10px] font-bold text-gray-400 uppercase mt-2">Fev</span>
+</div>
+<!-- Mar -->
+<div class="group relative w-16 flex flex-col justify-end items-center gap-1">
+<div class="w-full flex flex-col-reverse rounded-t-lg overflow-hidden h-48">
+<div class="bg-blue-500 h-[50%] w-full"></div>
+<div class="bg-purple-500 h-[25%] w-full"></div>
+<div class="bg-orange-400 h-[20%] w-full"></div>
+<div class="bg-gray-300 h-[5%] w-full"></div>
+</div>
+<span class="text-[10px] font-bold text-gray-400 uppercase mt-2">Mar</span>
+</div>
+<!-- Abr -->
+<div class="group relative w-16 flex flex-col justify-end items-center gap-1">
+<div class="w-full flex flex-col-reverse rounded-t-lg overflow-hidden h-56 border-2 border-primary-container/30">
+<div class="bg-blue-500 h-[45%] w-full"></div>
+<div class="bg-purple-500 h-[20%] w-full"></div>
+<div class="bg-orange-400 h-[30%] w-full"></div>
+<div class="bg-gray-300 h-[5%] w-full"></div>
+</div>
+<span class="text-[10px] font-bold text-primary-container uppercase mt-2">Abr</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB Action (Optional suppression rule check: Transactional? No. Focused? No. Dashboard/Home context? Yes.) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-transform z-50">
+<span class="material-symbols-outlined text-2xl">add_chart</span>
+</button>
+</body></html>

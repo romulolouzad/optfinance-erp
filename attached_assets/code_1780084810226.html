@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#783200",
+                        "on-background": "#141b2b",
+                        "surface-container-low": "#f1f3ff",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#dce2f7",
+                        "surface-container-high": "#e1e8fd",
+                        "surface-variant": "#dce2f7",
+                        "on-tertiary-fixed": "#001d32",
+                        "primary": "#9d4300",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#dce2f7",
+                        "on-secondary-fixed": "#141b2b",
+                        "on-surface-variant": "#584237",
+                        "inverse-on-surface": "#edf0ff",
+                        "surface-dim": "#d3daef",
+                        "outline": "#8c7164",
+                        "surface-container": "#e9edff",
+                        "on-primary-container": "#582200",
+                        "on-primary-fixed": "#341100",
+                        "surface-bright": "#f9f9ff",
+                        "secondary": "#575e70",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#ffb690",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "surface": "#f9f9ff",
+                        "secondary-container": "#d9dff5",
+                        "on-tertiary-container": "#003554",
+                        "background": "#f9f9ff",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "on-secondary-container": "#5c6274",
+                        "surface-tint": "#9d4300",
+                        "outline-variant": "#e0c0b1",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#ffdbca",
+                        "inverse-primary": "#ffb690",
+                        "on-surface": "#141b2b",
+                        "inverse-surface": "#293040",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#00a2f4",
+                        "on-secondary-fixed-variant": "#404758",
+                        "tertiary": "#006398",
+                        "primary-container": "#f97316",
+                        "tertiary-fixed": "#cde5ff",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar -->
+<aside class="w-[220px] h-screen fixed left-0 top-0 bg-gray-950 dark:bg-black flex flex-col h-full z-50">
+<div class="px-6 py-8">
+<h1 class="text-xl font-bold text-white tracking-tighter">Optsolv ERP</h1>
+<p class="text-xs text-gray-400 font-medium tracking-tight">Precision Architect</p>
+</div>
+<nav class="flex-1">
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-900 hover:text-white transition-colors font-inter text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-white border-l-4 border-orange-500 bg-gray-900 font-inter text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined">payments</span> Despesas
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-900 hover:text-white transition-colors font-inter text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span> Receitas
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-900 hover:text-white transition-colors font-inter text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined">account_tree</span> Projetos
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-900 hover:text-white transition-colors font-inter text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined">analytics</span> Relatórios
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-900 hover:text-white transition-colors font-inter text-sm font-medium tracking-tight" href="#">
+<span class="material-symbols-outlined">settings</span> Configurações
+            </a>
+</nav>
+<div class="p-4 mt-auto">
+<div class="flex items-center gap-3 p-2 rounded-lg bg-gray-900">
+<img alt="Optsolv Logo" class="w-8 h-8 rounded-full border border-gray-700" data-alt="Close-up portrait of a professional male executive with sharp features in a clean corporate environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPbuuYta0NoIXv1jWJ2ghs_ZVFlIYO9FqPOUDkXYAXciI4P6ZdAAatYwcVuXJjDxsVodRCAXbvykl1CT5upjb7oSdH6gGLqypBUY1ReqTVCm3ztE6IMADPjwuLYGPf31tk_mk0ek5K7TcFVJyShv8IBwltScCq8ScXt_MhNPaFWPjwFLD5WXop69CWZ2OGLza3_exvRCLkpvvdzJwxlkSJTw6Eu6S3-o-_1XJoYtKCPnszHRq3IdsjsU-CYg3uo4XlO8ZcB6hC32s7"/>
+<div class="overflow-hidden">
+<p class="text-xs font-semibold text-white truncate">Ricardo M.</p>
+<p class="text-[10px] text-gray-500 truncate">Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="h-16 w-full sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/15 dark:border-gray-800/15 flex justify-between items-center px-8 ml-[220px]">
+<h2 class="text-lg font-bold text-gray-900 dark:text-white">Despesas</h2>
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary-container w-64 transition-all" placeholder="Procurar despesa..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-gray-600 dark:text-gray-400 hover:text-orange-500 scale-95 active:scale-100 transition-transform"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-gray-600 dark:text-gray-400 hover:text-orange-500 scale-95 active:scale-100 transition-transform"><span class="material-symbols-outlined">help_outline</span></button>
+<button class="bg-gradient-to-t from-primary to-primary-container text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-sm hover:opacity-90 scale-95 active:scale-100 transition-transform">Nova Despesa</button>
+</div>
+</div>
+</header>
+<main class="ml-[220px] p-8">
+<!-- Sub-navigation Tabs -->
+<div class="flex items-center gap-8 mb-8 border-b border-surface-container-high">
+<button class="pb-4 px-1 text-sm font-medium text-secondary hover:text-primary transition-colors">Todas</button>
+<button class="pb-4 px-1 text-sm font-medium text-secondary hover:text-primary transition-colors">Previstas</button>
+<button class="pb-4 px-1 text-sm font-medium text-secondary hover:text-primary transition-colors">Pagas</button>
+<button class="pb-4 px-1 text-sm font-semibold text-primary border-b-2 border-primary">Por Categoria</button>
+<button class="pb-4 px-1 text-sm font-medium text-secondary hover:text-primary transition-colors">Por Mês</button>
+</div>
+<!-- Category Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:bg-orange-50/30 transition-colors group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined">dns</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-secondary-container px-2 py-1 bg-surface-container-high rounded-full">Operação</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface mb-6">Infraestrutura Cloud</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest mb-1">Pago</p>
+<p class="text-lg font-bold text-on-surface">R$ 12.450,00</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest mb-1">Projetado</p>
+<p class="text-sm font-semibold text-secondary">R$ 15.000,00</p>
+</div>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 83%"></div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:bg-orange-50/30 transition-colors group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined">apartment</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-secondary-container px-2 py-1 bg-surface-container-high rounded-full">Estrutural</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface mb-6">Aluguel &amp; Condomínio</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest mb-1">Pago</p>
+<p class="text-lg font-bold text-on-surface">R$ 8.900,00</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest mb-1">Projetado</p>
+<p class="text-sm font-semibold text-secondary">R$ 8.900,00</p>
+</div>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:bg-orange-50/30 transition-colors group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined">group</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-secondary-container px-2 py-1 bg-surface-container-high rounded-full">RH</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface mb-6">Salários &amp; Benefícios</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest mb-1">Pago</p>
+<p class="text-lg font-bold text-on-surface">R$ 142.200,00</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest mb-1">Projetado</p>
+<p class="text-sm font-semibold text-secondary">R$ 180.000,00</p>
+</div>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 79%"></div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:bg-orange-50/30 transition-colors group">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-surface-container-low rounded-lg text-primary group-hover:bg-primary group-hover:text-white transition-all">
+<span class="material-symbols-outlined">campaign</span>
+</div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-secondary-container px-2 py-1 bg-surface-container-high rounded-full">Growth</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface mb-6">Marketing &amp; Ads</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest mb-1">Pago</p>
+<p class="text-lg font-bold text-on-surface">R$ 5.120,00</p>
+</div>
+<div class="text-right">
+<p class="text-[10px] uppercase font-bold text-gray-400 tracking-widest mb-1">Projetado</p>
+<p class="text-sm font-semibold text-secondary">R$ 12.000,00</p>
+</div>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 42%"></div>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm hover:bg-orange-50/30 transition-colors group border-2 border-dashed border-surface-container-high flex flex-col items-center justify-center text-center cursor-pointer">
+<div class="w-12 h-12 bg-surface-container rounded-full flex items-center justify-center text-primary mb-4">
+<span class="material-symbols-outlined">add</span>
+</div>
+<p class="text-sm font-bold text-secondary">Nova Categoria</p>
+<p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Personalize seu ERP</p>
+</div>
+</div>
+</main>
+<!-- Modal Overlay: Nova Despesa (ACTIVE) -->
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
+<div class="bg-surface-container-lowest w-full max-w-4xl rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[921px]">
+<!-- Modal Header -->
+<div class="px-8 py-6 border-b border-surface-container-high flex justify-between items-center bg-surface-bright">
+<div>
+<h2 class="text-2xl font-bold text-on-surface tracking-tight">Nova Despesa</h2>
+<p class="text-sm text-secondary">Preencha os campos abaixo para registrar um novo custo.</p>
+</div>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors"><span class="material-symbols-outlined">close</span></button>
+</div>
+<!-- Modal Content -->
+<div class="flex-1 overflow-y-auto px-8 py-6">
+<form class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="col-span-full">
+<label class="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Descrição*</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary-container p-3" placeholder="Ex: Licença Anual Software de Design" type="text"/>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Fornecedor/Colaborador</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary-container p-3">
+<option>Selecione um fornecedor</option>
+<option>AWS Cloud Services</option>
+<option>Google Workspace</option>
+<option>Adobe Systems</option>
+</select>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Categoria</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary-container p-3">
+<option>Selecione uma categoria</option>
+<option>Infraestrutura Cloud</option>
+<option>Aluguel &amp; Condomínio</option>
+<option>Salários &amp; Benefícios</option>
+</select>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Centro de Custo*</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary-container p-3">
+<option>Engenharia de Produto</option>
+<option>Marketing</option>
+<option>Administrativo</option>
+</select>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Valor*</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-xs font-bold text-gray-400">R$</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary-container p-3 pl-10 font-mono font-bold" placeholder="0,00" type="text"/>
+</div>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Competência</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary-container p-3" type="month"/>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Vencimento</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary-container p-3" type="date"/>
+</div>
+<div class="col-span-full pt-4">
+<label class="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-4">Status da Despesa</label>
+<div class="flex gap-6">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="w-4 h-4 text-primary focus:ring-primary-container border-gray-300" name="status" type="radio"/>
+<span class="text-sm font-medium text-secondary group-hover:text-on-surface">Prevista</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input checked="" class="w-4 h-4 text-primary focus:ring-primary-container border-gray-300" name="status" type="radio"/>
+<span class="text-sm font-medium text-secondary group-hover:text-on-surface">Paga</span>
+</label>
+</div>
+</div>
+<!-- Conditional Fields (Simulated for 'Paga' status) -->
+<div class="col-span-full grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-surface-container-low/50 rounded-xl mt-4 border border-surface-container-high">
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Data do Pagamento</label>
+<input class="w-full bg-surface-container-lowest border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary-container p-3" type="date"/>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Conta Bancária</label>
+<select class="w-full bg-surface-container-lowest border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary-container p-3">
+<option>Itaú Business - Ag 0412</option>
+<option>Nubank PJ - Principal</option>
+</select>
+</div>
+<div class="col-span-full">
+<label class="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-2">Comprovante</label>
+<div class="border-2 border-dashed border-outline-variant bg-surface-container-lowest rounded-xl p-8 text-center hover:bg-orange-50 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-primary mb-2">cloud_upload</span>
+<p class="text-sm font-bold text-on-surface">Arraste seu arquivo ou clique para upload</p>
+<p class="text-[10px] text-gray-400 mt-1 uppercase tracking-widest">PDF, PNG ou JPG (Max 5MB)</p>
+</div>
+</div>
+</div>
+</form>
+</div>
+<!-- Modal Footer -->
+<div class="px-8 py-6 border-t border-surface-container-high flex justify-end items-center gap-4 bg-surface-bright">
+<button class="px-6 py-2.5 rounded-lg text-sm font-bold text-secondary hover:bg-surface-container transition-colors">Cancelar</button>
+<button class="px-8 py-2.5 bg-gradient-to-t from-primary to-primary-container text-white rounded-lg text-sm font-bold shadow-lg shadow-primary/20 hover:opacity-90 active:scale-95 transition-all">Salvar Despesa</button>
+</div>
+</div>
+</div>
+<!-- Secondary Small Modal: Registrar Pagamento -->
+<div class="fixed bottom-8 right-8 z-[70] w-full max-w-sm">
+<div class="bg-white rounded-xl shadow-2xl border border-surface-container-high overflow-hidden animate-in slide-in-from-bottom-4">
+<div class="p-4 bg-inverse-surface flex justify-between items-center">
+<h4 class="text-white text-xs font-bold uppercase tracking-widest">Registrar Pagamento</h4>
+<button class="text-gray-400 hover:text-white"><span class="material-symbols-outlined text-sm">close</span></button>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-3 mb-6">
+<div class="w-10 h-10 bg-orange-100 text-primary flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined">receipt_long</span>
+</div>
+<div>
+<p class="text-[10px] font-bold text-gray-400 uppercase tracking-tighter">Despesa Pendente</p>
+<h5 class="text-sm font-bold text-on-surface">#D0042 Infraestrutura AWS</h5>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-1">Data do Pagamento</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg text-xs p-2.5" type="date" value="2023-11-24"/>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-1">Conta Bancária</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg text-xs p-2.5">
+<option>Nubank PJ - Principal</option>
+</select>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-1">Upload Comprovante</label>
+<div class="border border-dashed border-gray-300 rounded-lg p-3 flex items-center justify-center gap-2 cursor-pointer hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-sm">attach_file</span>
+<span class="text-[10px] font-bold text-secondary uppercase">Anexar Arquivo</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 py-2.5 bg-primary text-white rounded-lg text-xs font-bold hover:bg-on-primary-fixed-variant transition-colors">Confirmar Pagamento</button>
+</div>
+</div>
+</div>
+</body></html>

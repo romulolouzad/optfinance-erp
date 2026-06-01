@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#c0c6db",
+                        "inverse-surface": "#293040",
+                        "surface-variant": "#dce2f7",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#006398",
+                        "surface-dim": "#d3daef",
+                        "outline": "#8c7164",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed": "#cde5ff",
+                        "surface": "#f9f9ff",
+                        "surface-container-high": "#e1e8fd",
+                        "surface-bright": "#f9f9ff",
+                        "inverse-primary": "#ffb690",
+                        "inverse-on-surface": "#edf0ff",
+                        "surface-tint": "#9d4300",
+                        "secondary": "#575e70",
+                        "background": "#f9f9ff",
+                        "primary": "#9d4300",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#e0c0b1",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#e9edff",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#584237",
+                        "primary-fixed-dim": "#ffb690",
+                        "on-secondary-container": "#5c6274",
+                        "tertiary-container": "#00a2f4",
+                        "primary-container": "#f97316",
+                        "secondary-container": "#d9dff5",
+                        "secondary-fixed": "#dce2f7",
+                        "on-tertiary-container": "#003554",
+                        "surface-container-highest": "#dce2f7",
+                        "primary-fixed": "#ffdbca",
+                        "on-primary-container": "#582200",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f1f3ff",
+                        "on-secondary-fixed": "#141b2b",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#404758",
+                        "on-tertiary-fixed": "#001d32",
+                        "on-primary-fixed-variant": "#783200",
+                        "on-background": "#141b2b",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "on-surface": "#141b2b",
+                        "on-primary-fixed": "#341100"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        .editable-cell:focus {
+            outline: 2px solid #f97316;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
+        }
+        /* Custom Table Scrollbar */
+        .table-container::-webkit-scrollbar { height: 6px; }
+        .table-container::-webkit-scrollbar-track { background: transparent; }
+        .table-container::-webkit-scrollbar-thumb { background: #dce2f7; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar Integration -->
+<aside class="bg-slate-900 dark:bg-black w-64 h-full fixed left-0 top-0 shadow-xl flex flex-col py-6 z-50">
+<div class="px-6 mb-8">
+<h1 class="text-xl font-bold text-white tracking-tighter">Precision ERP</h1>
+<p class="text-xs text-slate-400 font-medium tracking-tight">Enterprise Resource Planning</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-6 py-3 text-slate-400 font-sans text-sm font-medium tracking-tight hover:bg-slate-800 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-400 font-sans text-sm font-medium tracking-tight hover:bg-slate-800 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+                Vendas
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-400 font-sans text-sm font-medium tracking-tight hover:bg-slate-800 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+                Financeiro
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-white border-l-4 border-orange-500 bg-slate-800/50 font-sans text-sm font-medium tracking-tight scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+                Budget
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 text-slate-400 font-sans text-sm font-medium tracking-tight hover:bg-slate-800 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="px-6 mt-auto">
+<div class="flex items-center gap-3 p-3 rounded-xl bg-slate-800/30">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="close-up portrait of a professional male executive in a dark suit with soft office background lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZjiiLAo7Der-zkN-KcT_cUVVi7P-skK_nh6CEeC3PR4oaysDohhQVB5mJy__JfJjJiyXPQklB26FsBavXRngnphTW0c2betqobNKmX_VF8mZZe1lO7cd1qSYip9yCxSMnhgd9I_yl11ChYAqRc97DuwoyMrl03inb2qpcpHxH2RPZ91v7ie20UOFaa1waV0710miBiQvvokqTeR6cGTE1Ly5PXwnaY1SoTtdvPlJHiK-LBKQaqLjnOD6TMyYKFIA7-vEE3t1scCKv"/>
+<div class="overflow-hidden">
+<p class="text-white text-sm font-bold truncate">User Profile</p>
+<p class="text-slate-500 text-xs truncate">Manager</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 min-h-screen pb-32">
+<!-- TopNavBar Integration -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-md flex justify-between items-center px-8 h-16 tonal shift between surface and surface_container">
+<div class="flex items-center gap-6">
+<h2 class="text-lg font-black text-slate-900 dark:text-white">Budget / Orçamento</h2>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="bg-surface-container-low border-none rounded-lg pl-9 pr-4 py-1.5 text-sm focus:ring-2 focus:ring-primary-container w-64" placeholder="Buscar rubrica..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-4 py-2 bg-primary-container text-white text-sm font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all">
+                    Salvar Alterações
+                </button>
+<div class="flex items-center gap-2 border-l border-slate-200 ml-2 pl-4">
+<span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-orange-600">filter_list</span>
+<span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-orange-600">notifications</span>
+<span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-orange-600">help_outline</span>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="mt-16 p-8 max-w-full">
+<!-- Page Header & Filter -->
+<div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-10">
+<div>
+<h1 class="text-3xl font-bold text-on-surface tracking-tight">Budget — Orçamento Anual</h1>
+<p class="text-body-md text-secondary mt-1">Planejamento financeiro por centro de custo</p>
+<div class="flex items-center gap-3 mt-6">
+<div class="flex flex-col gap-1">
+<label class="text-[10px] uppercase tracking-widest font-bold text-slate-400">Ano</label>
+<select class="bg-surface-container-lowest border-none text-sm font-bold rounded-lg py-2 px-4 shadow-sm focus:ring-1 focus:ring-primary">
+<option>2026</option>
+<option>2025</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-[10px] uppercase tracking-widest font-bold text-slate-400">Centro de Custo</label>
+<select class="bg-surface-container-lowest border-none text-sm font-bold rounded-lg py-2 px-10 shadow-sm focus:ring-1 focus:ring-primary">
+<option>Todos os Centros</option>
+<option>Marketing</option>
+<option>Operações</option>
+<option>Tecnologia</option>
+</select>
+</div>
+<button class="bg-primary-container text-white px-6 py-2 rounded-lg font-bold text-sm mt-5 shadow-lg shadow-orange-500/20 hover:scale-105 transition-transform active:scale-95">Filtrar</button>
+</div>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 border border-outline/20 text-primary font-bold px-5 py-2.5 rounded-lg text-sm bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-lg">download</span>
+                        Exportar PDF
+                    </button>
+<button class="flex items-center gap-2 bg-primary-container text-white font-bold px-6 py-2.5 rounded-lg text-sm shadow-lg shadow-orange-500/20 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-lg">edit</span>
+                        Editar Budget
+                    </button>
+</div>
+</div>
+<!-- KPI Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-b-4 border-tertiary-container">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Receita Orçada (ano)</p>
+<p class="text-2xl font-black text-tertiary">R$ 12.450.000,00</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-b-4 border-green-500">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Receita Realizada (YTD)</p>
+<div class="flex items-baseline gap-2">
+<p class="text-2xl font-black text-green-600">R$ 4.210.000,00</p>
+<span class="text-xs font-bold text-green-700 bg-green-50 px-1.5 py-0.5 rounded">33.8%</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-b-4 border-slate-400">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Despesas Orçadas (ano)</p>
+<p class="text-2xl font-black text-slate-600">R$ 8.120.000,00</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-b-4 border-error">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Resultado Orçado vs Real</p>
+<p class="text-2xl font-black text-error">- R$ 145.200,00</p>
+</div>
+</div>
+<!-- Section 1 — Orçamento de Receitas -->
+<section class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden mb-8">
+<div class="p-6 flex justify-between items-center border-b border-slate-50">
+<h3 class="text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">trending_up</span>
+                        Orçamento de Receitas
+                    </h3>
+<span class="text-xs font-medium text-slate-400 italic">Dica: Clique nas células brancas para editar valores</span>
+</div>
+<div class="table-container overflow-x-auto">
+<table class="w-full text-left text-sm border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-slate-500 font-bold uppercase tracking-tighter">
+<th class="p-4 whitespace-nowrap min-w-[200px]">Linha de Receita</th>
+<th class="p-4">Jan</th><th class="p-4">Fev</th><th class="p-4">Mar</th><th class="p-4">Abr</th><th class="p-4">Mai</th><th class="p-4">Jun</th><th class="p-4">Jul</th><th class="p-4">Ago</th><th class="p-4">Set</th><th class="p-4">Out</th><th class="p-4">Nov</th><th class="p-4">Dez</th>
+<th class="p-4 bg-orange-50 text-orange-700">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="bg-orange-50/50 font-bold text-on-surface">
+<td class="p-4">Receita Bruta Orçada</td>
+<td class="p-4">1.0M</td><td class="p-4">1.0M</td><td class="p-4">1.1M</td><td class="p-4">1.1M</td><td class="p-4">1.2M</td><td class="p-4">1.2M</td><td class="p-4">1.3M</td><td class="p-4">1.3M</td><td class="p-4">1.4M</td><td class="p-4">1.4M</td><td class="p-4">1.5M</td><td class="p-4">1.5M</td>
+<td class="p-4 bg-orange-100 text-orange-900">15.0M</td>
+</tr>
+<tr class="border-b border-slate-50 hover:bg-orange-50/20">
+<td class="p-4 text-slate-600">Pontual</td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="250k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="260k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="270k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="280k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="290k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="300k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="310k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="320k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="330k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="340k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="350k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="360k"/></td>
+<td class="p-4 font-bold text-slate-800">3.6M</td>
+</tr>
+<tr class="border-b border-slate-50 hover:bg-orange-50/20">
+<td class="p-4 text-slate-600">Recorrente</td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="750k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="760k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="770k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="780k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="790k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="800k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="810k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="820k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="830k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="840k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="850k"/></td>
+<td class="p-3"><input class="w-full editable-cell bg-white/50 border-none rounded p-1 text-center font-medium" type="text" value="860k"/></td>
+<td class="p-4 font-bold text-slate-800">9.6M</td>
+</tr>
+<tr class="bg-surface-container-low/50 font-bold text-green-600">
+<td class="p-4">Receita Realizada</td>
+<td class="p-4">1.1M</td><td class="p-4">980k</td><td class="p-4">1.2M</td><td class="p-4">930k</td><td class="p-4">—</td><td class="p-4">—</td><td class="p-4">—</td><td class="p-4">—</td><td class="p-4">—</td><td class="p-4">—</td><td class="p-4">—</td><td class="p-4">—</td>
+<td class="p-4 bg-green-50">4.21M</td>
+</tr>
+<tr class="font-bold border-t border-slate-100">
+<td class="p-4">Variação (%)</td>
+<td class="p-4 text-green-600">▲ 10%</td><td class="p-4 text-error">▼ 2%</td><td class="p-4 text-green-600">▲ 9%</td><td class="p-4 text-error">▼ 15%</td><td class="p-4">—</td><td class="p-4">—</td><td class="p-4">—</td><td class="p-4">—</td><td class="p-4">—</td><td class="p-4">—</td><td class="p-4">—</td><td class="p-4">—</td>
+<td class="p-4 text-slate-400">0.0%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Chart Section -->
+<section class="bg-surface-container-lowest p-8 rounded-2xl shadow-sm mb-8">
+<div class="flex justify-between items-center mb-10">
+<h3 class="text-lg font-bold">Orçado vs Realizado por Mês</h3>
+<div class="flex gap-4 text-xs font-bold">
+<div class="flex items-center gap-2"><span class="w-3 h-3 bg-tertiary rounded-full"></span> Orçado (Rec)</div>
+<div class="flex items-center gap-2"><span class="w-3 h-3 bg-green-500 rounded-full"></span> Realizado (Rec)</div>
+<div class="flex items-center gap-2"><span class="w-3 h-3 bg-error rounded-full"></span> Realizado (Desp)</div>
+</div>
+</div>
+<div class="h-64 flex items-end justify-between gap-1 border-b border-slate-100 px-4 relative">
+<!-- Simple CSS Bar Visualizer -->
+<div class="flex-1 flex flex-col items-center group">
+<div class="flex items-end gap-0.5 h-48 w-full justify-center">
+<div class="w-3 bg-tertiary rounded-t-sm h-[80%]"></div>
+<div class="w-3 bg-green-500 rounded-t-sm h-[85%]"></div>
+<div class="w-3 bg-error rounded-t-sm h-[60%]"></div>
+</div>
+<span class="text-[10px] mt-2 font-bold text-slate-400">JAN</span>
+</div>
+<div class="flex-1 flex flex-col items-center group">
+<div class="flex items-end gap-0.5 h-48 w-full justify-center">
+<div class="w-3 bg-tertiary rounded-t-sm h-[80%]"></div>
+<div class="w-3 bg-green-500 rounded-t-sm h-[78%]"></div>
+<div class="w-3 bg-error rounded-t-sm h-[65%]"></div>
+</div>
+<span class="text-[10px] mt-2 font-bold text-slate-400">FEV</span>
+</div>
+<div class="flex-1 flex flex-col items-center group">
+<div class="flex items-end gap-0.5 h-48 w-full justify-center">
+<div class="w-3 bg-tertiary rounded-t-sm h-[80%]"></div>
+<div class="w-3 bg-green-500 rounded-t-sm h-[90%]"></div>
+<div class="w-3 bg-error rounded-t-sm h-[62%]"></div>
+</div>
+<span class="text-[10px] mt-2 font-bold text-slate-400">MAR</span>
+</div>
+<div class="flex-1 flex flex-col items-center group">
+<div class="flex items-end gap-0.5 h-48 w-full justify-center">
+<div class="w-3 bg-tertiary rounded-t-sm h-[80%]"></div>
+<div class="w-3 bg-green-500 rounded-t-sm h-[70%]"></div>
+<div class="w-3 bg-error rounded-t-sm h-[68%]"></div>
+</div>
+<span class="text-[10px] mt-2 font-bold text-slate-400">ABR</span>
+</div>
+<!-- Empty months placeholder -->
+<div class="flex-1 h-full opacity-10 border-l border-slate-100 flex items-end justify-center pb-2 text-[10px] font-bold">MAI-DEZ</div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Section 2 — Orçamento de Despesas (Mini version for visual balance) -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden">
+<div class="p-6 border-b border-slate-50 flex justify-between items-center">
+<h3 class="text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400">account_balance_wallet</span>
+                            Resumo de Despesas
+                        </h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left text-sm border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-slate-500 font-bold text-xs uppercase tracking-wider">
+<th class="p-4">Categoria</th>
+<th class="p-4">Orçado (Mês)</th>
+<th class="p-4">Realizado</th>
+<th class="p-4">Variação</th>
+</tr>
+</thead>
+<tbody class="text-slate-700">
+<tr class="border-b border-slate-50">
+<td class="p-4">Salários &amp; Encargos</td>
+<td class="p-4 text-slate-400">R$ 450.000</td>
+<td class="p-4 font-bold text-on-surface">R$ 448.200</td>
+<td class="p-4 text-green-600 font-bold">▼ 0.4%</td>
+</tr>
+<tr class="border-b border-slate-50">
+<td class="p-4">Infraestrutura / Cloud</td>
+<td class="p-4 text-slate-400">R$ 120.000</td>
+<td class="p-4 font-bold text-on-surface">R$ 135.000</td>
+<td class="p-4 text-error font-bold">▲ 12.5%</td>
+</tr>
+<tr class="border-b border-slate-50">
+<td class="p-4">Marketing / Ads</td>
+<td class="p-4 text-slate-400">R$ 80.000</td>
+<td class="p-4 font-bold text-on-surface">R$ 95.000</td>
+<td class="p-4 text-error font-bold">▲ 18.7%</td>
+</tr>
+<tr class="bg-slate-900 text-white">
+<td class="p-4 font-bold">TOTAL DESPESAS</td>
+<td class="p-4 font-bold">R$ 650.000</td>
+<td class="p-4 font-bold">R$ 678.200</td>
+<td class="p-4 font-bold text-orange-400">▲ 4.3%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Section 3 — Resultado Orçado vs Real -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm p-6">
+<h3 class="text-lg font-bold mb-6">Resultado Geral</h3>
+<div class="space-y-6">
+<div class="p-4 rounded-xl bg-surface-container-low">
+<p class="text-xs font-bold text-slate-500 uppercase mb-3">Visão: Orçado</p>
+<div class="flex justify-between mb-1"><span class="text-sm">Receita:</span> <span class="text-sm font-bold">15.0M</span></div>
+<div class="flex justify-between mb-2"><span class="text-sm">Despesas:</span> <span class="text-sm font-bold text-error">-8.1M</span></div>
+<div class="border-t border-slate-200 pt-2 flex justify-between">
+<span class="text-sm font-black">EBITDA:</span> <span class="text-sm font-black text-tertiary">6.9M</span>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-orange-50 border border-orange-100">
+<p class="text-xs font-bold text-orange-600 uppercase mb-3">Visão: Realizado (YTD)</p>
+<div class="flex justify-between mb-1"><span class="text-sm">Receita:</span> <span class="text-sm font-bold">4.2M</span></div>
+<div class="flex justify-between mb-2"><span class="text-sm">Despesas:</span> <span class="text-sm font-bold text-error">-2.8M</span></div>
+<div class="border-t border-orange-200 pt-2 flex justify-between">
+<span class="text-sm font-black">EBITDA:</span> <span class="text-sm font-black text-orange-700">1.4M</span>
+</div>
+</div>
+<div class="text-center pt-2">
+<p class="text-xs font-bold text-slate-400 uppercase mb-1">Variação Real vs Orçado</p>
+<p class="text-3xl font-black text-error">- 12.4%</p>
+<p class="text-[10px] text-slate-400 mt-2 italic px-4">Alterações no budget são registradas no histórico com usuário e data/hora.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Edit Mode State) -->
+<div class="fixed bottom-6 left-1/2 -translate-x-1/2 w-auto min-w-[500px] rounded-2xl px-8 py-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-lg shadow-2xl shadow-orange-500/10 flex items-center justify-between gap-8 z-50 border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 bg-orange-500 rounded-full animate-pulse"></div>
+<div>
+<p class="text-[10px] font-sans text-xs font-bold uppercase tracking-widest text-primary-container leading-none">Modo de edição ativo</p>
+<p class="text-[10px] text-slate-400 font-medium leading-none mt-1">Alterações pendentes: 4</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-6 py-2 text-slate-600 dark:text-slate-300 font-bold text-sm hover:bg-slate-100 rounded-lg transition-colors">Cancelar</button>
+<button class="px-6 py-2 bg-primary-container text-white rounded-lg font-bold text-sm shadow-lg shadow-orange-500/20 scale-105 active:scale-95 transition-transform flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">save</span>
+                Salvar Budget
+            </button>
+</div>
+</div>
+</body></html>

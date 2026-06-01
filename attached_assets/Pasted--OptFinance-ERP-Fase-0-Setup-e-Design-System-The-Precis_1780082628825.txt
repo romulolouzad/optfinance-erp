@@ -1,0 +1,297 @@
+# OptFinance ERP — Fase 0: Setup e Design System
+> "The Precision Architect" — design system oficial. Substitui completamente a versão anterior.
+> Nenhuma outra fase deve ser iniciada antes desta estar 100% completa.
+
+---
+
+## 0.1 — Inicializar o projeto
+
+Criar projeto React com Vite. Instalar dependências:
+
+```bash
+npm create vite@latest optfinance -- --template react
+cd optfinance
+npm install tailwindcss postcss autoprefixer
+npm install react-router-dom
+npm install recharts
+npm install lucide-react
+npm install date-fns
+npm install clsx tailwind-merge
+npx shadcn-ui@latest init
+```
+
+Estrutura de pastas:
+
+```
+src/
+  assets/
+  components/
+    ui/           ← shadcn components
+    layout/       ← AppShell, Sidebar, Topbar
+    shared/       ← DataTable, FilterBar, SummaryCards, etc.
+  context/        ← AuthContext, CentroCustoContext
+  data/           ← arquivos JSON mock
+  hooks/
+  pages/          ← uma pasta por módulo
+  routes/
+  utils/
+  App.jsx
+  main.jsx
+```
+
+---
+
+## 0.2 — Design Tokens (The Precision Architect)
+
+### tailwind.config.js — substituir completamente o bloco de cores:
+
+```js
+theme: {
+  extend: {
+    colors: {
+      // Primary accent — laranja corporativo
+      'primary':           '#9D4300',
+      'primary-container': '#F97316',
+      'on-primary':        '#FFFFFF',
+      'primary-fixed':     '#FFDBCA',
+      'primary-fixed-dim': '#FFB690',
+
+      // Surfaces — hierarquia de fundos
+      'surface':                    '#F3F4F6',
+      'surface-bright':             '#F9F9FF',
+      'surface-container-lowest':   '#FFFFFF',
+      'surface-container-low':      '#F1F3FF',
+      'surface-container':          '#E9EDFF',
+      'surface-container-high':     '#E1E8FD',
+      'surface-container-highest':  '#DCE2F7',
+
+      // Text
+      'on-surface':         '#141B2B',
+      'on-surface-variant': '#584237',
+      'text-muted':         '#6B7280',
+
+      // Sidebar / deep contrast
+      'inverse-surface':    '#111827',
+      'inverse-on-surface': '#EDF0FF',
+      'inverse-primary':    '#FFB690',
+
+      // Secondary
+      'secondary':           '#575E70',
+      'secondary-container': '#D9DFF5',
+      'on-secondary':        '#FFFFFF',
+
+      // Tertiary / blue
+      'tertiary':           '#006398',
+      'tertiary-container': '#00A2F4',
+      'on-tertiary':        '#FFFFFF',
+
+      // Status colors
+      'error':           '#BA1A1A',
+      'error-container': '#FFDAD6',
+      'on-error':        '#FFFFFF',
+
+      // Borders
+      'outline':         '#8C7164',
+      'outline-variant': '#E0C0B1',
+
+      // Row hover (orange-tinted, very subtle)
+      'row-hover': '#FFF7ED',
+    },
+    fontFamily: {
+      sans:     ['Inter', 'sans-serif'],
+      headline: ['Inter', 'sans-serif'],
+      body:     ['Inter', 'sans-serif'],
+      label:    ['Inter', 'sans-serif'],
+    },
+  }
+}
+```
+
+### Importar Inter no index.html:
+```html
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+```
+
+### Criar src/utils/cn.js:
+```js
+import { clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+export function cn(...inputs) { return twMerge(clsx(inputs)) }
+```
+
+---
+
+## 0.3 — Regras obrigatórias do Design System
+
+Estas regras devem ser aplicadas em TODOS os componentes criados nas fases seguintes.
+
+### Regra 1 — "No-Line Rule" (PROIBIDO bordas 1px)
+- **NUNCA** usar `border border-gray-200` para separar seções ou cards
+- Separação deve ser feita por mudança de cor de fundo: card (`#FFFFFF`) sobre background (`#F3F4F6`)
+- Se borda for obrigatória por acessibilidade, usar "Ghost Border": `border border-outline-variant/15`
+
+### Regra 2 — "Glass & Gradient Rule" (botões primários)
+- Botão primário: gradiente vertical `from-primary to-primary-container`
+- Exemplo de classe: `bg-gradient-to-t from-primary to-primary-container text-white`
+- Hover: shift para `primary-fixed-dim`
+- Elementos flutuantes (dropdowns, tooltips): glassmorphism com `backdrop-blur-md bg-white/40`
+
+### Regra 3 — Sombras tintadas (NUNCA sombra preta pura)
+- Sombras sempre tintadas com a cor do surface
+- Usar: `shadow-sm` para cards, `shadow-lg shadow-primary-container/20` para CTAs
+- Blur: 24–40px, Opacidade: 4–8%
+
+### Regra 4 — Tipografia editorial
+- Headlines e títulos: `font-bold tracking-tight` (letter-spacing -0.02em)
+- Labels e badges: `uppercase tracking-widest text-xs`
+- Body em leitura longa: `text-[#374151]`
+
+### Regra 5 — Tabelas "Precision Grid"
+- Header: `bg-surface-container-low` com labels em uppercase bold
+- Linhas: **sem linhas horizontais ou verticais** (sem `divide-y`)
+- Hover de linha: `hover:bg-row-hover` (laranja suavíssimo `#FFF7ED`)
+- Status badges: `rounded-full` com fundo 10% opacity do accent + texto accent
+
+---
+
+## 0.4 — Estrutura de rotas
+
+Criar `src/routes/index.jsx`:
+
+| Caminho | Página |
+|---|---|
+| `/` | Dashboard |
+| `/fluxo-de-caixa` | Fluxo de Caixa |
+| `/vendas` | Vendas & Contratos |
+| `/vendas/nova` | Nova Venda |
+| `/vendas/:id` | Detalhe da Venda |
+| `/parcelas` | Parcelas & Recebimentos |
+| `/comissoes` | Comissões |
+| `/clientes` | Clientes |
+| `/colaboradores` | Colaboradores |
+| `/fornecedores` | Fornecedores |
+| `/notas-fiscais` | Notas Fiscais |
+| `/dre` | DRE |
+| `/forecast` | Forecast |
+| `/metas` | Metas |
+| `/despesas` | Despesas |
+| `/emprestimos` | Empréstimos |
+| `/contas-financeiras` | Contas Financeiras |
+| `/contas-financeiras/nova` | Nova Conta Financeira |
+| `/relatorios` | Relatórios |
+| `/budget` | Budget / Orçamento |
+| `/historico` | Histórico (Audit Trail) |
+| `/configuracoes` | Configurações |
+| `/sem-permissao` | Sem Permissão |
+
+---
+
+## 0.5 — Dados mock
+
+Criar arquivos JSON em `src/data/` com dados realistas em português:
+
+**`contas-financeiras.json`** — 4 registros:
+`id`, `banco`, `nome`, `tipo` (corrente/poupança/caixa/cartão), `saldoInicial`, `dataAbertura`, `saldoAtual`, `ativa`, `contaPadrao` (boolean), `agencia`, `conta`, `cnpjTitular`, `ultimaConciliacao`
+
+**`centros-custo.json`** — 5 registros:
+`id`, `nome`, `ativo`
+
+**`parcelas.json`** — 25 registros:
+`id`, `vendaId`, `clienteNome`, `numero` (ex: "01/12"), `competencia`, `vencimento`, `recebimento`, `valorBruto`, `valorRecebido`, `situacao` (paga/em-aberto/pagamento-parcial/vencida), `nfEmitida` (boolean), `centroCustoId`, `contaFinanceiraId`, `comprovante`
+
+**`despesas.json`** — 20 registros:
+`id`, `descricao`, `fornecedorId`, `categoria` (Salários/Infraestrutura/Marketing/Manutenção/Suprimentos/Fixo), `centroCustoId`, `valor`, `competencia`, `vencimento`, `pagamento`, `situacao` (prevista/paga/cancelada), `contaFinanceiraId`, `comprovante`
+
+**`movimentacoes.json`** — 35 registros:
+`id`, `data`, `tipo` (entrada/saida/transf/projetado), `descricao`, `categoria`, `centroCusto`, `conta`, `entrada`, `saida`, `saldo`, `origem`
+
+**`vendas.json`** — 15 registros:
+`id`, `numero`, `clienteNome`, `vendedor`, `tipoVenda` (pontual/recorrente), `estadoInicial` (projecao/ativa), `valorTotal`, `competencia`, `situacao` (ativa/projecao/inativa/perdida/encerrada), `centroCustoId`, `descricao`, `impostos` (iss/pis/cofins/csll/irpj), `parcelas` (array)
+
+**`contratos.json`** — 10 registros:
+`id`, `numero`, `clienteNome`, `dataInicio`, `dataTermino`, `valorTotal`, `situacao`, `centroCustoId`, `vendedores`, `comissao`, `aditivos`
+
+**`emprestimos.json`** — 5 registros:
+`id`, `descricao`, `tipo` (financiamento/capital-giro/leasing), `credor`, `taxaJuros`, `valorOriginal`, `saldoDevedor`, `dataInicio`, `previsaoFim`, `centroCustoId`, `situacao` (ativo/inadimplente/quitado), `parcelas` (cronograma)
+
+**`clientes.json`** — 10 registros:
+`id`, `razaoSocial`, `cnpj`, `nomeFantasia`, `centroCustoId`, `contratosVinculados` (array resumido)
+
+**`colaboradores.json`** — 8 registros:
+`id`, `nome`, `tipo` (PF/PJ), `cpf`, `dataNasc`, `email`, `cargo`, `ativo`, `despesasRecentes`
+
+**`fornecedores.json`** — 8 registros:
+`id`, `razaoSocial`, `cnpj`, `emailFinanceiro`, `telefone`, `ativo`, `despesasVinculadas`
+
+**`historico.json`** — 50 registros:
+`id`, `dataHora`, `entidade`, `entidadeId`, `tipoEvento` (normal/acao-critica/automatico), `usuario`, `usuarioId`, `descricaoCompleta`, `camposAlterados` (array: campo/valorAnterior/novoValor), `ipCliente`, `empresa`, `filial`
+
+**`faturas-cartao.json`** — 3 registros:
+`id`, `contaFinanceiraId`, `mesReferencia`, `valorTotal`, `vencimento`, `status`, `composicao`
+
+Criar `src/data/index.js` exportando funções de filtro para cada entidade.
+
+---
+
+## 0.6 — Componentes base reutilizáveis
+
+Criar em `src/components/shared/`:
+
+### `DataTable.jsx`
+- Props: `columns` (`{key, label, render}`), `data`, `onRowClick`, `selectable`, `loading`, `emptyMessage`
+- **Sem linhas divisórias** — seguir Regra 5
+- Hover: `hover:bg-row-hover` (`#FFF7ED`)
+- Loading: `<LoadingState />`; Empty: `<EmptyState />`
+
+### `Pagination.jsx`
+- Props: `total`, `page`, `perPage`, `onPageChange`, `onPerPageChange`
+- Texto: "Página X de Y | Z registros por página"
+- Botões: Primeira, Anterior, [números], Próxima, Última
+
+### `FilterBar.jsx`
+- Props: `filters` (array), `values`, `onChange`, `onClear`
+- Tipos: `dateRange`, `text`, `select`, `multiselect`
+- Chips ativos com "×" individual
+- Botão "Limpar filtros"
+- Filtros `advanced: true` ficam atrás de "+ Mais filtros"
+
+### `SummaryCards.jsx`
+- Props: `cards` (`{label, value, subtitle, delta, deltaPositive, color, icon, onClick}`)
+- `delta`: variação vs período anterior (ex: "+12.4% vs anterior")
+- `deltaPositive`: boolean — verde se true, vermelho se false
+- Cores: `danger`, `warning`, `success`, `info`, `neutral`
+- Borda esquerda colorida 4px
+
+### `PageHeader.jsx`
+- Props: `title`, `subtitle`, `breadcrumb` (array), `actions`
+- Breadcrumb: "Vendas & Contratos > #0038 — AMT Engenharia" (links clicáveis exceto último)
+- Ações à direita com gradiente nos botões primários
+
+### `SlidePanel.jsx`
+- Props: `open`, `onClose`, `title`, `subtitle`, `children`, `footer`
+- 480px de largura, desliza da direita
+- Header escuro (`inverse-surface`) com título branco
+- Footer com botões "Fechar" + "Editar" (quando aplicável)
+- Em mobile: largura total
+
+### `StatusBadge.jsx`
+- `rounded-full px-3 py-0.5 text-xs font-semibold uppercase tracking-wide`
+- Fundo 10% opacity do accent, texto com opacity 100%
+
+Mapeamento de status → cor:
+
+| Status | Cor base |
+|---|---|
+| paga / ativo / aprovado / confirmado | verde `#2E7D32` |
+| vencida / inadimplente / cancelada / perdida | vermelho `#C62828` |
+| em-aberto / prevista / projeção | amarelo `#F57F17` |
+| pagamento-parcial / médio | laranja `#F97316` |
+| quitado / recebido | azul `#006398` |
+| encerrada / inativa | cinza `#6B7280` |
+| projetado / transferência | azul claro `#0288D1` |
+| acao-critica | vermelho bold |
+
+### `EmptyState.jsx` — ícone `InboxIcon` + "Nenhum registro encontrado" + mensagem opcional
+### `ErrorState.jsx` — ícone `AlertCircle` vermelho + mensagem + "Tentar novamente"
+### `LoadingState.jsx` — spinner `animate-spin` + "Carregando..."
+### `NoPermissionState.jsx` — ícone `Lock` + mensagem + link Dashboard

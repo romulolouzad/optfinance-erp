@@ -1,0 +1,122 @@
+# OptFinance ERP — Fase 6: Despesas
+> Depende das Fases 0, 1 e 8F (Fornecedores).
+> Referências visuais: despesas + despesas_por_mes + despesas_categorias_novo_registro
+
+---
+
+## 6.1 — Estrutura da página
+
+Criar `src/pages/Despesas/index.jsx`.
+
+Topbar: busca "Buscar despesa..." + botão "+ Nova Despesa" (laranja)
+
+`PageHeader` com:
+- Título: "Despesas"
+- Subtítulo: "Controle de custos e saídas financeiras"
+
+**Abas horizontais** logo abaixo do header:
+`Todas` | `Previstas` | `Pagas` | `Por Categoria` | `Por Mês`
+
+---
+
+## 6.2 — 4 Cards de resumo (abas Todas/Previstas/Pagas)
+
+| Label | Cálculo | Cor | Detalhe |
+|---|---|---|---|
+| TOTAL PREVISTO (MÊS) | soma de despesas previstas no mês | neutral | delta "+4% vs anterior" |
+| TOTAL PAGO (MÊS) | soma de despesas pagas | neutral | "X% do total" em muted |
+| A PAGAR (EM ABERTO) | soma de despesas pendentes | neutral | "Atrasado: X" em vermelho |
+| Quarto card | (opcional: próximo vencimento) | neutral | |
+
+---
+
+## 6.3 — Filtros inline (abas Todas/Previstas/Pagas)
+
+Todos visíveis em linha:
+- **Descrição** — input texto, placeholder "Ex: Aluguel"
+- **Fornecedor** — select: "Todos"
+- **Categoria** — select: "Todas" + (Salários/Infraestrutura/Marketing/Manutenção/Suprimentos/Fixo/Administrativo)
+- **Centro de Custo** — select
+- **Status** — select: Todos / Prevista / Paga / Cancelada
+
+---
+
+## 6.4 — Tabela (aba "Todas")
+
+Colunas:
+
+| Coluna | Campo | Observação |
+|---|---|---|
+| ID | `id` | `#8821` em `font-mono text-sm` |
+| Descrição | `descricao` | bold |
+| Fornecedor | `fornecedor` | texto |
+| Categoria | `categoria` | badge colorido por tipo |
+| Centro Custo | `centroCusto` | texto |
+| Vencimento | `vencimento` | vermelho se vencida |
+| Valor | `valor` | R$ |
+| Status | `situacao` | badge: Prevista (amarelo) / Paga (verde) / Cancelada (cinza) |
+
+**Badges de categoria com cor:**
+- Infraestrutura → roxo `bg-purple-100 text-purple-700`
+- Salários → azul `bg-blue-100 text-blue-700`
+- Marketing → laranja `bg-orange-100 text-orange-700`
+- Manutenção → amarelo `bg-yellow-100 text-yellow-700`
+- Suprimentos → verde `bg-green-100 text-green-700`
+- Fixo → cinza `bg-gray-100 text-gray-600`
+
+---
+
+## 6.5 — Aba "Por Mês"
+
+Layout de acordeão mensal:
+
+Cada mês é um item de acordeão:
+- **Header** (clicável): "Abril / 2026" à esquerda + "PREVISTO R$ 48.320,00" + "PAGO R$ 31.200,00" (laranja) à direita + chevron
+- Primeiro mês: expandido por padrão; demais colapsados
+- **Conteúdo expandido**: tabela com Vencimento / Descrição / Categoria (badge) / Valor / Status (ícone check verde ou relógio cinza)
+
+**Gráfico "Despesas Mensais por Categoria"** abaixo de todos os acordeões:
+- Título: "Despesas Mensais por Categoria"
+- Subtítulo: "Visão consolidada do primeiro quadrimestre de [ano]"
+- Legenda: "● SALÁRIOS ● INFRA ● MARKETING"
+- Usar `BarChart` do Recharts com barras empilhadas (`stackId="a"`):
+  - Salários: azul `#3B82F6`
+  - Infra: roxo `#8B5CF6`
+  - Marketing: laranja `#F97316`
+- Eixo X: meses (JAN, FEV, MAR, ABR)
+
+---
+
+## 6.6 — Modal "Nova Despesa" + Painel "Registrar Pagamento"
+
+Ao clicar em "+ Nova Despesa", abrir modal `FormNovaDespesa.jsx`.
+
+**Campos do modal:**
+
+| Campo | Tipo | Obrigatório | Observação |
+|---|---|---|---|
+| Descrição * | Input texto | Sim | placeholder "Ex: Licença Anual Software de Design" |
+| Fornecedor/Colaborador | Select | Não | Lista de fornecedores e colaboradores ativos |
+| Categoria | Select | Não | Todas as categorias disponíveis |
+| Centro de Custo * | Select | Sim | Pré-preenchido com "Engenharia de Produto" ou último usado |
+| Valor * | Numérico R$ | Sim | — |
+| Competência | Mês/Ano | Não | Separado do vencimento |
+| Vencimento | Date picker | Não | — |
+| Status da Despesa | Radio | Sim | **Prevista** / **Paga** (padrão = Prevista) |
+
+**Quando `Status = Paga`**: expandir seção de pagamento inline no próprio modal:
+- Data do Pagamento (date picker, padrão = hoje)
+- Conta Bancária (select)
+- Comprovante (drag-and-drop: "Arraste seu arquivo ou clique para upload / PDF, PNG, JPG (MAX 10MB)")
+
+**Painel flutuante "Registrar Pagamento"** (quando ação vem da tabela, não do botão novo):
+Mini-painel sobreposto (`absolute` ou `fixed`) com:
+- ID + descrição da despesa em destaque
+- Data do Pagamento, Conta Bancária, Upload Comprovante
+- Botão "Confirmar Pagamento" (laranja)
+
+**Ao salvar:**
+1. Adicionar ao mock com categoria e fornecedor
+2. Se paga: criar movimentação de saída no Fluxo de Caixa
+3. Toast: "Despesa cadastrada com sucesso" ou "Pagamento registrado"
+4. Registrar no histórico

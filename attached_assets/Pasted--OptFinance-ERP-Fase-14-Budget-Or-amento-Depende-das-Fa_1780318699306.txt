@@ -1,0 +1,103 @@
+# OptFinance ERP — Fase 14: Budget / Orçamento
+> Depende das Fases 0, 1, 9 (DRE) e 6 (Despesas).
+> Referência visual: budget_orcamento_optsolv_erp_screen.png
+
+---
+
+## 14.1 — Estrutura da página
+
+Criar `src/pages/Budget/index.jsx`.
+
+Topbar: "Budget / Orçamento" + busca "Buscar rubrica..." + botão "Salvar Alterações" (laranja, visível apenas no modo de edição)
+
+`PageHeader` com:
+- Título: "Budget — Orçamento Anual"
+- Subtítulo: "Planejamento financeiro por centro de custo"
+- Filtros inline: Ano (input, padrão = ano atual) + Centro de Custo (select: "Todos os Centros") + botão "Filtrar"
+- Botões à direita: "Exportar PDF" (outline) + "Editar Budget" (laranja, ícone lápis)
+
+---
+
+## 14.2 — 4 Cards de resumo
+
+| Label | Cálculo | Cor borda |
+|---|---|---|
+| RECEITA ORÇADA (ANO) | soma da coluna "orçado" de receitas | azul |
+| RECEITA REALIZADA (YTD) | soma de receitas realizadas até hoje + "33.8%" em verde | verde |
+| DESPESAS ORÇADAS (ANO) | soma da coluna "orçado" de despesas | neutro |
+| RESULTADO ORÇADO VS REAL | diferença entre realizado e orçado | vermelho se negativo, verde se positivo |
+
+---
+
+## 14.3 — Tabela "Orçamento de Receitas"
+
+Título: "📈 Orçamento de Receitas" + dica "Clique nas células brancas para editar valores" à direita (visível apenas no modo de edição)
+
+**Colunas:** LINHA DE RECEITA | JAN | FEV | MAR | ABR | MAI | JUN | JUL | AGO | SET | OUT | NOV | DEZ
+
+**Linhas:**
+
+| Linha | Tipo |
+|---|---|
+| Receita Bruta Orçada | pai (bold), somente leitura (soma dos filhos) |
+| Pontual | filho, editável no modo edição |
+| Recorrente | filho, editável no modo edição |
+| Receita Realizada | destaque verde, somente leitura (vem de Parcelas) |
+| Variação (%) | seta verde se positivo, seta vermelha se negativo |
+
+Valores em formato compacto: "1.0M", "250l" (l = mil), "750k"
+
+---
+
+## 14.4 — Modo de Edição
+
+Ao clicar "Editar Budget":
+- Banner flutuante no rodapé: fundo `#FFF7ED` com bolinha laranja animada + "MODO DE EDIÇÃO ATIVO — Alterações pendentes: X" + botões "Cancelar" + "Salvar Budget" (laranja)
+- Células editáveis ficam com fundo `surface-container-low` e cursor texto
+- Ao editar: recalcular totais em tempo real
+- "Alterações pendentes" incrementa a cada célula editada
+
+---
+
+## 14.5 — Gráfico de barras mensais
+
+Após a tabela de receitas: 4 mini-gráficos de barras (um por mês visível).
+Usar `BarChart` do Recharts com 3 barras por mês:
+- Azul: Orçado
+- Verde: Realizado (Rec)
+- Vermelho: Realizado (Desp)
+
+Legenda: "■ Orçado ● Realizado (Rec) ● Realizado (Desp)"
+
+---
+
+## 14.6 — Seção "Resumo de Despesas"
+
+Título: "📊 Resumo de Despesas"
+
+Tabela: CATEGORIA | ORÇADO (MÊS) | REALIZADO | VARIAÇÃO
+
+| Linha | Variação |
+|---|---|
+| Salários & Encargos | ▼ 0.4% (verde — abaixo do orçado) |
+| Infraestrutura / Cloud | ▲ 12.5% (vermelho — acima) |
+| Marketing / Ads | ▲ 18.7% (vermelho) |
+| **TOTAL DESPESAS** | ▲ 4.3% (vermelho, linha bold com fundo escuro) |
+
+---
+
+## 14.7 — Seção "Resultado Geral"
+
+Ao lado do Resumo de Despesas, card "Resultado Geral" com duas sub-seções:
+
+**VISÃO: ORÇADO**
+- Receita: R$ 15.0M
+- Despesas: -R$ 8.1M
+- **EBITDA: R$ 6.9M** (bold, verde)
+
+**VISÃO: REALIZADO (YTD)**
+- Receita: R$ 4.2M
+- Despesas: -R$ 2.8M
+- **EBITDA: R$ 1.4M**
+
+**VARIAÇÃO REAL VS ORÇADO:** valor percentual grande (ex: "- 12.4%") em vermelho bold se negativo.

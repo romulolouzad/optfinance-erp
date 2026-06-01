@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#ffb690",
+                    "on-secondary-container": "#5c6274",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#003554",
+                    "on-secondary-fixed-variant": "#404758",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#e0c0b1",
+                    "on-primary-container": "#582200",
+                    "on-secondary-fixed": "#141b2b",
+                    "surface-container": "#e9edff",
+                    "on-surface": "#141b2b",
+                    "inverse-surface": "#293040",
+                    "on-secondary": "#ffffff",
+                    "outline": "#8c7164",
+                    "inverse-on-surface": "#edf0ff",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#d9dff5",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#dce2f7",
+                    "on-tertiary-fixed-variant": "#004b74",
+                    "on-primary-fixed": "#341100",
+                    "secondary": "#575e70",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#ffdbca",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#d3daef",
+                    "tertiary-fixed-dim": "#93ccff",
+                    "surface-container-low": "#f1f3ff",
+                    "primary-fixed-dim": "#ffb690",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#9d4300",
+                    "on-primary-fixed-variant": "#783200",
+                    "on-background": "#141b2b",
+                    "tertiary-container": "#00a2f4",
+                    "on-tertiary-fixed": "#001d32",
+                    "tertiary": "#006398",
+                    "background": "#f9f9ff",
+                    "surface-container-highest": "#dce2f7",
+                    "primary-container": "#f97316",
+                    "surface-bright": "#f9f9ff",
+                    "on-surface-variant": "#584237",
+                    "surface": "#f9f9ff",
+                    "secondary-fixed": "#dce2f7",
+                    "primary": "#9d4300",
+                    "tertiary-fixed": "#cde5ff",
+                    "surface-container-high": "#e1e8fd"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .tonal-shift-via-bg-color { background-color: #111827; }
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.85);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface overflow-hidden">
+<!-- SideNavBar Shell -->
+<aside class="w-[220px] h-screen fixed left-0 top-0 bg-slate-950 dark:bg-black flex flex-col overflow-y-auto z-40">
+<div class="px-6 py-8">
+<h1 class="text-xl font-black text-orange-500 font-['Inter'] tracking-tight">Optsolv ERP</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] text-slate-500 font-bold mt-1">The Precision Architect</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Nav Items Mapping -->
+<a class="text-slate-400 hover:text-white px-6 py-3 flex items-center gap-3 hover:bg-slate-900 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="text-slate-400 hover:text-white px-6 py-3 flex items-center gap-3 hover:bg-slate-900 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg">account_balance</span>
+<span class="text-sm font-medium">Financials</span>
+</a>
+<a class="border-l-4 border-orange-500 bg-slate-900 text-white font-semibold px-6 py-3 flex items-center gap-3" href="#">
+<span class="material-symbols-outlined text-lg">sync_alt</span>
+<span class="text-sm font-medium">Bank Reconciliation</span>
+</a>
+<a class="text-slate-400 hover:text-white px-6 py-3 flex items-center gap-3 hover:bg-slate-900 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg">payments</span>
+<span class="text-sm font-medium">Accounts Payable</span>
+</a>
+<a class="text-slate-400 hover:text-white px-6 py-3 flex items-center gap-3 hover:bg-slate-900 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg">receipt</span>
+<span class="text-sm font-medium">Accounts Receivable</span>
+</a>
+<a class="text-slate-400 hover:text-white px-6 py-3 flex items-center gap-3 hover:bg-slate-900 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg">inventory_2</span>
+<span class="text-sm font-medium">Inventory</span>
+</a>
+<a class="text-slate-400 hover:text-white px-6 py-3 flex items-center gap-3 hover:bg-slate-900 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-lg">assessment</span>
+<span class="text-sm font-medium">Reporting</span>
+</a>
+<a class="text-slate-400 hover:text-white px-6 py-3 flex items-center gap-3 hover:bg-slate-900 transition-colors duration-200 mt-auto" href="#">
+<span class="material-symbols-outlined text-lg">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-6 border-t border-slate-900">
+<button class="w-full bg-primary-container text-white py-2.5 rounded-lg font-bold text-sm shadow-lg shadow-orange-950/20 active:scale-95 transition-all">
+                New Entry
+            </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-[220px] min-h-screen flex flex-col relative">
+<!-- TopNavBar Shell -->
+<header class="h-16 flex justify-between items-center px-8 bg-gray-50 dark:bg-slate-900 border-b border-gray-200/15">
+<div class="flex items-center gap-6">
+<h2 class="font-['Inter'] text-xl font-bold tracking-tighter text-on-surface">Bank Reconciliation</h2>
+<nav class="flex gap-8 ml-8">
+<span class="text-gray-400 text-sm font-medium">Import</span>
+<span class="text-orange-600 border-b-2 border-orange-600 pb-1 text-sm font-bold">Match</span>
+<span class="text-gray-400 text-sm font-medium">Finalize</span>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2 mr-4">
+<button class="p-2 text-gray-500 hover:text-orange-500 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-gray-500 hover:text-orange-500 transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<button class="px-4 py-2 border border-outline/15 text-primary font-bold text-sm rounded-lg hover:bg-surface-container transition-all">Export</button>
+<button class="px-4 py-2 bg-gradient-to-t from-primary to-primary-container text-white font-bold text-sm rounded-lg shadow-md active:scale-95 transition-all">Execute Run</button>
+<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden ml-2">
+<img alt="User Profile" data-alt="close-up of a professional modern profile avatar in a clean minimalist style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbM5tEB7WcetXjVtzLykUzNZ2NrWwmBh9IHeGBP1Mprewp3xtjJUxMCP4SUL7-X069S9NfQt_yY5dobYbkCdG-sf2uqJvwO5h5oWg1X_-EpGQj1qhKaCfR3pahOmY30ng_w5IOLW9VZ20KbF3RtznxE7hDmJMGy-4MJICmt4N0qOWEn2x6jPHrt8odjBR1XIBf-lNy4EnJ6CEWZd-vzp3WLODoLQbycHxM1pxSJe8Sevh-JW8xtC_0nB6wz6XwUJkn8EorGI3fcrbc"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-8 flex-1 overflow-y-auto space-y-6">
+<!-- Stepper Component -->
+<div class="flex items-center justify-center gap-4 mb-8">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-xs">01</div>
+<span class="text-sm font-semibold text-gray-400">Importação</span>
+</div>
+<div class="w-12 h-[2px] bg-primary"></div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center font-bold text-xs shadow-lg shadow-orange-500/20">02</div>
+<span class="text-sm font-bold text-on-surface">Conciliação</span>
+</div>
+<div class="w-12 h-[2px] bg-gray-200"></div>
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full border-2 border-gray-200 text-gray-300 flex items-center justify-center font-bold text-xs">03</div>
+<span class="text-sm font-medium text-gray-300">Finalização</span>
+</div>
+</div>
+<!-- Info Bar -->
+<div class="bg-surface-container-low rounded-xl p-5 flex justify-between items-center border border-outline-variant/15">
+<div class="flex gap-10">
+<div>
+<p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Banco Selecionado</p>
+<div class="flex items-center gap-2">
+<img alt="Bank Logo" class="w-5 h-5" data-alt="minimalist icon of a banking building in orange and white colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5_Y_u7bbyBirmLYsWg02ltWtL8aI8u7W4gHEo8AQhF4fJC_DuCuXYxyEATGMcFRvj_Yjg2Cxfl8jNoZ75XSefVoZbQfdrrWgk0zv09_ofzYEidK2TMoLunsT_WQoAvDRlgTbFn-ulOAqr0ZN-FIDA4RbFKoAE6-JGH62xkHJVKEVMVdO-VxBHs5DvFkgND1ZdXfIEgUHCsbYM7V8HNMOaW-qp2yA2XJNII5aaW1h4YFCnEkOt4NnMIB3Dg0Wp-CkPebx_aQIsWrMw"/>
+<span class="text-sm font-bold">Itaú Unibanco - Ag 0032 CC 99321-2</span>
+</div>
+</div>
+<div>
+<p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Período do Extrato</p>
+<p class="text-sm font-bold">01/10/2023 - 31/10/2023</p>
+</div>
+<div>
+<p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Saldo Atual</p>
+<p class="text-sm font-bold text-green-600">R$ 145.230,88</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1">Progresso</p>
+<div class="w-48 h-2 bg-gray-200 rounded-full overflow-hidden">
+<div class="w-1/2 h-full bg-primary-container"></div>
+</div>
+<p class="text-[10px] font-bold mt-1 text-on-surface">18 de 34 conciliados</p>
+</div>
+</div>
+<!-- Filter Tabs -->
+<div class="flex items-center justify-between">
+<div class="bg-gray-100 p-1 rounded-xl flex gap-1">
+<button class="px-6 py-2 bg-white rounded-lg shadow-sm text-sm font-bold text-primary">Todas (34)</button>
+<button class="px-6 py-2 hover:bg-white/50 rounded-lg text-sm font-semibold text-gray-500 transition-all">Com sugestão (18)</button>
+<button class="px-6 py-2 hover:bg-white/50 rounded-lg text-sm font-semibold text-gray-500 transition-all">Sem sugestão (12)</button>
+<button class="px-6 py-2 hover:bg-white/50 rounded-lg text-sm font-semibold text-gray-500 transition-all">Ignoradas (4)</button>
+</div>
+<div class="flex gap-3">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2 text-gray-400 text-lg">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg text-sm w-64 focus:ring-2 ring-primary/20" placeholder="Filtrar lançamentos..." type="text"/>
+</div>
+<button class="p-2 bg-surface-container-low rounded-lg text-gray-500">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm border border-outline-variant/10">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-[11px] font-black uppercase tracking-widest text-on-surface-variant">
+<th class="px-6 py-4">Data</th>
+<th class="px-6 py-4">Descrição</th>
+<th class="px-6 py-4">Tipo</th>
+<th class="px-6 py-4 text-right">Valor</th>
+<th class="px-6 py-4">Sugestão do Sistema</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4 text-right">Ações</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<!-- High Confidence Row -->
+<tr class="bg-orange-50/50 hover:bg-orange-100/50 transition-colors">
+<td class="px-6 py-4 font-medium">12/10/2023</td>
+<td class="px-6 py-4">PAGTO FORNECEDOR ACME LTDA</td>
+<td class="px-6 py-4">
+<div class="flex items-center text-red-600 gap-1">
+<span class="material-symbols-outlined text-lg">arrow_downward</span>
+<span class="font-bold">Saída</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-bold">R$ 1.250,00</td>
+<td class="px-6 py-4">
+<span class="bg-primary-container/10 text-primary px-3 py-1 rounded-full text-xs font-bold border border-primary/20">Parcela #047</span>
+</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1.5 text-orange-600 font-bold text-xs uppercase">
+<span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+                                    Pendente
+                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-all"><span class="material-symbols-outlined">check</span></button>
+<button class="p-1.5 bg-surface-container-low text-gray-400 rounded-lg hover:text-primary transition-all"><span class="material-symbols-outlined">link</span></button>
+</div>
+</td>
+</tr>
+<!-- Standard Row -->
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 font-medium">13/10/2023</td>
+<td class="px-6 py-4">RECEBIMENTO CLIENTE X</td>
+<td class="px-6 py-4">
+<div class="flex items-center text-green-600 gap-1">
+<span class="material-symbols-outlined text-lg">arrow_upward</span>
+<span class="font-bold">Entrada</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-bold">R$ 4.500,00</td>
+<td class="px-6 py-4">
+<span class="text-gray-400 text-xs italic">Nenhuma correspondência</span>
+</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1.5 text-gray-400 font-bold text-xs uppercase">
+<span class="w-2 h-2 rounded-full bg-gray-300"></span>
+                                    Vazio
+                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="px-3 py-1.5 bg-primary-container text-white rounded-lg text-xs font-bold shadow-sm">Vincular</button>
+</div>
+</td>
+</tr>
+<!-- Another High Confidence Row -->
+<tr class="bg-orange-50/50 hover:bg-orange-100/50 transition-colors">
+<td class="px-6 py-4 font-medium">14/10/2023</td>
+<td class="px-6 py-4">DOC ELETROBRAS DISTRIB</td>
+<td class="px-6 py-4">
+<div class="flex items-center text-red-600 gap-1">
+<span class="material-symbols-outlined text-lg">arrow_downward</span>
+<span class="font-bold">Saída</span>
+</div>
+</td>
+<td class="px-6 py-4 text-right font-bold">R$ 342,12</td>
+<td class="px-6 py-4">
+<span class="bg-primary-container/10 text-primary px-3 py-1 rounded-full text-xs font-bold border border-primary/20">Conta de Luz</span>
+</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1.5 text-orange-600 font-bold text-xs uppercase">
+<span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                                    Pendente
+                                </span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="p-1.5 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition-all"><span class="material-symbols-outlined">check</span></button>
+<button class="p-1.5 bg-surface-container-low text-gray-400 rounded-lg"><span class="material-symbols-outlined">link</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- MODAL OVERLAY (Link Modal) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/40 backdrop-blur-sm">
+<div class="bg-white w-[560px] rounded-3xl shadow-2xl overflow-hidden flex flex-col animate-in fade-in zoom-in duration-300">
+<!-- Modal Header -->
+<div class="px-8 py-6 flex justify-between items-center border-b border-gray-100">
+<h3 class="text-xl font-bold tracking-tight text-on-surface">Vincular Linha do Extrato</h3>
+<button class="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-all text-gray-400">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Modal Content -->
+<div class="p-8 space-y-6">
+<div class="grid grid-cols-2 gap-8 relative">
+<!-- Divider Line -->
+<div class="absolute left-1/2 top-0 bottom-0 w-[1px] bg-gray-100"></div>
+<!-- Left Column: Bank Data -->
+<div class="space-y-4">
+<span class="text-[10px] font-black text-primary uppercase tracking-[0.1em]">No Extrato</span>
+<div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
+<p class="text-xs text-gray-500 mb-1">Descrição</p>
+<p class="text-sm font-bold text-on-surface">PAGTO FORNECEDOR ACME LTDA</p>
+</div>
+<div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
+<p class="text-xs text-gray-500 mb-1">Valor</p>
+<p class="text-lg font-black text-red-600">R$ 1.250,00</p>
+</div>
+<div class="p-4 bg-gray-50 rounded-xl border border-gray-100">
+<p class="text-xs text-gray-500 mb-1">Data</p>
+<p class="text-sm font-bold">12/10/2023</p>
+</div>
+</div>
+<!-- Right Column: System Link -->
+<div class="space-y-4">
+<span class="text-[10px] font-black text-on-surface-variant uppercase tracking-[0.1em]">No Sistema</span>
+<div class="space-y-1">
+<label class="text-[11px] font-bold text-gray-500">Tipo de Vínculo</label>
+<select class="w-full bg-surface-container-low border-none rounded-xl text-sm font-semibold h-12 focus:ring-2 ring-primary/20">
+<option>Parcela</option>
+<option>Despesa</option>
+<option>Transferência</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="text-[11px] font-bold text-gray-500">Selecionar Parcela</label>
+<div class="relative">
+<select class="w-full bg-primary-container/5 border-primary/20 rounded-xl text-sm font-bold h-12 appearance-none px-4 focus:ring-2 ring-primary/20">
+<option>Parcela #047 - R$ 1.280,00</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-3 text-primary pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="p-4 bg-surface-container-low rounded-xl">
+<p class="text-xs text-gray-500 mb-1">Valor do Título</p>
+<p class="text-lg font-black text-on-surface">R$ 1.280,00</p>
+</div>
+</div>
+</div>
+<!-- Warning Box -->
+<div class="bg-orange-50 border border-orange-200 p-4 rounded-2xl flex items-start gap-4">
+<span class="material-symbols-outlined text-orange-600">warning</span>
+<div>
+<p class="text-xs font-bold text-orange-800">Divergência de Valores</p>
+<p class="text-xs text-orange-700 mt-1 leading-relaxed">O valor do extrato é R$ 30,00 menor que o título. Deseja registrar a diferença como juros/descontos ou manter parcial?</p>
+</div>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="px-8 py-6 bg-gray-50 flex justify-end gap-3">
+<button class="px-6 py-2.5 text-sm font-bold text-gray-500 hover:text-on-surface transition-all">Cancelar</button>
+<button class="px-8 py-2.5 bg-gradient-to-t from-primary to-primary-container text-white rounded-xl text-sm font-bold shadow-lg shadow-orange-500/30 active:scale-95 transition-all">
+                        Confirmar Vínculo
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

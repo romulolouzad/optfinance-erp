@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#001d32",
+                        "on-surface-variant": "#584237",
+                        "background": "#f9f9ff",
+                        "on-primary-fixed-variant": "#783200",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "surface-container-high": "#e1e8fd",
+                        "surface": "#f3f4f6", /* Overridden to match user request #F3F4F6 */
+                        "on-surface": "#141b2b",
+                        "on-tertiary-container": "#003554",
+                        "tertiary-container": "#00a2f4",
+                        "surface-container-highest": "#dce2f7",
+                        "outline": "#8c7164",
+                        "primary-fixed": "#ffdbca",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "tertiary-fixed": "#cde5ff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#5c6274",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#d9dff5",
+                        "tertiary": "#006398",
+                        "on-primary-container": "#582200",
+                        "primary-container": "#f97316",
+                        "surface-bright": "#f9f9ff",
+                        "surface-tint": "#9d4300",
+                        "primary-fixed-dim": "#ffb690",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#ffb690",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#dce2f7",
+                        "secondary": "#575e70",
+                        "on-secondary-fixed": "#141b2b",
+                        "on-background": "#141b2b",
+                        "inverse-surface": "#111827", /* Dark Navy Sidebar */
+                        "surface-container": "#e9edff",
+                        "on-secondary-fixed-variant": "#404758",
+                        "on-primary-fixed": "#341100",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#e0c0b1",
+                        "surface-variant": "#dce2f7",
+                        "primary": "#9d4300",
+                        "surface-container-low": "#f1f3ff",
+                        "surface-dim": "#d3daef",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "8px",
+                        "lg": "8px",
+                        "xl": "12px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface min-h-screen flex">
+<!-- SideNavBar Component -->
+<aside class="w-[220px] h-screen fixed left-0 top-0 bg-gray-950 flex flex-col py-6 shadow-xl z-50">
+<div class="px-6 mb-8">
+<h1 class="text-xl font-bold text-white tracking-tight">Optsolv ERP</h1>
+<p class="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Enterprise Resource Planning</p>
+</div>
+<nav class="flex-1 overflow-y-auto space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="handshake">handshake</span>
+<span class="text-sm font-medium">Vendas &amp; Contratos</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="text-sm font-medium">Parcelas</span>
+</a>
+<!-- Active Navigation: Forecast -->
+<a class="flex items-center gap-3 px-4 py-3 border-l-4 border-orange-500 bg-white/5 text-white font-semibold transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+<span class="text-sm">Forecast</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="text-sm font-medium">Clientes</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="text-sm font-medium">DRE</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="text-sm font-medium">Relatórios</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-sm font-medium">Configurações</span>
+</a>
+</nav>
+<div class="px-6 pt-6 mt-auto border-t border-white/10">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white text-xs font-bold">JD</div>
+<div class="overflow-hidden">
+<p class="text-sm text-white font-medium truncate">João Diniz</p>
+<p class="text-xs text-gray-500 truncate">Administrador</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[220px] flex-1 flex flex-col min-h-screen">
+<!-- TopNavBar Component -->
+<header class="fixed top-0 right-0 left-[220px] h-16 bg-gray-50/80 backdrop-blur-md border-b border-gray-200 flex justify-between items-center px-8 z-40">
+<div class="flex items-center gap-4">
+<span class="text-lg font-bold text-gray-900 tracking-tight">Forecast</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="material-symbols-outlined text-gray-500 hover:text-orange-600 cursor-pointer transition-colors" data-icon="notifications">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-orange-600 rounded-full"></span>
+</div>
+<span class="material-symbols-outlined text-gray-500 hover:text-orange-600 cursor-pointer transition-colors" data-icon="help_outline">help_outline</span>
+</div>
+</header>
+<!-- Canvas -->
+<div class="pt-24 px-8 pb-12 space-y-8">
+<!-- Page Header -->
+<div class="flex flex-col">
+<h2 class="text-[28px] font-bold text-on-surface leading-tight">Forecast</h2>
+<p class="text-secondary font-medium mt-1">Projeção de receitas e resultados futuros</p>
+</div>
+<!-- Filter Bar -->
+<section class="bg-surface-container-lowest p-5 rounded-lg shadow-sm flex flex-wrap items-center gap-4">
+<div class="flex flex-col gap-1 flex-1 min-w-[200px]">
+<label class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Horizonte</label>
+<select class="border-0 bg-surface-container-low rounded text-sm font-medium text-on-surface focus:ring-2 focus:ring-primary-container h-10">
+<option>3 meses</option>
+<option>6 meses</option>
+<option>12 meses</option>
+<option>24 meses</option>
+</select>
+</div>
+<div class="flex flex-col gap-1 flex-1 min-w-[200px]">
+<label class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Centro de Custo</label>
+<select class="border-0 bg-surface-container-low rounded text-sm font-medium text-on-surface focus:ring-2 focus:ring-primary-container h-10">
+<option>Todos os Centros</option>
+<option>Tecnologia</option>
+<option>Operações</option>
+<option>Comercial</option>
+</select>
+</div>
+<div class="flex flex-col gap-1 flex-1 min-w-[200px]">
+<label class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">Vendedor</label>
+<select class="border-0 bg-surface-container-low rounded text-sm font-medium text-on-surface focus:ring-2 focus:ring-primary-container h-10">
+<option>Todos os Vendedores</option>
+<option>Ana Paula Silva</option>
+<option>Marcos Vinícius</option>
+<option>Carla Oliveira</option>
+</select>
+</div>
+<button class="bg-primary-container text-white px-6 py-2 rounded-lg font-bold text-sm h-10 self-end hover:bg-primary transition-all shadow-md shadow-orange-500/20 active:opacity-70">
+                    Atualizar Projeção
+                </button>
+</section>
+<!-- KPI Row -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-l-4 border-orange-500">
+<p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Receita Projetada (próx. 3m)</p>
+<h3 class="text-2xl font-extrabold text-orange-600">R$ 1.450.800</h3>
+<div class="flex items-center gap-1 mt-2 text-xs font-semibold text-green-600">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span>
+<span>+12.4% vs prev.</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-l-4 border-green-500">
+<p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Receita Confirmada</p>
+<h3 class="text-2xl font-extrabold text-green-600">R$ 890.320</h3>
+<p class="text-xs text-gray-500 mt-2">Parcelas ativas e validadas</p>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-l-4 border-blue-500">
+<p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Nível de Confiança</p>
+<h3 class="text-2xl font-extrabold text-blue-600">85%</h3>
+<div class="w-full bg-blue-100 h-1.5 rounded-full mt-4 overflow-hidden">
+<div class="bg-blue-600 h-full" style="width: 85%"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-l-4 border-gray-400">
+<p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Contratos em Projeção</p>
+<h3 class="text-2xl font-extrabold text-gray-700">142</h3>
+<p class="text-xs text-gray-500 mt-2">Novas oportunidades mapeadas</p>
+</div>
+</section>
+<!-- Main Charts Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Main Full-Width Styled Chart Container -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm lg:col-span-2">
+<div class="flex justify-between items-center mb-8">
+<h4 class="text-lg font-bold text-on-surface">Receita Projetada vs Confirmada por Mês</h4>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-green-500 rounded-sm"></span>
+<span class="text-xs font-semibold text-gray-600 uppercase">Confirmado</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 border-2 border-dashed border-orange-500 rounded-sm"></span>
+<span class="text-xs font-semibold text-gray-600 uppercase">Projetado</span>
+</div>
+</div>
+</div>
+<!-- Bar Chart Mockup -->
+<div class="h-64 flex items-end justify-between gap-4 px-2">
+<!-- Mai/26 -->
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full flex justify-center gap-1 h-full items-end">
+<div class="bg-green-500 w-1/3 rounded-t" style="height: 60%"></div>
+<div class="border-2 border-dashed border-orange-500 w-1/3 rounded-t" style="height: 40%"></div>
+</div>
+<span class="text-[10px] font-bold text-gray-400">MAI/26</span>
+</div>
+<!-- Jun/26 -->
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full flex justify-center gap-1 h-full items-end">
+<div class="bg-green-500 w-1/3 rounded-t" style="height: 75%"></div>
+<div class="border-2 border-dashed border-orange-500 w-1/3 rounded-t" style="height: 20%"></div>
+</div>
+<span class="text-[10px] font-bold text-gray-400">JUN/26</span>
+</div>
+<!-- Jul/26 -->
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full flex justify-center gap-1 h-full items-end">
+<div class="bg-green-500 w-1/3 rounded-t" style="height: 45%"></div>
+<div class="border-2 border-dashed border-orange-500 w-1/3 rounded-t" style="height: 50%"></div>
+</div>
+<span class="text-[10px] font-bold text-gray-400">JUL/26</span>
+</div>
+<!-- Ago/26 -->
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full flex justify-center gap-1 h-full items-end">
+<div class="bg-green-500 w-1/3 rounded-t" style="height: 55%"></div>
+<div class="border-2 border-dashed border-orange-500 w-1/3 rounded-t" style="height: 45%"></div>
+</div>
+<span class="text-[10px] font-bold text-gray-400">AGO/26</span>
+</div>
+<!-- Set/26 -->
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full flex justify-center gap-1 h-full items-end">
+<div class="bg-green-500 w-1/3 rounded-t" style="height: 30%"></div>
+<div class="border-2 border-dashed border-orange-500 w-1/3 rounded-t" style="height: 70%"></div>
+</div>
+<span class="text-[10px] font-bold text-gray-400">SET/26</span>
+</div>
+<!-- Out/26 -->
+<div class="flex-1 flex flex-col items-center gap-2">
+<div class="w-full flex justify-center gap-1 h-full items-end">
+<div class="bg-green-500 w-1/3 rounded-t" style="height: 20%"></div>
+<div class="border-2 border-dashed border-orange-500 w-1/3 rounded-t" style="height: 80%"></div>
+</div>
+<span class="text-[10px] font-bold text-gray-400">OUT/26</span>
+</div>
+</div>
+</div>
+<!-- Donut Chart -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm">
+<h4 class="text-lg font-bold text-on-surface mb-6">Distribuição por Tipo de Contrato</h4>
+<div class="flex items-center justify-center py-8 relative">
+<div class="w-48 h-48 rounded-full border-[24px] border-tertiary border-r-orange-500 relative flex items-center justify-center">
+<div class="text-center">
+<p class="text-2xl font-bold text-on-surface">64%</p>
+<p class="text-[10px] text-gray-400 font-bold uppercase tracking-tight">Recorrente</p>
+</div>
+</div>
+<div class="ml-10 space-y-3">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-tertiary rounded-full"></span>
+<span class="text-sm font-medium text-gray-600">Pontual (36%)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-orange-500 rounded-full"></span>
+<span class="text-sm font-medium text-gray-600">Recorrente (64%)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Horizontal Stacked Chart -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm">
+<h4 class="text-lg font-bold text-on-surface mb-6">Forecast por Vendedor</h4>
+<div class="space-y-5">
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-bold text-gray-500">
+<span>ANA PAULA SILVA</span>
+<span>R$ 420k</span>
+</div>
+<div class="w-full h-4 bg-surface-container-low rounded-full flex overflow-hidden">
+<div class="bg-green-500 h-full" style="width: 70%"></div>
+<div class="bg-orange-500 h-full opacity-60" style="width: 30%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-bold text-gray-500">
+<span>MARCOS VINÍCIUS</span>
+<span>R$ 310k</span>
+</div>
+<div class="w-full h-4 bg-surface-container-low rounded-full flex overflow-hidden">
+<div class="bg-green-500 h-full" style="width: 45%"></div>
+<div class="bg-orange-500 h-full opacity-60" style="width: 55%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-bold text-gray-500">
+<span>CARLA OLIVEIRA</span>
+<span>R$ 285k</span>
+</div>
+<div class="w-full h-4 bg-surface-container-low rounded-full flex overflow-hidden">
+<div class="bg-green-500 h-full" style="width: 80%"></div>
+<div class="bg-orange-500 h-full opacity-60" style="width: 20%"></div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-xs font-bold text-gray-500">
+<span>RICARDO GOMES</span>
+<span>R$ 190k</span>
+</div>
+<div class="w-full h-4 bg-surface-container-low rounded-full flex overflow-hidden">
+<div class="bg-green-500 h-full" style="width: 30%"></div>
+<div class="bg-orange-500 h-full opacity-60" style="width: 70%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Parcelas Table Card -->
+<section class="bg-surface-container-lowest rounded-lg shadow-sm overflow-hidden">
+<div class="p-6 border-b border-gray-100 flex justify-between items-center">
+<h4 class="text-lg font-bold text-on-surface">Parcelas Projetadas</h4>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-gray-400 cursor-pointer" data-icon="filter_list">filter_list</span>
+<span class="material-symbols-outlined text-gray-400 cursor-pointer" data-icon="download">download</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-6 py-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Venda</th>
+<th class="px-6 py-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Cliente</th>
+<th class="px-6 py-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Vendedor</th>
+<th class="px-6 py-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Competência</th>
+<th class="px-6 py-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Vencimento Prev.</th>
+<th class="px-6 py-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Valor (R$)</th>
+<th class="px-6 py-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Tipo</th>
+<th class="px-6 py-4 text-[10px] font-bold text-gray-500 uppercase tracking-widest">Nível de Risco</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-100">
+<tr class="hover:bg-orange-50/50 transition-colors">
+<td class="px-6 py-4 text-sm font-semibold text-tertiary">#VEN-9021</td>
+<td class="px-6 py-4 text-sm font-medium text-gray-700">TechSolutions Brasil</td>
+<td class="px-6 py-4 text-sm text-gray-600">Ana Paula Silva</td>
+<td class="px-6 py-4 text-sm text-gray-600">Out/2026</td>
+<td class="px-6 py-4 text-sm text-gray-600">15/10/2026</td>
+<td class="px-6 py-4 text-sm font-bold text-gray-900">12.500,00</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-full uppercase">Recorrente</span>
+</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1.5 px-2.5 py-1 bg-green-100 text-green-700 text-[10px] font-bold rounded-full uppercase">
+<span class="w-1.5 h-1.5 bg-green-600 rounded-full"></span>Baixo
+                                    </span>
+</td>
+</tr>
+<tr class="hover:bg-orange-50/50 transition-colors">
+<td class="px-6 py-4 text-sm font-semibold text-tertiary">#VEN-8874</td>
+<td class="px-6 py-4 text-sm font-medium text-gray-700">Construtora Alvorada</td>
+<td class="px-6 py-4 text-sm text-gray-600">Marcos Vinícius</td>
+<td class="px-6 py-4 text-sm text-gray-600">Set/2026</td>
+<td class="px-6 py-4 text-sm text-gray-600">20/09/2026</td>
+<td class="px-6 py-4 text-sm font-bold text-gray-900">45.200,00</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-purple-100 text-purple-700 text-[10px] font-bold rounded-full uppercase">Pontual</span>
+</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1.5 px-2.5 py-1 bg-yellow-100 text-yellow-700 text-[10px] font-bold rounded-full uppercase">
+<span class="w-1.5 h-1.5 bg-yellow-600 rounded-full"></span>Médio
+                                    </span>
+</td>
+</tr>
+<tr class="hover:bg-orange-50/50 transition-colors">
+<td class="px-6 py-4 text-sm font-semibold text-tertiary">#VEN-9055</td>
+<td class="px-6 py-4 text-sm font-medium text-gray-700">Global Logistics S.A.</td>
+<td class="px-6 py-4 text-sm text-gray-600">Carla Oliveira</td>
+<td class="px-6 py-4 text-sm text-gray-600">Nov/2026</td>
+<td class="px-6 py-4 text-sm text-gray-600">10/11/2026</td>
+<td class="px-6 py-4 text-sm font-bold text-gray-900">8.900,00</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-full uppercase">Recorrente</span>
+</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1.5 px-2.5 py-1 bg-red-100 text-red-700 text-[10px] font-bold rounded-full uppercase">
+<span class="w-1.5 h-1.5 bg-red-600 rounded-full"></span>Alto
+                                    </span>
+</td>
+</tr>
+<tr class="hover:bg-orange-50/50 transition-colors">
+<td class="px-6 py-4 text-sm font-semibold text-tertiary">#VEN-8912</td>
+<td class="px-6 py-4 text-sm font-medium text-gray-700">Varejo Central Ltda</td>
+<td class="px-6 py-4 text-sm text-gray-600">Ricardo Gomes</td>
+<td class="px-6 py-4 text-sm text-gray-600">Ago/2026</td>
+<td class="px-6 py-4 text-sm text-gray-600">05/08/2026</td>
+<td class="px-6 py-4 text-sm font-bold text-gray-900">3.450,00</td>
+<td class="px-6 py-4">
+<span class="px-2 py-1 bg-blue-100 text-blue-700 text-[10px] font-bold rounded-full uppercase">Recorrente</span>
+</td>
+<td class="px-6 py-4">
+<span class="flex items-center gap-1.5 px-2.5 py-1 bg-green-100 text-green-700 text-[10px] font-bold rounded-full uppercase">
+<span class="w-1.5 h-1.5 bg-green-600 rounded-full"></span>Baixo
+                                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<footer class="p-6 bg-gray-50/50 border-t border-gray-100">
+<p class="text-xs text-gray-400 italic">
+                        O forecast é sempre recalculado com base nos dados atuais. Não existem projeções automáticas — apenas parcelas de vendas ativas e em projeção.
+                    </p>
+</footer>
+</section>
+</div>
+</main>
+</body></html>

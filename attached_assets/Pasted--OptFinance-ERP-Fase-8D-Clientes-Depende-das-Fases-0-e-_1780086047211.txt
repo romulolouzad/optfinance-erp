@@ -1,0 +1,85 @@
+# OptFinance ERP — Fase 8D: Clientes
+> Depende das Fases 0 e 1.
+> Referências visuais: clientes + novo_cliente
+
+---
+
+## 8D.1 — Listagem de clientes
+
+Criar `src/pages/Clientes/index.jsx`.
+
+A topbar desta tela exibe abas: **All Clients** | **Recent** (ativa, com underline laranja) | **Archived**
+
+`PageHeader` com:
+- Título: "Clientes"
+- Subtítulo: "Cadastro de clientes geradores de receita"
+
+**Filtros inline:**
+- Busca por nome ou CNPJ (input texto)
+- Tipo de Pessoa (select: Todos, PJ, PF)
+- Status (select: Todos, Ativo, Inativo)
+
+**Tabela:** ID, Razão Social (bold), CNPJ, Nome Fantasia, Status (badge), Ações (ver detalhe — ícone olho)
+
+---
+
+## 8D.2 — SlidePanel de detalhe
+
+Ao clicar em uma linha, abrir `SlidePanel`.
+
+**Header:** ícone `Users` laranja + título "Detalhe do Cliente — [Nome Fantasia]"
+
+**Seção DADOS CADASTRAIS:**
+- Razão Social, CNPJ, Nome Fantasia, Centro de Custo — em grid 2×2
+
+**Seção CONTRATOS VINCULADOS:**
+Link "VER TODOS" em laranja no canto direito.
+Tabela compacta: ID (link laranja #CXXX), Tipo (Manutenção/Consultoria/Locação), Valor, Status (badge VIGENTE verde / PENDENTE amarelo)
+
+**Seção HISTÓRICO** (colapsável com chevron):
+- Estado inicial: colapsado
+- Ao expandir: timeline de interações
+- Botão "CARREGAR HISTÓRICO"
+
+**Rodapé:** "Editar completo" (laranja) + "Fechar" (outline)
+
+---
+
+## 8D.3 — Página Novo Cliente
+
+Criar `src/pages/Clientes/NovoCliente.jsx`.
+
+**Página própria** em `/clientes/novo`.
+Breadcrumb: "CLIENTES > NOVO CLIENTE" (último item em laranja)
+
+`PageHeader`: "Novo Cliente" + subtítulo "Cadastre uma nova entidade no ecossistema ERP."
+
+**Card principal** (fundo `surface-container-lowest`, sem borda):
+
+Campos em grid 12 colunas:
+- Razão Social * (col-span-8) — placeholder "Ex: Optsolv Soluções Tecnológicas LTDA"
+- CNPJ * (col-span-4) — com validação de duplicidade:
+  - Estado normal: fundo `surface-container-low`
+  - Estado erro: fundo `error-container/20`, borda `error/20`, mensagem inline vermelha: "⊘ Este CNPJ já está cadastrado como cliente."
+- Nome Fantasia (col-span-6) — placeholder "Como a empresa é conhecida"
+- Centro de Custo Padrão (col-span-6) — select com departamentos
+
+Linha final (borda topo `outline-variant/10`):
+- Toggle "Status do Cliente (Ativo)" à esquerda
+- Texto explicativo à direita: "Defina se este cliente pode receber novos faturamentos imediatamente." em itálico
+
+**Footer do card:**
+- "Cancelar" (outline) + "Salvar Cliente" (laranja com ícone `save`)
+
+**Cards informativos abaixo** (grid 2/3 + 1/3):
+- Esquerda (glassmorphism `bg-white/40 backdrop-blur-sm`): ícone info laranja + "Instruções de Cadastro" + texto sobre Sintegra e preservação de histórico
+- Direita (fundo `inverse-surface` escuro): "SUPORTE RÁPIDO" em laranja + texto + "Abrir chamado →"
+
+**Validação CNPJ:**
+Verificar em tempo real contra o mock de `clientes.json`. Se já existir: estado de erro descrito acima. Bloquear "Salvar Cliente" se CNPJ inválido.
+
+**Ao salvar:**
+1. Adicionar ao mock
+2. Navegar para `/clientes`
+3. Toast: "Cliente cadastrado com sucesso"
+4. Registrar no histórico: `{ acao: 'Cadastro de cliente' }`

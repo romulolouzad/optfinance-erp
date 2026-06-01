@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Optsolv ERP - Relatórios &amp; Alertas</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#404758",
+                        "error": "#ba1a1a",
+                        "on-background": "#141b2b",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#dce2f7",
+                        "on-primary-fixed": "#341100",
+                        "surface-container-low": "#f1f3ff",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "surface-tint": "#9d4300",
+                        "on-tertiary-fixed": "#001d32",
+                        "on-primary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#ffb690",
+                        "on-surface": "#141b2b",
+                        "on-primary-fixed-variant": "#783200",
+                        "tertiary-container": "#00a2f4",
+                        "surface-bright": "#f9f9ff",
+                        "outline": "#8c7164",
+                        "inverse-on-surface": "#edf0ff",
+                        "background": "#f9f9ff",
+                        "surface-container-high": "#e1e8fd",
+                        "primary-fixed": "#ffdbca",
+                        "on-primary-container": "#582200",
+                        "surface-variant": "#dce2f7",
+                        "on-secondary-fixed": "#141b2b",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "surface-container-highest": "#dce2f7",
+                        "secondary-container": "#d9dff5",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#5c6274",
+                        "error-container": "#ffdad6",
+                        "surface": "#f9f9ff",
+                        "primary": "#9d4300",
+                        "inverse-surface": "#293040",
+                        "tertiary-fixed": "#cde5ff",
+                        "surface-container": "#e9edff",
+                        "primary-fixed-dim": "#ffb690",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#e0c0b1",
+                        "tertiary": "#006398",
+                        "primary-container": "#f97316",
+                        "on-tertiary-container": "#003554",
+                        "on-surface-variant": "#584237",
+                        "surface-dim": "#d3daef",
+                        "secondary": "#575e70"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .bg-primary-gradient {
+            background: linear-gradient(to top, #9d4300, #f97316);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar Integration -->
+<aside class="w-[220px] h-screen flex flex-col fixed left-0 top-0 bg-gray-900 dark:bg-black shadow-xl z-50">
+<div class="p-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm" data-icon="precision_manufacturing">precision_manufacturing</span>
+</div>
+<div>
+<h1 class="text-lg font-bold text-white tracking-tight">Optsolv ERP</h1>
+<p class="text-[10px] text-gray-400 uppercase tracking-widest font-medium">Enterprise Management</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span> Financeiro
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="precision_manufacturing">precision_manufacturing</span> Operações
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg border-l-4 border-orange-500 bg-gray-800 text-white font-semibold font-inter text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span> Relatórios
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span> Configurações
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="help_center">help_center</span> Suporte
+            </a>
+</nav>
+<div class="p-6 border-t border-gray-800">
+<div class="flex items-center gap-3">
+<img alt="User" class="w-8 h-8 rounded-full object-cover" data-alt="professional male executive portrait with soft studio lighting and neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeRO5huseWXrrsw7-lfjYRRE4wHSmLPRT0Dr92x6WukyXTRkxw9Az61SCcWrtYsmxHpd8iO3rXyv83taMiXfqVBYNKdD6I7GkRimP93ZvO8PlsFKVPAhULm2ivB4ZjocTwTXt_oLLf1mc6dfnPYKMPwuv4ZK8LR4shIf9udcKL_Wi_Qnoch_wPJC9YocBBdSfhUDqfREBaD61z_dw3EgdOzNhyNjOeoT08XLh4qlcz-Teb0ztQZPcPNANzfM-SNJaCSZLp_DYUFW6C"/>
+<div class="overflow-hidden">
+<p class="text-xs font-bold text-white truncate">Henrique M.</p>
+<p class="text-[10px] text-gray-500 truncate">Administrador</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-[220px] min-h-screen flex flex-col">
+<!-- TopNavBar Integration -->
+<header class="w-full h-16 sticky top-0 z-40 bg-gray-100 dark:bg-gray-900 flex justify-between items-center px-8 transition-all duration-200 ease-in-out">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-gray-900 dark:text-white">Relatórios &amp; Alertas</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-inter text-sm font-bold uppercase tracking-widest text-orange-600 border-b-2 border-orange-600 pb-1" href="#">Visão Geral</a>
+<a class="font-inter text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-orange-500 transition-all" href="#">Exportar</a>
+<a class="font-inter text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-orange-500 transition-all" href="#">Histórico</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<input class="bg-surface-container-low border-none rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary-container w-64" placeholder="Procurar relatórios..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-2 text-gray-400" data-icon="search">search</span>
+</div>
+<button class="bg-primary-gradient text-white px-4 py-2 rounded-lg text-sm font-bold hover:opacity-90 transition-all shadow-sm">
+                    Novo Alerta
+                </button>
+<div class="flex items-center gap-2 text-gray-500">
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-8 space-y-8">
+<!-- Header Section -->
+<section>
+<h2 class="text-3xl font-bold text-on-surface tracking-tight">Relatórios &amp; Alertas</h2>
+<p class="text-secondary font-medium mt-1">Exportações e checklist operacional diário</p>
+</section>
+<!-- Two Column Layout (60/40) -->
+<div class="grid grid-cols-12 gap-8">
+<!-- LEFT COLUMN (60%) -->
+<div class="col-span-12 lg:col-span-7 space-y-10">
+<!-- Relatórios Grid -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-sm font-bold uppercase tracking-widest text-secondary">Relatórios</h3>
+<button class="text-primary text-sm font-bold hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span> Ver Todos
+                            </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-[0_4px_24px_rgba(20,27,43,0.04)] group hover:shadow-[0_8px_32px_rgba(20,27,43,0.08)] transition-all">
+<div class="flex items-start gap-4 mb-4">
+<span class="material-symbols-outlined text-primary-container text-3xl" data-icon="summarize">summarize</span>
+<div>
+<h4 class="font-bold text-on-surface">DRE Gerencial</h4>
+<p class="text-xs text-secondary mt-1 leading-relaxed">Visão executiva de lucros e perdas do período atual.</p>
+</div>
+</div>
+<div class="flex gap-2 mt-auto">
+<button class="flex-1 text-[10px] font-bold uppercase tracking-wider border border-outline-variant/15 py-2 rounded-lg text-primary hover:bg-surface-container-low transition-colors">Configurar Filtros</button>
+<button class="flex-1 text-[10px] font-bold uppercase tracking-wider border border-outline-variant/15 py-2 rounded-lg text-primary hover:bg-surface-container-low transition-colors">Exportar PDF</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-[0_4px_24px_rgba(20,27,43,0.04)] group hover:shadow-[0_8px_32px_rgba(20,27,43,0.08)] transition-all">
+<div class="flex items-start gap-4 mb-4">
+<span class="material-symbols-outlined text-primary-container text-3xl" data-icon="account_balance_wallet">account_balance_wallet</span>
+<div>
+<h4 class="font-bold text-on-surface">Fluxo de Caixa</h4>
+<p class="text-xs text-secondary mt-1 leading-relaxed">Movimentação diária de entradas e saídas previstas.</p>
+</div>
+</div>
+<div class="flex gap-2 mt-auto">
+<button class="flex-1 text-[10px] font-bold uppercase tracking-wider border border-outline-variant/15 py-2 rounded-lg text-primary hover:bg-surface-container-low transition-colors">Configurar Filtros</button>
+<button class="flex-1 text-[10px] font-bold uppercase tracking-wider border border-outline-variant/15 py-2 rounded-lg text-primary hover:bg-surface-container-low transition-colors">Exportar CSV</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-[0_4px_24px_rgba(20,27,43,0.04)] group hover:shadow-[0_8px_32px_rgba(20,27,43,0.08)] transition-all">
+<div class="flex items-start gap-4 mb-4">
+<span class="material-symbols-outlined text-primary-container text-3xl" data-icon="ads_click">ads_click</span>
+<div>
+<h4 class="font-bold text-on-surface">Metas vs Realizado</h4>
+<p class="text-xs text-secondary mt-1 leading-relaxed">Comparativo de performance comercial por equipe.</p>
+</div>
+</div>
+<div class="flex gap-2 mt-auto">
+<button class="flex-1 text-[10px] font-bold uppercase tracking-wider border border-outline-variant/15 py-2 rounded-lg text-primary hover:bg-surface-container-low transition-colors">Configurar Filtros</button>
+<button class="flex-1 text-[10px] font-bold uppercase tracking-wider border border-outline-variant/15 py-2 rounded-lg text-primary hover:bg-surface-container-low transition-colors">Exportar PDF</button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-[0_4px_24px_rgba(20,27,43,0.04)] group hover:shadow-[0_8px_32px_rgba(20,27,43,0.08)] transition-all">
+<div class="flex items-start gap-4 mb-4">
+<span class="material-symbols-outlined text-primary-container text-3xl" data-icon="percent">percent</span>
+<div>
+<h4 class="font-bold text-on-surface">Comissões Detalhadas</h4>
+<p class="text-xs text-secondary mt-1 leading-relaxed">Extrato detalhado de comissões por vendedor/venda.</p>
+</div>
+</div>
+<div class="flex gap-2 mt-auto">
+<button class="flex-1 text-[10px] font-bold uppercase tracking-wider border border-outline-variant/15 py-2 rounded-lg text-primary hover:bg-surface-container-low transition-colors">Configurar Filtros</button>
+<button class="flex-1 text-[10px] font-bold uppercase tracking-wider border border-outline-variant/15 py-2 rounded-lg text-primary hover:bg-surface-container-low transition-colors">Exportar CSV</button>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-[0_4px_24px_rgba(20,27,43,0.04)] group hover:shadow-[0_8px_32px_rgba(20,27,43,0.08)] transition-all">
+<div class="flex items-start gap-4 mb-4">
+<span class="material-symbols-outlined text-primary-container text-3xl" data-icon="pending_actions">pending_actions</span>
+<div>
+<h4 class="font-bold text-on-surface">Parcelas em Aberto</h4>
+<p class="text-xs text-secondary mt-1 leading-relaxed">Listagem de recebíveis vencidos e vincendos.</p>
+</div>
+</div>
+<div class="flex gap-2 mt-auto">
+<button class="flex-1 text-[10px] font-bold uppercase tracking-wider border border-outline-variant/15 py-2 rounded-lg text-primary hover:bg-surface-container-low transition-colors">Configurar Filtros</button>
+<button class="flex-1 text-[10px] font-bold uppercase tracking-wider border border-outline-variant/15 py-2 rounded-lg text-primary hover:bg-surface-container-low transition-colors">Exportar PDF</button>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-[0_4px_24px_rgba(20,27,43,0.04)] group hover:shadow-[0_8px_32px_rgba(20,27,43,0.08)] transition-all">
+<div class="flex items-start gap-4 mb-4">
+<span class="material-symbols-outlined text-primary-container text-3xl" data-icon="trending_up">trending_up</span>
+<div>
+<h4 class="font-bold text-on-surface">Forecast Detalhado</h4>
+<p class="text-xs text-secondary mt-1 leading-relaxed">Projeção de faturamento baseada no pipeline atual.</p>
+</div>
+</div>
+<div class="flex gap-2 mt-auto">
+<button class="flex-1 text-[10px] font-bold uppercase tracking-wider border border-outline-variant/15 py-2 rounded-lg text-primary hover:bg-surface-container-low transition-colors">Configurar Filtros</button>
+<button class="flex-1 text-[10px] font-bold uppercase tracking-wider border border-outline-variant/15 py-2 rounded-lg text-primary hover:bg-surface-container-low transition-colors">Exportar PDF</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Envio Automático Section -->
+<section class="bg-surface-container-low p-6 rounded-2xl">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="mail">mail</span>
+<h3 class="text-sm font-bold uppercase tracking-widest text-secondary">Envio Automático por E-mail</h3>
+</div>
+<div class="space-y-4">
+<!-- Report Item -->
+<div class="flex flex-col md:flex-row md:items-center justify-between p-4 bg-surface-container-lowest rounded-xl border-l-4 border-orange-500 shadow-sm gap-4">
+<div class="flex items-center gap-4">
+<input checked="" class="w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary-container" type="checkbox"/>
+<div>
+<p class="font-bold text-on-surface text-sm">DRE Gerencial</p>
+<p class="text-[11px] text-orange-600 font-medium">Enviado apenas para: henrique.michalsky@optsolv.com.br</p>
+</div>
+</div>
+<select class="bg-surface border-none text-xs font-bold rounded-lg py-1 px-4 text-on-surface focus:ring-2 focus:ring-primary-container">
+<option>Mensal</option>
+<option>Diária</option>
+<option>Semanal</option>
+</select>
+</div>
+<div class="flex flex-col md:flex-row md:items-center justify-between p-4 bg-surface-container-lowest rounded-xl border-l-4 border-transparent shadow-sm gap-4">
+<div class="flex items-center gap-4">
+<input class="w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary-container" type="checkbox"/>
+<p class="font-bold text-on-surface text-sm">Fluxo de Caixa</p>
+</div>
+<select class="bg-surface border-none text-xs font-bold rounded-lg py-1 px-4 text-gray-400 opacity-50 cursor-not-allowed" disabled="">
+<option>Diária</option>
+</select>
+</div>
+<div class="flex flex-col md:flex-row md:items-center justify-between p-4 bg-surface-container-lowest rounded-xl border-l-4 border-orange-500 shadow-sm gap-4">
+<div class="flex items-center gap-4">
+<input checked="" class="w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary-container" type="checkbox"/>
+<div>
+<p class="font-bold text-on-surface text-sm">Metas vs Realizado</p>
+<p class="text-[11px] text-orange-600 font-medium">Enviado apenas para: henrique.michalsky@optsolv.com.br</p>
+</div>
+</div>
+<select class="bg-surface border-none text-xs font-bold rounded-lg py-1 px-4 text-on-surface focus:ring-2 focus:ring-primary-container">
+<option>Semanal</option>
+<option>Diária</option>
+<option>Mensal</option>
+</select>
+</div>
+<!-- Mocking remaining 3 reports with simplified entries -->
+<div class="flex flex-col md:flex-row md:items-center justify-between p-4 bg-surface-container-lowest rounded-xl border-l-4 border-transparent shadow-sm gap-4">
+<div class="flex items-center gap-4">
+<input class="w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary-container" type="checkbox"/>
+<p class="font-bold text-on-surface text-sm">Comissões Detalhadas</p>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-center justify-between p-4 bg-surface-container-lowest rounded-xl border-l-4 border-transparent shadow-sm gap-4">
+<div class="flex items-center gap-4">
+<input class="w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary-container" type="checkbox"/>
+<p class="font-bold text-on-surface text-sm">Parcelas em Aberto</p>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-center justify-between p-4 bg-surface-container-lowest rounded-xl border-l-4 border-transparent shadow-sm gap-4">
+<div class="flex items-center gap-4">
+<input class="w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary-container" type="checkbox"/>
+<p class="font-bold text-on-surface text-sm">Forecast Detalhado</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- RIGHT COLUMN (40%) -->
+<div class="col-span-12 lg:col-span-5">
+<div class="bg-surface-container-lowest rounded-2xl border-l-8 border-orange-500 shadow-xl p-8 sticky top-24">
+<header class="mb-8">
+<h3 class="text-xl font-bold text-on-surface">⚠️ Painel de Alertas Operacionais</h3>
+<p class="text-sm text-secondary mt-1">Checklist diário de consistência</p>
+</header>
+<div class="space-y-6">
+<!-- Alert Row 1 -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<span class="w-3 h-3 rounded-full bg-red-500"></span>
+<p class="text-sm font-medium text-gray-700 group-hover:text-on-surface transition-colors">Vendas com suspeita de duplicidade</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="bg-red-50 text-red-600 text-[11px] font-bold px-2 py-1 rounded-full">2</span>
+<a class="text-primary font-bold text-xs hover:underline uppercase tracking-widest" href="#">Ver</a>
+</div>
+</div>
+<!-- Alert Row 2 -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+<p class="text-sm font-medium text-gray-700 group-hover:text-on-surface transition-colors">Vendas com vendedor inativo</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="bg-yellow-50 text-yellow-700 text-[11px] font-bold px-2 py-1 rounded-full">1</span>
+<a class="text-primary font-bold text-xs hover:underline uppercase tracking-widest" href="#">Ver</a>
+</div>
+</div>
+<!-- Alert Row 3 -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+<p class="text-sm font-medium text-gray-700 group-hover:text-on-surface transition-colors">Parcelas pagas sem NF anexada</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="bg-yellow-50 text-yellow-700 text-[11px] font-bold px-2 py-1 rounded-full">7</span>
+<a class="text-primary font-bold text-xs hover:underline uppercase tracking-widest" href="#">Ver</a>
+</div>
+</div>
+<!-- Alert Row 4 -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<span class="w-3 h-3 rounded-full bg-orange-500"></span>
+<p class="text-sm font-medium text-gray-700 group-hover:text-on-surface transition-colors">Comissões com compensação pendente (estorno)</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="bg-orange-50 text-orange-600 text-[11px] font-bold px-2 py-1 rounded-full">3</span>
+<a class="text-primary font-bold text-xs hover:underline uppercase tracking-widest" href="#">Ver</a>
+</div>
+</div>
+<!-- Alert Row 5 -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<span class="w-3 h-3 rounded-full bg-blue-500"></span>
+<p class="text-sm font-medium text-gray-700 group-hover:text-on-surface transition-colors">Comissões aguardando NF do vendedor</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="bg-blue-50 text-blue-600 text-[11px] font-bold px-2 py-1 rounded-full">5</span>
+<a class="text-primary font-bold text-xs hover:underline uppercase tracking-widest" href="#">Ver</a>
+</div>
+</div>
+<!-- Alert Row 6 -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<span class="w-3 h-3 rounded-full bg-green-500"></span>
+<p class="text-sm font-medium text-gray-700 group-hover:text-on-surface transition-colors">Comissões prontas e não pagas</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="bg-green-50 text-green-600 text-[11px] font-bold px-2 py-1 rounded-full">12</span>
+<a class="text-primary font-bold text-xs hover:underline uppercase tracking-widest" href="#">Ver</a>
+</div>
+</div>
+</div>
+<footer class="mt-12 pt-6 border-t border-surface-container-low">
+<p class="text-[10px] text-secondary/60 leading-relaxed italic">
+                                Atualizado agora • Somente leitura • Ações devem ser feitas nos módulos correspondentes
+                            </p>
+</footer>
+</div>
+</div>
+</div>
+</div>
+<!-- FAB Simulation (only on main screens) -->
+<div class="fixed bottom-8 right-8 z-50">
+<button class="bg-primary-gradient w-14 h-14 rounded-full flex items-center justify-center text-white shadow-2xl hover:scale-110 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-2xl" data-icon="add">add</span>
+</button>
+</div>
+</main>
+</body></html>

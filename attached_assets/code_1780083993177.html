@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bank Reconciliation - Step 3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#ffb690",
+                        "on-secondary-container": "#5c6274",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#003554",
+                        "on-secondary-fixed-variant": "#404758",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#e0c0b1",
+                        "on-primary-container": "#582200",
+                        "on-secondary-fixed": "#141b2b",
+                        "surface-container": "#e9edff",
+                        "on-surface": "#141b2b",
+                        "inverse-surface": "#293040",
+                        "on-secondary": "#ffffff",
+                        "outline": "#8c7164",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#d9dff5",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#dce2f7",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "on-primary-fixed": "#341100",
+                        "secondary": "#575e70",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#ffdbca",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#d3daef",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "surface-container-low": "#f1f3ff",
+                        "primary-fixed-dim": "#ffb690",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#9d4300",
+                        "on-primary-fixed-variant": "#783200",
+                        "on-background": "#141b2b",
+                        "tertiary-container": "#00a2f4",
+                        "on-tertiary-fixed": "#001d32",
+                        "tertiary": "#006398",
+                        "background": "#f9f9ff",
+                        "surface-container-highest": "#dce2f7",
+                        "primary-container": "#f97316",
+                        "surface-bright": "#f9f9ff",
+                        "on-surface-variant": "#584237",
+                        "surface": "#f9f9ff",
+                        "secondary-fixed": "#dce2f7",
+                        "primary": "#9d4300",
+                        "tertiary-fixed": "#cde5ff",
+                        "surface-container-high": "#e1e8fd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar (Shared Component) -->
+<aside class="bg-slate-950 dark:bg-black w-[220px] h-screen fixed left-0 top-0 flex flex-col h-full overflow-y-auto z-50">
+<div class="p-6">
+<h1 class="text-xl font-black text-orange-500 font-['Inter'] tracking-tight">Optsolv ERP</h1>
+<p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">The Precision Architect</p>
+</div>
+<nav class="flex-1 space-y-1 mt-4">
+<!-- Active state logic: Bank Reconciliation is the focus -->
+<a class="text-slate-400 hover:text-white px-6 py-3 flex items-center gap-3 hover:bg-slate-900 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="dashboard">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="text-slate-400 hover:text-white px-6 py-3 flex items-center gap-3 hover:bg-slate-900 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="account_balance">account_balance</span>
+<span class="text-sm font-medium">Financials</span>
+</a>
+<a class="border-l-4 border-orange-500 bg-slate-900 text-white font-semibold px-6 py-3 flex items-center gap-3 transition-all" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="sync_alt">sync_alt</span>
+<span class="text-sm">Bank Reconciliation</span>
+</a>
+<a class="text-slate-400 hover:text-white px-6 py-3 flex items-center gap-3 hover:bg-slate-900 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="payments">payments</span>
+<span class="text-sm font-medium">Accounts Payable</span>
+</a>
+<a class="text-slate-400 hover:text-white px-6 py-3 flex items-center gap-3 hover:bg-slate-900 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="receipt">receipt</span>
+<span class="text-sm font-medium">Accounts Receivable</span>
+</a>
+<a class="text-slate-400 hover:text-white px-6 py-3 flex items-center gap-3 hover:bg-slate-900 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="inventory_2">inventory_2</span>
+<span class="text-sm font-medium">Inventory</span>
+</a>
+<a class="text-slate-400 hover:text-white px-6 py-3 flex items-center gap-3 hover:bg-slate-900 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="assessment">assessment</span>
+<span class="text-sm font-medium">Reporting</span>
+</a>
+<a class="text-slate-400 hover:text-white px-6 py-3 flex items-center gap-3 hover:bg-slate-900 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-6 mt-auto">
+<button class="w-full bg-orange-500 text-white py-2.5 rounded-lg text-sm font-bold shadow-lg shadow-orange-900/20 active:scale-95 transition-all">
+                New Entry
+            </button>
+</div>
+</aside>
+<!-- TopNavBar (Shared Component) -->
+<header class="bg-gray-50 dark:bg-slate-900 fixed top-0 left-[220px] right-0 h-16 flex justify-between items-center px-8 border-b border-gray-200/15 dark:border-slate-800 z-40">
+<div class="flex items-center gap-6">
+<h2 class="font-['Inter'] text-xl font-bold tracking-tighter text-on-surface">Conciliação Bancária</h2>
+<nav class="flex gap-4">
+<a class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-orange-500 transition-colors" href="#">Import</a>
+<a class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-orange-500 transition-colors" href="#">Match</a>
+<a class="text-sm font-bold text-orange-600 border-b-2 border-orange-600 pb-1" href="#">Finalize</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<input class="bg-surface-container-low border-none rounded-full px-4 py-1.5 text-xs w-64 focus:ring-1 focus:ring-orange-500" placeholder="Search transactions..." type="text"/>
+</div>
+<button class="text-gray-400 hover:text-orange-500 transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<div class="h-8 w-8 rounded-full overflow-hidden bg-surface-container-highest border border-outline-variant/20">
+<img class="w-full h-full object-cover" data-alt="User profile photo showing a middle-aged professional man in a business suit with a warm and confident expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0f3z_hV8VeQdRls90ZhdkuneLm7dMqjmObR6T-YmmrMIEpaJN1g1tQaKKm_lcgik9JZFBUTOxJXlFkC5X49xcyRsgvAmLsNKRoFUiWDoGcxd5iLfMIvxPtAgK64Kgq2iRRgw0kFi6QqjxlhFcUamXTgDzzFrGgzMHO9fl4Jqh4bsKxU8e2AukOc_p8TrBOxybSjF7smFwgauAJyQs4q8hXLSbNqw9jWTioOuCVtFkhZ5BpqI-4pUBoNnucvgtBmp82ogf6TXpoBAY"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[220px] pt-16 pb-24 min-h-screen px-8">
+<!-- Post-Confirmation Success Banner (Hidden by default or shown as context suggests) -->
+<div class="mt-8 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center justify-between mb-8">
+<div class="flex items-center gap-3 text-green-800">
+<span class="material-symbols-outlined text-green-600" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<p class="font-bold text-sm">Conciliação concluída com sucesso!</p>
+<p class="text-xs opacity-90">142 lançamentos foram processados e integrados ao sistema.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<a class="text-xs font-bold text-green-700 hover:underline flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="account_balance_wallet">account_balance_wallet</span>
+                    Fluxo de Caixa
+                </a>
+<a class="text-xs font-bold text-green-700 hover:underline flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-sm" data-icon="history">history</span>
+                    Histórico
+                </a>
+</div>
+</div>
+<!-- Stepper -->
+<div class="mt-4 mb-10 flex items-center justify-center max-w-2xl mx-auto">
+<div class="flex items-center w-full">
+<div class="flex flex-col items-center flex-1 relative">
+<div class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center text-xs font-bold z-10">1</div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant mt-2">Importar</span>
+<div class="absolute top-4 left-1/2 w-full h-[2px] bg-primary-container"></div>
+</div>
+<div class="flex flex-col items-center flex-1 relative">
+<div class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center text-xs font-bold z-10">2</div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant mt-2">Associar</span>
+<div class="absolute top-4 left-1/2 w-full h-[2px] bg-primary-container"></div>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-10 h-10 rounded-full bg-primary-container ring-4 ring-orange-100 text-white flex items-center justify-center text-sm font-bold z-10">3</div>
+<span class="text-[10px] font-bold uppercase tracking-wider text-primary mt-2">Revisar</span>
+</div>
+</div>
+</div>
+<!-- Summary Grid (Bento Style) -->
+<div class="grid grid-cols-12 gap-6 mb-8">
+<div class="col-span-8 grid grid-cols-3 gap-6">
+<!-- Confirmadas -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-green-600" data-icon="task_alt">task_alt</span>
+<span class="text-[10px] font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full uppercase tracking-widest">Sucesso</span>
+</div>
+<p class="text-3xl font-black tracking-tighter text-on-surface">142</p>
+<p class="text-xs font-medium text-on-surface-variant mt-1">Confirmadas</p>
+</div>
+<!-- Ignoradas -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-gray-400" data-icon="block">block</span>
+<span class="text-[10px] font-bold text-gray-500 bg-gray-50 px-2 py-0.5 rounded-full uppercase tracking-widest">Puladas</span>
+</div>
+<p class="text-3xl font-black tracking-tighter text-on-surface">08</p>
+<p class="text-xs font-medium text-on-surface-variant mt-1">Ignoradas</p>
+</div>
+<!-- Pendentes -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-outline-variant/10">
+<div class="flex items-center justify-between mb-2">
+<span class="material-symbols-outlined text-amber-500" data-icon="pending">pending</span>
+<span class="text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full uppercase tracking-widest">Atenção</span>
+</div>
+<p class="text-3xl font-black tracking-tighter text-on-surface">12</p>
+<p class="text-xs font-medium text-on-surface-variant mt-1">Pendentes</p>
+</div>
+</div>
+<!-- Warning Card -->
+<div class="col-span-4 bg-orange-50 border-l-4 border-orange-500 p-6 rounded-r-xl flex flex-col justify-center">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-orange-600 mt-1" data-icon="warning">warning</span>
+<div>
+<h4 class="text-sm font-bold text-orange-900 leading-tight">Pendências Encontradas</h4>
+<p class="text-xs text-orange-800/80 mt-1 leading-relaxed">Ainda existem 12 lançamentos sem associação. Estes itens não serão processados nesta rodada se você confirmar agora.</p>
+<button class="mt-3 text-[10px] font-bold text-orange-700 underline uppercase tracking-wider">Resolver Pendências</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Table Section -->
+<section class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden border border-outline-variant/10">
+<div class="px-8 py-5 border-b border-surface-container flex items-center justify-between bg-surface-container-low/30">
+<h3 class="text-sm font-bold text-on-surface uppercase tracking-wider">Lançamentos Confirmados (142)</h3>
+<div class="flex gap-2">
+<button class="flex items-center gap-1 text-[11px] font-bold text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span> Filtrar
+                    </button>
+<button class="flex items-center gap-1 text-[11px] font-bold text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="download">download</span> Planilha
+                    </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">
+<th class="px-8 py-4">Data</th>
+<th class="px-6 py-4">Descrição Bancária</th>
+<th class="px-6 py-4">Categoria ERP</th>
+<th class="px-6 py-4 text-right">Valor</th>
+<th class="px-8 py-4">Efeito ao Confirmar</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-orange-50/30 transition-colors group">
+<td class="px-8 py-5 text-sm text-on-surface-variant font-medium">12 Out 2023</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-on-surface">PAGTO FORNECEDOR ABC</span>
+<span class="text-[10px] text-on-surface-variant">DOC: 882910</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="text-sm font-medium">Insumos de Produção</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right font-bold text-error text-sm">- R$ 12.450,00</td>
+<td class="px-8 py-5">
+<div class="flex gap-2">
+<span class="text-[10px] font-bold bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full border border-blue-100">Redução DRE</span>
+<span class="text-[10px] font-bold bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full border border-indigo-100">Saída de Caixa</span>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-orange-50/30 transition-colors group">
+<td class="px-8 py-5 text-sm text-on-surface-variant font-medium">13 Out 2023</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-on-surface">VENDAS CARTAO DEBITO</span>
+<span class="text-[10px] text-on-surface-variant">REDE: 10293</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="text-sm font-medium">Receita Operacional</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right font-bold text-green-600 text-sm">+ R$ 4.822,50</td>
+<td class="px-8 py-5">
+<div class="flex gap-2">
+<span class="text-[10px] font-bold bg-green-50 text-green-700 px-2 py-0.5 rounded-full border border-green-100">Aumento DRE</span>
+<span class="text-[10px] font-bold bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full border border-emerald-100">Entrada de Caixa</span>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-orange-50/30 transition-colors group">
+<td class="px-8 py-5 text-sm text-on-surface-variant font-medium">13 Out 2023</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-on-surface">TARIFA MANUT BANCARIA</span>
+<span class="text-[10px] text-on-surface-variant">AUTO: 99211</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-slate-400"></span>
+<span class="text-sm font-medium">Despesas Administrativas</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right font-bold text-error text-sm">- R$ 45,00</td>
+<td class="px-8 py-5">
+<div class="flex gap-2">
+<span class="text-[10px] font-bold bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full">Redução DRE</span>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-orange-50/30 transition-colors group">
+<td class="px-8 py-5 text-sm text-on-surface-variant font-medium">14 Out 2023</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-on-surface">PAGTO ALUGUEL SEDE</span>
+<span class="text-[10px] text-on-surface-variant">TRANSF: IT-445</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="text-sm font-medium">Infraestrutura</span>
+</div>
+</td>
+<td class="px-6 py-5 text-right font-bold text-error text-sm">- R$ 8.500,00</td>
+<td class="px-8 py-5">
+<div class="flex gap-2">
+<span class="text-[10px] font-bold bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full border border-blue-100">Redução DRE</span>
+<span class="text-[10px] font-bold bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full border border-indigo-100">Saída de Caixa</span>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-8 py-4 bg-surface-container-low/20 flex justify-center">
+<button class="text-xs font-bold text-orange-600 hover:text-orange-700 transition-colors flex items-center gap-2">
+                    Carregar mais 138 lançamentos <span class="material-symbols-outlined text-sm" data-icon="keyboard_arrow_down">keyboard_arrow_down</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Sticky Footer CTA -->
+<footer class="fixed bottom-0 left-[220px] right-0 bg-white/80 backdrop-blur-xl border-t border-outline-variant/15 px-10 py-5 flex items-center justify-between z-50">
+<div>
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Total da Operação</p>
+<p class="text-lg font-black text-on-surface tracking-tighter">R$ 138.920,44 <span class="text-xs font-medium text-on-surface-variant ml-2">(Saldo Conciliado)</span></p>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-6 py-3 rounded-lg text-sm font-bold text-on-surface-variant hover:bg-surface-container transition-all">
+                Voltar
+            </button>
+<button class="px-8 py-3 rounded-lg text-sm font-bold text-white bg-gradient-to-t from-primary to-primary-container shadow-xl shadow-orange-500/20 flex items-center gap-2 hover:scale-[1.02] active:scale-98 transition-all">
+                Confirmar 142 lançamentos
+                <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</footer>
+</body></html>

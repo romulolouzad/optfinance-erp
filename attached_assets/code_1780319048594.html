@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#d3daef",
+                        "outline": "#8c7164",
+                        "on-surface-variant": "#584237",
+                        "inverse-on-surface": "#edf0ff",
+                        "surface-container": "#e9edff",
+                        "on-primary-container": "#582200",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#dce2f7",
+                        "on-secondary-fixed": "#141b2b",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "primary-fixed-dim": "#ffb690",
+                        "surface-bright": "#f9f9ff",
+                        "secondary": "#575e70",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#341100",
+                        "surface-container-highest": "#dce2f7",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#783200",
+                        "surface-container-low": "#f1f3ff",
+                        "on-background": "#141b2b",
+                        "primary": "#9d4300",
+                        "on-tertiary-fixed": "#001d32",
+                        "surface-container-high": "#e1e8fd",
+                        "surface-variant": "#dce2f7",
+                        "tertiary-container": "#00a2f4",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#141b2b",
+                        "inverse-surface": "#293040",
+                        "primary-container": "#f97316",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#cde5ff",
+                        "on-secondary-fixed-variant": "#404758",
+                        "tertiary": "#006398",
+                        "background": "#f9f9ff",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "on-secondary-container": "#5c6274",
+                        "surface": "#f9f9ff",
+                        "secondary-container": "#d9dff5",
+                        "on-tertiary-container": "#003554",
+                        "outline-variant": "#e0c0b1",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#ffdbca",
+                        "inverse-primary": "#ffb690",
+                        "surface-tint": "#9d4300"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen overflow-hidden">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-full flex flex-col overflow-y-auto bg-slate-950 shadow-2xl w-64 z-20">
+<div class="p-6">
+<h1 class="text-orange-500 font-black text-2xl uppercase tracking-tighter">Optsolv ERP</h1>
+<p class="font-['Inter'] text-sm font-medium tracking-wide text-slate-400 mt-1">Administração</p>
+</div>
+<nav class="flex-1 px-2 space-y-1">
+<a class="flex items-center text-slate-400 hover:text-slate-100 py-3 px-4 hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide">Dashboard</span>
+</a>
+<a class="flex items-center text-slate-400 hover:text-slate-100 py-3 px-4 hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">description</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide">Vendas &amp; Contratos</span>
+</a>
+<a class="flex items-center text-slate-400 hover:text-slate-100 py-3 px-4 hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">payments</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide">Parcelas</span>
+</a>
+<a class="flex items-center text-slate-400 hover:text-slate-100 py-3 px-4 hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">payments</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide">Comissões</span>
+</a>
+<a class="flex items-center text-slate-400 hover:text-slate-100 py-3 px-4 hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide">Clientes</span>
+</a>
+<a class="flex items-center text-slate-400 hover:text-slate-100 py-3 px-4 hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">badge</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide">Colaboradores</span>
+</a>
+<!-- Active Navigation for Users/Usuários -->
+<a class="flex items-center text-white bg-orange-600/10 border-l-4 border-orange-500 py-3 px-4 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">manage_accounts</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide">Usuários</span>
+</a>
+</nav>
+<div class="p-4">
+<button class="w-full bg-primary-container text-on-primary py-3 rounded-lg font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined">add</span>
+                Novo Registro
+            </button>
+</div>
+</aside>
+<!-- Main Content (User List Context) -->
+<main class="flex-1 ml-64 flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar Shell -->
+<header class="flex justify-between items-center w-full px-6 h-16 bg-slate-50 shadow-sm z-10">
+<div class="flex items-center gap-4">
+<span class="font-['Inter'] font-bold tracking-tight text-slate-900 text-xl">Usuários</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400">search</span>
+<input class="pl-10 pr-4 py-2 bg-slate-100 border-none rounded-lg text-sm w-64 focus:ring-2 focus:ring-primary-container" placeholder="Buscar usuário..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-500 cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-slate-500 cursor-pointer">help_outline</span>
+<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden">
+<img alt="User profile avatar" data-alt="Professional corporate headshot of a male executive in a neutral background with soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlzvrseKWVl-Wo5fFJ0ueqddQS-zq2BUwVy6QYA8D9kUSfFdheCMnODiRCpedBMEslaEIMwaIyzMmR6fiuQOYvqyYPfBYfKPAhpxWaOVa5byW6KDFu7oWogyDg4NSgfTNwqKbpqyWR5jV7ZROZXNW_ZBb3ccUUZnN5dd3i6VFaiP_KKti77fimbdvxSqWFWf_xlLKkE1r7et_30Ptad3WZpmw4i8-8jr6NUNpurG8uZo5-66la9xYPkOnPc7BdyJlRP57Nmd-cebV_"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Mock Background Content (User List) -->
+<div class="p-8 space-y-6 opacity-40 select-none pointer-events-none">
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-on-surface">Gestão de Acessos</h2>
+<p class="text-secondary mt-1">Gerencie permissões e status dos colaboradores.</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-outline-variant/15">
+<tr>
+<th class="px-6 py-4 font-bold text-xs uppercase tracking-widest text-secondary">Colaborador</th>
+<th class="px-6 py-4 font-bold text-xs uppercase tracking-widest text-secondary">Cargo</th>
+<th class="px-6 py-4 font-bold text-xs uppercase tracking-widest text-secondary">Status</th>
+<th class="px-6 py-4 font-bold text-xs uppercase tracking-widest text-secondary">Último Acesso</th>
+<th class="px-6 py-4"></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr class="bg-orange-50/30">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-200"></div>
+<div>
+<p class="font-bold text-on-surface">Marcus Viana</p>
+<p class="text-xs text-secondary">marcus.viana@optsolv.com.br</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium">Vendedor Senior</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full uppercase tracking-wider">Ativo</span>
+</td>
+<td class="px-6 py-4 text-sm text-secondary">Há 12 minutos</td>
+<td class="px-6 py-4 text-right">
+<span class="material-symbols-outlined text-slate-400">more_vert</span>
+</td>
+</tr>
+<tr>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-200"></div>
+<div>
+<p class="font-bold text-on-surface">Ana Paula Ribeiro</p>
+<p class="text-xs text-secondary">ana.ribeiro@optsolv.com.br</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm font-medium">Analista Financeiro</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full uppercase tracking-wider">Ativo</span>
+</td>
+<td class="px-6 py-4 text-sm text-secondary">Ontem, 16:45</td>
+<td class="px-6 py-4 text-right">
+<span class="material-symbols-outlined text-slate-400">more_vert</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm">
+<div class="bg-surface-container-lowest w-full max-w-xl rounded-2xl shadow-2xl overflow-hidden flex flex-col border border-outline-variant/20">
+<!-- Modal Header -->
+<div class="px-8 py-6 border-b border-outline-variant/10 flex justify-between items-center bg-surface-bright">
+<h3 class="text-xl font-bold text-on-surface tracking-tight">Inativar Usuário — Marcus Viana</h3>
+<button class="text-secondary hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Modal Content -->
+<div class="p-8 space-y-6">
+<!-- Warning Box -->
+<div class="bg-primary/5 border-l-4 border-primary p-5 flex gap-4">
+<span class="material-symbols-outlined text-primary shrink-0" data-weight="fill">warning</span>
+<p class="text-sm font-medium text-on-primary-container leading-relaxed">
+                        Este usuário possui 3 contratos ativos como vendedor. As comissões futuras ficarão pausadas até reatribuição do vendedor.
+                    </p>
+</div>
+<!-- Affected Contracts List -->
+<div class="space-y-3">
+<h4 class="text-xs font-bold uppercase tracking-widest text-secondary">Contratos Afetados</h4>
+<div class="bg-surface-container-low rounded-xl overflow-hidden">
+<table class="w-full text-left text-sm">
+<thead class="bg-slate-100/50">
+<tr>
+<th class="px-4 py-2 font-bold text-on-surface-variant">ID</th>
+<th class="px-4 py-2 font-bold text-on-surface-variant">Client</th>
+<th class="px-4 py-2 font-bold text-on-surface-variant text-right">Value</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<tr>
+<td class="px-4 py-3 font-mono text-xs text-primary">#CTR-9921</td>
+<td class="px-4 py-3 font-medium text-on-surface">Indústrias Matarazzo SA</td>
+<td class="px-4 py-3 text-right font-semibold">R$ 45.200,00</td>
+</tr>
+<tr>
+<td class="px-4 py-3 font-mono text-xs text-primary">#CTR-8845</td>
+<td class="px-4 py-3 font-medium text-on-surface">Logística Express Ltda</td>
+<td class="px-4 py-3 text-right font-semibold">R$ 12.890,00</td>
+</tr>
+<tr>
+<td class="px-4 py-3 font-mono text-xs text-primary">#CTR-7712</td>
+<td class="px-4 py-3 font-medium text-on-surface">Varejo Global ME</td>
+<td class="px-4 py-3 text-right font-semibold">R$ 8.440,00</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p class="text-sm text-secondary">
+                    Ao confirmar, o acesso do colaborador será revogado imediatamente e seu status passará a ser <span class="font-bold text-error">Inativo</span>.
+                </p>
+</div>
+<!-- Modal Footer -->
+<div class="px-8 py-6 bg-surface-container-low flex justify-end items-center gap-4">
+<button class="px-6 py-2.5 rounded-lg text-sm font-bold text-primary hover:bg-primary/5 transition-all border border-outline/20">
+                    Cancel
+                </button>
+<button class="px-6 py-2.5 rounded-lg text-sm font-bold text-on-primary bg-gradient-to-t from-primary to-primary-container shadow-md shadow-primary/20 hover:shadow-lg transition-all active:scale-95">
+                    Confirmar Inativação
+                </button>
+</div>
+</div>
+</div>
+</body></html>

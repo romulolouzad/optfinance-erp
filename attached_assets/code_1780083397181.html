@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vendas &amp; Contratos - Optsolv ERP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#f97316",
+                        "outline": "#8c7164",
+                        "surface-container-high": "#e1e8fd",
+                        "surface-bright": "#f9f9ff",
+                        "on-surface-variant": "#584237",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#141b2b",
+                        "surface-dim": "#d3daef",
+                        "surface-tint": "#9d4300",
+                        "surface": "#f9f9ff",
+                        "on-primary-container": "#582200",
+                        "secondary-container": "#d9dff5",
+                        "on-error": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "primary-fixed": "#ffdbca",
+                        "on-secondary-fixed-variant": "#404758",
+                        "primary": "#9d4300",
+                        "on-primary-fixed": "#341100",
+                        "tertiary-container": "#00a2f4",
+                        "on-secondary-container": "#5c6274",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed": "#cde5ff",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "background": "#f9f9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#ffb690",
+                        "secondary-fixed": "#dce2f7",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-tertiary-container": "#003554",
+                        "inverse-on-surface": "#edf0ff",
+                        "secondary": "#575e70",
+                        "outline-variant": "#e0c0b1",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "on-secondary-fixed": "#141b2b",
+                        "on-primary-fixed-variant": "#783200",
+                        "tertiary": "#006398",
+                        "surface-container-highest": "#dce2f7",
+                        "on-tertiary-fixed": "#001d32",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#dce2f7",
+                        "primary-fixed-dim": "#ffb690",
+                        "surface-container-low": "#f1f3ff",
+                        "surface-container": "#e9edff",
+                        "inverse-surface": "#293040",
+                        "on-surface": "#141b2b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .btn-primary-gradient {
+            background: linear-gradient(to top, #9d4300, #f97316);
+        }
+        .tonal-shift { background-color: #1a2233; }
+    </style>
+</head>
+<body class="bg-surface text-on-background flex min-h-screen">
+<!-- SideNavBar (Authority: JSON & Design System) -->
+<aside class="h-screen w-[220px] left-0 top-0 fixed bg-gray-900 flex flex-col py-4 shadow-xl z-50 overflow-y-auto">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">account_balance</span>
+</div>
+<div>
+<h1 class="text-white font-bold leading-tight">Optsolv ERP</h1>
+<p class="text-gray-400 text-[10px] uppercase tracking-widest font-semibold">Enterprise Tier</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Navigation Items from JSON -->
+<a class="flex items-center px-6 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200 text-sm font-medium tracking-wide uppercase" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center px-6 py-2.5 text-white border-l-4 border-orange-500 bg-white/10 transition-all duration-200 text-sm font-medium tracking-wide uppercase" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">description</span>
+                Vendas &amp; Contratos
+            </a>
+<a class="flex items-center px-6 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200 text-sm font-medium tracking-wide uppercase" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">payments</span>
+                Parcelas
+            </a>
+<a class="flex items-center px-6 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200 text-sm font-medium tracking-wide uppercase" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">percent</span>
+                Comissões
+            </a>
+<a class="flex items-center px-6 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200 text-sm font-medium tracking-wide uppercase" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">groups</span>
+                Clientes
+            </a>
+<a class="flex items-center px-6 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200 text-sm font-medium tracking-wide uppercase" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">badge</span>
+                Colaboradores
+            </a>
+<a class="flex items-center px-6 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200 text-sm font-medium tracking-wide uppercase" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">conveyor_belt</span>
+                Fornecedores
+            </a>
+<a class="flex items-center px-6 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200 text-sm font-medium tracking-wide uppercase" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">receipt_long</span>
+                Notas Fiscais
+            </a>
+<a class="flex items-center px-6 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200 text-sm font-medium tracking-wide uppercase" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">analytics</span>
+                DRE
+            </a>
+<a class="flex items-center px-6 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200 text-sm font-medium tracking-wide uppercase" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">query_stats</span>
+                Forecast
+            </a>
+<a class="flex items-center px-6 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200 text-sm font-medium tracking-wide uppercase" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">ads_click</span>
+                Metas
+            </a>
+<a class="flex items-center px-6 py-2.5 text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200 text-sm font-medium tracking-wide uppercase" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">account_balance_wallet</span>
+                Fluxo de Caixa
+            </a>
+</nav>
+<div class="mt-auto px-6 py-4 border-t border-gray-800 space-y-1">
+<a class="flex items-center py-2 text-gray-400 hover:text-white transition-colors text-sm font-medium tracking-wide uppercase" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">contact_support</span>
+                Support
+            </a>
+<a class="flex items-center py-2 text-gray-400 hover:text-white transition-colors text-sm font-medium tracking-wide uppercase" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">logout</span>
+                Sign Out
+            </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-[220px] flex-1 min-h-screen flex flex-col bg-surface p-8">
+<!-- Header Section -->
+<header class="flex justify-between items-start mb-8">
+<div>
+<h2 class="text-3xl font-bold text-on-background -tracking-tight">Vendas &amp; Contratos</h2>
+<p class="text-secondary font-medium mt-1">Gestão de contratos e vendas</p>
+</div>
+<button class="btn-primary-gradient text-white px-6 py-2.5 rounded-lg font-bold shadow-lg shadow-orange-500/20 hover:primary-fixed-dim transition-all flex items-center gap-2">
+<span class="material-symbols-outlined">add</span>
+                + Nova Venda
+            </button>
+</header>
+<!-- Filter Bar -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm mb-6 p-6">
+<div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-secondary uppercase tracking-widest px-1">Cliente</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary-container transition-all" placeholder="Buscar cliente..." type="text"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-secondary uppercase tracking-widest px-1">Vendedor</label>
+<select class="w-full px-4 py-2 bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary-container appearance-none">
+<option>Todos os Vendedores</option>
+<option>João Silva</option>
+<option>Maria Clara</option>
+<option>Ricardo Santos</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-secondary uppercase tracking-widest px-1">Status</label>
+<select class="w-full px-4 py-2 bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary-container appearance-none">
+<option>Todos</option>
+<option>Projeção</option>
+<option>Ativa</option>
+<option>Inativa</option>
+<option>Perdida</option>
+<option>Encerrada</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-secondary uppercase tracking-widest px-1">Período</label>
+<div class="flex items-center gap-2">
+<input class="w-full px-3 py-2 bg-surface-container-low border-none rounded-lg text-[12px] focus:ring-2 focus:ring-primary-container" type="date"/>
+<span class="text-gray-400 text-xs">à</span>
+<input class="w-full px-3 py-2 bg-surface-container-low border-none rounded-lg text-[12px] focus:ring-2 focus:ring-primary-container" type="date"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-[10px] font-bold text-secondary uppercase tracking-widest px-1">Tipo</label>
+<select class="w-full px-4 py-2 bg-surface-container-low border-none rounded-lg text-sm focus:ring-2 focus:ring-primary-container appearance-none">
+<option>Todos</option>
+<option>Pontual</option>
+<option>Recorrente</option>
+</select>
+</div>
+</div>
+<div class="flex justify-end gap-3 mt-6 pt-4 border-t border-surface-container-low">
+<button class="px-5 py-2 text-sm font-bold text-outline hover:bg-surface-container-low rounded-lg transition-colors">Limpar</button>
+<button class="px-8 py-2 bg-primary-container text-white text-sm font-bold rounded-lg shadow-md hover:bg-primary transition-all">Filtrar</button>
+</div>
+</section>
+<!-- Data Table Section -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex-1">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-secondary">
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest">ID</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest">Cliente</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest">Vendedor</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest">Valor Total</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest">Competência</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest">Tipo</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest">Status</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-center">Parcelas</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-right">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<!-- Row 1 (Warning Case) -->
+<tr class="hover:bg-orange-50/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="font-mono text-xs text-gray-500">#0042</span>
+<div class="flex items-center gap-1 mt-1 text-primary text-[10px] font-bold uppercase">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                                        Possível duplicidade
+                                    </div>
+</div>
+</td>
+<td class="px-6 py-4 font-bold text-on-background">TechSolutions Global</td>
+<td class="px-6 py-4 text-sm text-secondary">Maria Clara</td>
+<td class="px-6 py-4 font-bold text-primary-container">R$ 12.450,00</td>
+<td class="px-6 py-4 text-sm text-secondary">Ago / 2023</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase rounded-full tracking-wider">Pontual</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-green-50 text-green-600 text-[10px] font-bold uppercase rounded-full tracking-wider">Ativa</span>
+</td>
+<td class="px-6 py-4 text-center text-sm font-medium text-secondary">01/01</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-1">
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-orange-50/50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-gray-500">#0041</td>
+<td class="px-6 py-4 font-bold text-on-background">Indústria de Metais Zenith</td>
+<td class="px-6 py-4 text-sm text-secondary">João Silva</td>
+<td class="px-6 py-4 font-bold text-primary-container">R$ 48.900,00</td>
+<td class="px-6 py-4 text-sm text-secondary">Set / 2023</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-purple-50 text-purple-600 text-[10px] font-bold uppercase rounded-full tracking-wider">Recorrente</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-gray-100 text-gray-600 text-[10px] font-bold uppercase rounded-full tracking-wider">Projeção</span>
+</td>
+<td class="px-6 py-4 text-center text-sm font-medium text-secondary">00/12</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-1">
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-orange-50/50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-gray-500">#0040</td>
+<td class="px-6 py-4 font-bold text-on-background">Logística Rapidez Ltda</td>
+<td class="px-6 py-4 text-sm text-secondary">Ricardo Santos</td>
+<td class="px-6 py-4 font-bold text-primary-container">R$ 5.200,00</td>
+<td class="px-6 py-4 text-sm text-secondary">Ago / 2023</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase rounded-full tracking-wider">Pontual</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-yellow-50 text-yellow-700 text-[10px] font-bold uppercase rounded-full tracking-wider">Inativa</span>
+</td>
+<td class="px-6 py-4 text-center text-sm font-medium text-secondary">01/01</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-1">
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-orange-50/50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-gray-500">#0039</td>
+<td class="px-6 py-4 font-bold text-on-background">Varejo Digital Hub</td>
+<td class="px-6 py-4 text-sm text-secondary">Maria Clara</td>
+<td class="px-6 py-4 font-bold text-primary-container">R$ 2.850,00</td>
+<td class="px-6 py-4 text-sm text-secondary">Jul / 2023</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-purple-50 text-purple-600 text-[10px] font-bold uppercase rounded-full tracking-wider">Recorrente</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-red-50 text-red-600 text-[10px] font-bold uppercase rounded-full tracking-wider">Perdida</span>
+</td>
+<td class="px-6 py-4 text-center text-sm font-medium text-secondary">00/00</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-1">
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-orange-50/50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-gray-500">#0038</td>
+<td class="px-6 py-4 font-bold text-on-background">AgroExport Sul</td>
+<td class="px-6 py-4 text-sm text-secondary">João Silva</td>
+<td class="px-6 py-4 font-bold text-primary-container">R$ 155.000,00</td>
+<td class="px-6 py-4 text-sm text-secondary">Jun / 2023</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase rounded-full tracking-wider">Pontual</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-black text-white text-[10px] font-bold uppercase rounded-full tracking-wider">Encerrada</span>
+</td>
+<td class="px-6 py-4 text-center text-sm font-medium text-secondary">01/01</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-1">
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="hover:bg-orange-50/50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-gray-500">#0037</td>
+<td class="px-6 py-4 font-bold text-on-background">Clínica Bem Estar</td>
+<td class="px-6 py-4 text-sm text-secondary">Ricardo Santos</td>
+<td class="px-6 py-4 font-bold text-primary-container">R$ 1.200,00</td>
+<td class="px-6 py-4 text-sm text-secondary">Set / 2023</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-purple-50 text-purple-600 text-[10px] font-bold uppercase rounded-full tracking-wider">Recorrente</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-green-50 text-green-600 text-[10px] font-bold uppercase rounded-full tracking-wider">Ativa</span>
+</td>
+<td class="px-6 py-4 text-center text-sm font-medium text-secondary">02/24</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-1">
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 7 -->
+<tr class="hover:bg-orange-50/50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-gray-500">#0036</td>
+<td class="px-6 py-4 font-bold text-on-background">Editora Novo Mundo</td>
+<td class="px-6 py-4 text-sm text-secondary">Maria Clara</td>
+<td class="px-6 py-4 font-bold text-primary-container">R$ 9.300,00</td>
+<td class="px-6 py-4 text-sm text-secondary">Set / 2023</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold uppercase rounded-full tracking-wider">Pontual</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-green-50 text-green-600 text-[10px] font-bold uppercase rounded-full tracking-wider">Ativa</span>
+</td>
+<td class="px-6 py-4 text-center text-sm font-medium text-secondary">01/01</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-1">
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 8 -->
+<tr class="hover:bg-orange-50/50 transition-colors">
+<td class="px-6 py-4 font-mono text-xs text-gray-500">#0035</td>
+<td class="px-6 py-4 font-bold text-on-background">Construtora Aliança</td>
+<td class="px-6 py-4 text-sm text-secondary">João Silva</td>
+<td class="px-6 py-4 font-bold text-primary-container">R$ 210.000,00</td>
+<td class="px-6 py-4 text-sm text-secondary">Out / 2023</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-purple-50 text-purple-600 text-[10px] font-bold uppercase rounded-full tracking-wider">Recorrente</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-gray-100 text-gray-600 text-[10px] font-bold uppercase rounded-full tracking-wider">Projeção</span>
+</td>
+<td class="px-6 py-4 text-center text-sm font-medium text-secondary">00/36</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-1">
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-1.5 hover:bg-surface-container-high rounded-lg text-secondary transition-colors"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-5 bg-surface-container-low flex justify-between items-center">
+<span class="text-sm text-secondary font-medium">Mostrando 1–8 de 38 registros</span>
+<div class="flex items-center gap-2">
+<button class="px-4 py-2 bg-surface-container-lowest text-outline text-sm font-bold rounded-lg hover:bg-white transition-colors disabled:opacity-50" disabled="">
+                        Anterior
+                    </button>
+<div class="flex items-center">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary-container text-white text-xs font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-secondary text-xs font-bold hover:bg-surface-container-high">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-secondary text-xs font-bold hover:bg-surface-container-high">3</button>
+<span class="px-1 text-gray-400">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg text-secondary text-xs font-bold hover:bg-surface-container-high">5</button>
+</div>
+<button class="px-4 py-2 bg-surface-container-lowest text-outline text-sm font-bold rounded-lg hover:bg-white transition-colors">
+                        Próximo
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Contextual FAB (Hidden as per requirement for Details/Transactional but shown for main actions) -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary-container text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform active:opacity-80 md:hidden">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+</body></html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#d3daef",
+                    "outline": "#8c7164",
+                    "on-surface-variant": "#584237",
+                    "inverse-on-surface": "#edf0ff",
+                    "surface-container": "#e9edff",
+                    "on-primary-container": "#582200",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed": "#dce2f7",
+                    "on-secondary-fixed": "#141b2b",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#004b74",
+                    "primary-fixed-dim": "#ffb690",
+                    "surface-bright": "#f9f9ff",
+                    "secondary": "#575e70",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#341100",
+                    "surface-container-highest": "#dce2f7",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#783200",
+                    "surface-container-low": "#f1f3ff",
+                    "on-background": "#141b2b",
+                    "primary": "#9d4300",
+                    "on-tertiary-fixed": "#001d32",
+                    "surface-container-high": "#e1e8fd",
+                    "surface-variant": "#dce2f7",
+                    "tertiary-container": "#00a2f4",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#141b2b",
+                    "inverse-surface": "#293040",
+                    "primary-container": "#f97316",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#cde5ff",
+                    "on-secondary-fixed-variant": "#404758",
+                    "tertiary": "#006398",
+                    "background": "#f9f9ff",
+                    "tertiary-fixed-dim": "#93ccff",
+                    "on-secondary-container": "#5c6274",
+                    "surface": "#f9f9ff",
+                    "secondary-container": "#d9dff5",
+                    "on-tertiary-container": "#003554",
+                    "outline-variant": "#e0c0b1",
+                    "on-error": "#ffffff",
+                    "primary-fixed": "#ffdbca",
+                    "inverse-primary": "#ffb690",
+                    "surface-tint": "#9d4300"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .sidebar-scroll::-webkit-scrollbar { width: 4px; }
+        .sidebar-scroll::-webkit-scrollbar-track { background: #111827; }
+        .sidebar-scroll::-webkit-scrollbar-thumb { background: #374151; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+<!-- SideNavBar (Authority Source: JSON & Design System) -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-slate-950 flex flex-col shadow-2xl z-50">
+<div class="p-6 flex flex-col gap-1">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">cloud_done</span>
+</div>
+<div class="flex flex-col">
+<span class="text-orange-500 font-black text-2xl uppercase tracking-tighter">Optsolv ERP</span>
+<span class="text-slate-400 text-xs font-medium tracking-widest uppercase">Administração</span>
+</div>
+</div>
+</div>
+<div class="px-4 py-4">
+<button class="w-full bg-orange-600 hover:bg-orange-500 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all duration-200 shadow-lg shadow-orange-900/20">
+<span class="material-symbols-outlined text-sm">add</span>
+<span class="text-sm font-['Inter'] font-medium tracking-wide">Novo Registro</span>
+</button>
+</div>
+<nav class="flex-1 overflow-y-auto sidebar-scroll px-2 space-y-1">
+<!-- Navigation Items Mapping from JSON -->
+<a class="flex items-center text-slate-400 hover:text-slate-100 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide">Dashboard</span>
+</a>
+<a class="flex items-center text-slate-400 hover:text-slate-100 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">description</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide">Vendas &amp; Contratos</span>
+</a>
+<a class="flex items-center text-slate-400 hover:text-slate-100 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">payments</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide">Parcelas</span>
+</a>
+<a class="flex items-center text-slate-400 hover:text-slate-100 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide">Clientes</span>
+</a>
+<a class="flex items-center text-slate-400 hover:text-slate-100 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">badge</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide">Colaboradores</span>
+</a>
+<a class="flex items-center text-slate-400 hover:text-slate-100 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">query_stats</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide">DRE</span>
+</a>
+<!-- ACTIVE ITEM: Usuários -->
+<a class="flex items-center text-white bg-orange-600/10 border-l-4 border-orange-500 py-3 px-4 rounded-r-lg translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined mr-3 text-orange-500">manage_accounts</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide">Usuários</span>
+</a>
+<a class="flex items-center text-slate-400 hover:text-slate-100 py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all duration-200" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-['Inter'] text-sm font-medium tracking-wide">Configurações</span>
+</a>
+</nav>
+<div class="mt-auto p-4 border-t border-slate-800/50 bg-slate-900/50">
+<div class="flex items-center gap-3">
+<img alt="User profile avatar" class="w-10 h-10 rounded-full border-2 border-orange-500/30" data-alt="professional corporate headshot of a business executive in a modern office environment with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbr1KTet5UGMpObwyOm6ec6CV8SnD0f5v2wb-YugQWwPELHqH1crZjjtI7hN8aTVLzzbNYo1AcYTiaIouARlWTr_PllcWJ4F11nvlZHFHXWksPlHsk9T4V5-PWjjpmkq8K7OhyXlY4Hj-GKvZ6reDuUZfsZJJ9EYQs2fKtn7K_Zow92ScvS-iI4pH44N41vXoBNhuMpu72kuQJnZhdQGnZ-SOdu6_9VqcMIQGeFlwTT5-QfM0a_KMRZODMedsSyUgxuXOOPDl-UYBI"/>
+<div class="flex flex-col min-w-0">
+<span class="text-white text-sm font-bold truncate">admin@optsolv.com.br</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-orange-600/20 text-orange-500 uppercase tracking-wider w-fit">Admin</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-64 flex-1 flex flex-col">
+<!-- TopNavBar (Authority Source: JSON) -->
+<header class="bg-slate-50 dark:bg-slate-900 flex justify-between items-center w-full px-8 h-16 shadow-sm sticky top-0 z-40">
+<div class="flex items-center gap-4">
+<h1 class="font-['Inter'] font-bold tracking-tight text-slate-900 dark:text-slate-100 text-xl">Usuários &amp; Permissões</h1>
+<span class="h-4 w-[1px] bg-slate-300 mx-2"></span>
+<span class="text-slate-500 text-sm font-medium">Gestão de acesso ao sistema</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="bg-slate-100 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-orange-500/20 w-64 transition-all" placeholder="Global search..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-500 hover:text-orange-500 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-slate-500 hover:text-orange-500 transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</div>
+</header>
+<div class="p-8 space-y-6">
+<!-- Actions Bar -->
+<div class="flex justify-between items-end">
+<div class="flex flex-col gap-1">
+<h2 class="text-2xl font-bold text-on-surface tracking-tight">Lista de Usuários</h2>
+<p class="text-on-surface-variant text-sm">Gerencie os perfis e acessos dos colaboradores.</p>
+</div>
+<button class="bg-primary-container text-white px-6 py-3 rounded-lg font-bold flex items-center gap-2 hover:opacity-90 transition-all shadow-lg shadow-orange-500/20">
+<span class="material-symbols-outlined">person_add</span>
+                    Novo Usuário
+                </button>
+</div>
+<!-- Filter Section (White Card - Surface Container Lowest) -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm flex flex-wrap gap-4 items-end">
+<div class="flex-1 min-w-[240px]">
+<label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Buscar por Nome ou E-mail</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 py-2.5 text-sm focus:ring-2 focus:ring-orange-500/20" placeholder="Ex: João Silva..." type="text"/>
+</div>
+</div>
+<div class="w-48">
+<label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Tipo</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg py-2.5 text-sm focus:ring-2 focus:ring-orange-500/20">
+<option>Todos</option>
+<option>Admin</option>
+<option>Usuário</option>
+</select>
+</div>
+<div class="w-48">
+<label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Perfil</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg py-2.5 text-sm focus:ring-2 focus:ring-orange-500/20">
+<option>Todos</option>
+<option>Diretoria</option>
+<option>Operacional</option>
+<option>Comercial</option>
+</select>
+</div>
+<div class="w-48">
+<label class="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Status</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg py-2.5 text-sm focus:ring-2 focus:ring-orange-500/20">
+<option>Ativos</option>
+<option>Inativos</option>
+</select>
+</div>
+<button class="bg-slate-100 text-slate-600 px-4 py-2.5 rounded-lg font-bold text-sm hover:bg-slate-200 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                    Limpar
+                </button>
+</section>
+<!-- Main Table Section (Precision Grid) -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">ID</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Nome</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Tipo</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Perfil</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Módulos com Acesso</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Status</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Último Acesso</th>
+<th class="px-6 py-4 text-[10px] font-bold text-slate-500 uppercase tracking-widest text-center">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- Row 1 -->
+<tr class="hover:bg-[#FFF7ED] transition-colors group">
+<td class="px-6 py-5 text-sm font-mono text-slate-400">#001</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-slate-900">Ricardo Mantovani</span>
+<span class="text-xs text-slate-500">ricardo.m@optsolv.com.br</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-orange-100 text-orange-600 uppercase">Admin</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-600 uppercase">Diretoria</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-slate-100 rounded text-[10px] font-medium text-slate-600"><span class="material-symbols-outlined text-[12px]">business_center</span>Comercial</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-slate-100 rounded text-[10px] font-medium text-slate-600"><span class="material-symbols-outlined text-[12px]">payments</span>Financeiro</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-slate-100 rounded text-[10px] font-medium text-slate-600"><span class="material-symbols-outlined text-[12px]">article</span>Fiscal</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-slate-100 rounded text-[10px] font-medium text-slate-600"><span class="material-symbols-outlined text-[12px]">analytics</span>Gerencial</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+<span class="text-xs font-semibold text-slate-700">Ativo</span>
+</span>
+</td>
+<td class="px-6 py-5 text-xs text-slate-500 font-medium">Hoje, 09:42</td>
+<td class="px-6 py-5">
+<div class="flex items-center justify-center gap-3">
+<button class="text-slate-400 hover:text-blue-500 transition-colors"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="text-slate-400 hover:text-orange-500 transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="text-slate-400 hover:text-slate-900 transition-colors"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-[#FFF7ED] transition-colors group">
+<td class="px-6 py-5 text-sm font-mono text-slate-400">#042</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-slate-900">Juliana Alves</span>
+<span class="text-xs text-slate-500">juliana.a@optsolv.com.br</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-500 uppercase">Usuário</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-green-50 text-green-600 uppercase">Operacional</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-slate-100 rounded text-[10px] font-medium text-slate-600"><span class="material-symbols-outlined text-[12px]">article</span>Fiscal</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+<span class="text-xs font-semibold text-slate-700">Ativo</span>
+</span>
+</td>
+<td class="px-6 py-5 text-xs text-slate-500 font-medium">Ontem, 16:15</td>
+<td class="px-6 py-5">
+<div class="flex items-center justify-center gap-3">
+<button class="text-slate-400 hover:text-blue-500 transition-colors"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="text-slate-400 hover:text-orange-500 transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="text-slate-400 hover:text-slate-900 transition-colors"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-[#FFF7ED] transition-colors group">
+<td class="px-6 py-5 text-sm font-mono text-slate-400">#128</td>
+<td class="px-6 py-5">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-slate-900">Marcos Henrique</span>
+<span class="text-xs text-slate-500">marcos.h@optsolv.com.br</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-500 uppercase">Usuário</span>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-50 text-purple-600 uppercase">Comercial</span>
+</td>
+<td class="px-6 py-5">
+<div class="flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-slate-100 rounded text-[10px] font-medium text-slate-600"><span class="material-symbols-outlined text-[12px]">business_center</span>Comercial</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 bg-slate-100 rounded text-[10px] font-medium text-slate-600"><span class="material-symbols-outlined text-[12px]">payments</span>Financeiro</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+<span class="text-xs font-semibold text-slate-400">Inativo</span>
+</span>
+</td>
+<td class="px-6 py-5 text-xs text-slate-500 font-medium">12 Out, 2023</td>
+<td class="px-6 py-5">
+<div class="flex items-center justify-center gap-3">
+<button class="text-slate-400 hover:text-blue-500 transition-colors"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="text-slate-400 hover:text-orange-500 transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="text-slate-400 hover:text-slate-900 transition-colors"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-surface-container-low px-6 py-4 flex items-center justify-between">
+<span class="text-xs font-medium text-slate-500">Mostrando 1-10 de 154 usuários</span>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface-container-lowest text-slate-400 hover:text-orange-500 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-orange-600 text-white font-bold text-xs shadow-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface-container-lowest text-slate-600 font-bold text-xs hover:text-orange-500 transition-colors shadow-sm">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface-container-lowest text-slate-600 font-bold text-xs hover:text-orange-500 transition-colors shadow-sm">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-surface-container-lowest text-slate-400 hover:text-orange-500 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Bottom Dashboard Summary Cards (Asymmetric Bento Grid) -->
+<div class="grid grid-cols-12 gap-6 pb-8">
+<div class="col-span-12 md:col-span-4 bg-surface-container-lowest p-6 rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-2">
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Acessos Hoje</span>
+<span class="text-green-500 text-xs font-bold">+12%</span>
+</div>
+<h3 class="text-3xl font-bold text-slate-900">42</h3>
+</div>
+<div class="mt-4 h-2 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-orange-500 rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+<div class="col-span-12 md:col-span-8 bg-inverse-surface text-white p-6 rounded-xl shadow-lg relative overflow-hidden">
+<!-- Subtle pattern overlay -->
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
+<div class="relative z-10 flex h-full items-center justify-between">
+<div class="space-y-2">
+<h3 class="text-xl font-bold tracking-tight">Segurança do Sistema</h3>
+<p class="text-slate-400 text-sm max-w-md">3 usuários estão sem autenticação de dois fatores ativa. Recomendamos a ativação obrigatória para cargos de diretoria.</p>
+<button class="mt-4 bg-orange-500 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-orange-400 transition-all uppercase tracking-wider">Ver Auditoria</button>
+</div>
+<div class="hidden lg:flex items-center justify-center w-24 h-24 rounded-full border-4 border-orange-500/20 bg-orange-500/10">
+<span class="material-symbols-outlined text-4xl text-orange-500" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

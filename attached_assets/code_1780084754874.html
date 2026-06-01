@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Optsolv ERP - Despesas</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#783200",
+                        "on-background": "#141b2b",
+                        "surface-container-low": "#f1f3ff",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#dce2f7",
+                        "surface-container-high": "#e1e8fd",
+                        "surface-variant": "#dce2f7",
+                        "on-tertiary-fixed": "#001d32",
+                        "primary": "#9d4300",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed": "#dce2f7",
+                        "on-secondary-fixed": "#141b2b",
+                        "on-surface-variant": "#584237",
+                        "inverse-on-surface": "#edf0ff",
+                        "surface-dim": "#d3daef",
+                        "outline": "#8c7164",
+                        "surface-container": "#e9edff",
+                        "on-primary-container": "#582200",
+                        "on-primary-fixed": "#341100",
+                        "surface-bright": "#f9f9ff",
+                        "secondary": "#575e70",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#ffb690",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "surface": "#f9f9ff",
+                        "secondary-container": "#d9dff5",
+                        "on-tertiary-container": "#003554",
+                        "background": "#f9f9ff",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "on-secondary-container": "#5c6274",
+                        "surface-tint": "#9d4300",
+                        "outline-variant": "#e0c0b1",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#ffdbca",
+                        "inverse-primary": "#ffb690",
+                        "on-surface": "#141b2b",
+                        "inverse-surface": "#293040",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#00a2f4",
+                        "on-secondary-fixed-variant": "#404758",
+                        "tertiary": "#006398",
+                        "primary-container": "#f97316",
+                        "tertiary-fixed": "#cde5ff",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+    </style>
+</head>
+<body class="flex min-h-screen text-on-background">
+<!-- SideNavBar (Authority: JSON & Design System) -->
+<aside class="w-[220px] h-screen fixed left-0 top-0 bg-gray-950 dark:bg-black flex flex-col h-full z-50 overflow-y-auto">
+<div class="px-6 py-8">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-orange-500 text-2xl" style="font-variation-settings: 'FILL' 1;">architecture</span>
+<span class="text-xl font-bold text-white tracking-tighter">Optsolv ERP</span>
+</div>
+<p class="text-[10px] uppercase tracking-widest text-gray-500 font-medium px-1">Precision Architect</p>
+</div>
+<nav class="flex-1 px-0 py-4 font-inter text-sm font-medium tracking-tight">
+<!-- Active Tab: Despesas -->
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-900 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-white border-l-4 border-orange-500 bg-gray-900" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span>Despesas</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-900 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span>Receitas</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-900 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span>
+<span>Projetos</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-900 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span>Relatórios</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-gray-900 hover:text-white transition-colors mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Configurações</span>
+</a>
+</nav>
+<div class="p-4 mt-auto">
+<div class="flex items-center gap-3 p-3 rounded-lg bg-gray-900/50">
+<div class="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-xs">OA</div>
+<div class="overflow-hidden">
+<p class="text-xs font-bold text-white truncate">Admin Optsolv</p>
+<p class="text-[10px] text-gray-500 truncate">Sair do sistema</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[220px] flex-1 flex flex-col min-h-screen">
+<!-- TopNavBar (Authority: JSON) -->
+<header class="h-16 w-full sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md flex justify-between items-center px-8 border-b border-gray-200/15 dark:border-gray-800/15">
+<div class="flex items-center gap-4">
+<h1 class="text-lg font-bold text-gray-900 dark:text-white tracking-tight">Despesas</h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-gray-400 text-sm">search</span>
+<input class="bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary-container/20 w-64 transition-all" placeholder="Pesquisar despesa..." type="text"/>
+</div>
+<div class="flex items-center gap-4 text-gray-500">
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="hover:text-primary transition-colors"><span class="material-symbols-outlined">help_outline</span></button>
+</div>
+<button class="bg-primary-container hover:bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition-transform active:scale-95 shadow-sm">
+<span class="material-symbols-outlined text-sm">add</span>
+                    Nova Despesa
+                </button>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-8 space-y-8">
+<!-- Page Title Section -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-3xl font-bold text-on-background tracking-tighter">Despesas</h2>
+<p class="text-secondary text-sm">Controle de custos e saídas financeiras</p>
+</div>
+</div>
+<!-- KPI Row (The "No-Line" Surface Layering) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_4px_24px_rgba(17,24,39,0.04)] border border-gray-100/50">
+<p class="text-[10px] font-bold uppercase tracking-widest text-secondary mb-2">Total Previsto (mês)</p>
+<div class="flex items-end gap-2">
+<span class="text-2xl font-bold text-on-background tracking-tighter">R$ 42.850,00</span>
+<span class="text-xs text-green-600 font-medium mb-1 flex items-center"><span class="material-symbols-outlined text-xs">arrow_upward</span> 4%</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_4px_24px_rgba(17,24,39,0.04)] border border-gray-100/50">
+<p class="text-[10px] font-bold uppercase tracking-widest text-secondary mb-2">Total Pago (mês)</p>
+<div class="flex items-end gap-2">
+<span class="text-2xl font-bold text-on-background tracking-tighter text-primary">R$ 18.220,50</span>
+<span class="text-xs text-gray-400 font-medium mb-1">42% do total</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_4px_24px_rgba(17,24,39,0.04)] border border-gray-100/50">
+<p class="text-[10px] font-bold uppercase tracking-widest text-secondary mb-2">A Pagar (em aberto)</p>
+<div class="flex items-end gap-2">
+<span class="text-2xl font-bold text-on-background tracking-tighter">R$ 24.629,50</span>
+<span class="text-xs text-error font-medium mb-1 flex items-center">Atrasado: 8</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_4px_24px_rgba(17,24,39,0.04)] border border-gray-100/50">
+<p class="text-[10px] font-bold uppercase tracking-widest text-secondary mb-2">Maior Centro de Custo</p>
+<div class="flex items-end gap-2">
+<span class="text-xl font-bold text-on-background tracking-tight">Operações Log</span>
+<span class="text-xs text-secondary font-medium mb-1">32%</span>
+</div>
+</div>
+</div>
+<!-- Filter Bar (White Card) -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_4px_24px_rgba(17,24,39,0.04)] border border-gray-100/50">
+<div class="grid grid-cols-1 md:grid-cols-6 gap-4">
+<div class="col-span-1 md:col-span-1">
+<label class="block text-[10px] font-bold uppercase tracking-widest text-secondary mb-1">Descrição</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-primary-container" placeholder="Ex: Aluguel" type="text"/>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-secondary mb-1">Fornecedor</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-primary-container appearance-none">
+<option>Todos</option>
+</select>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-secondary mb-1">Categoria</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-primary-container appearance-none">
+<option>Todas</option>
+</select>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-secondary mb-1">Centro de Custo</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-primary-container appearance-none">
+<option>Todos</option>
+</select>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-secondary mb-1">Status</label>
+<select class="w-full bg-surface-container-low border-none rounded-lg px-3 py-2 text-sm focus:ring-1 focus:ring-primary-container appearance-none">
+<option>Todos</option>
+</select>
+</div>
+<div>
+<label class="block text-[10px] font-bold uppercase tracking-widest text-secondary mb-1">Período</label>
+<div class="flex items-center gap-2 bg-surface-container-low rounded-lg px-3 py-2">
+<span class="material-symbols-outlined text-sm text-gray-400">calendar_month</span>
+<input class="bg-transparent border-none p-0 text-sm focus:ring-0 w-full" type="text" value="01/10 - 31/10"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Tab Bar & Main Table Section -->
+<div class="space-y-4">
+<div class="flex items-center gap-8 border-b border-gray-200/50 px-2">
+<button class="pb-4 text-sm font-bold text-primary border-b-2 border-primary transition-all">Todas</button>
+<button class="pb-4 text-sm font-medium text-secondary hover:text-on-background transition-all">Previstas</button>
+<button class="pb-4 text-sm font-medium text-secondary hover:text-on-background transition-all">Pagas</button>
+<button class="pb-4 text-sm font-medium text-secondary hover:text-on-background transition-all">Por Categoria</button>
+<button class="pb-4 text-sm font-medium text-secondary hover:text-on-background transition-all">Por Mês</button>
+</div>
+<!-- Table Content (Precision Grid) -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(17,24,39,0.04)] border border-gray-100/50">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-secondary">ID</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-secondary">Descrição</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-secondary">Fornecedor</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-secondary">Categoria</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-secondary">Centro Custo</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-secondary">Vencimento</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-secondary">Valor</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-secondary">Status</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-secondary text-center">Docs</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-secondary text-right">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-50">
+<!-- Overdue Row -->
+<tr class="hover:bg-orange-50/30 transition-colors bg-red-50/40">
+<td class="px-6 py-4 text-xs font-mono text-gray-500">#8821</td>
+<td class="px-6 py-4 text-sm font-semibold text-on-background">Serviços de AWS Cloud</td>
+<td class="px-6 py-4 text-sm text-secondary">Amazon Web Services</td>
+<td class="px-6 py-4 text-xs font-medium"><span class="bg-blue-50 text-blue-700 px-2 py-1 rounded">Infraestrutura</span></td>
+<td class="px-6 py-4 text-sm text-secondary">Tecnologia</td>
+<td class="px-6 py-4 text-sm text-error font-bold">12/10/2023</td>
+<td class="px-6 py-4 text-sm font-bold text-on-background">R$ 1.250,00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">Prevista</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-orange-500 text-lg cursor-pointer hover:scale-110 transition-transform">attachment</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-3 text-gray-400">
+<button class="hover:text-primary"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="hover:text-primary"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="bg-primary-container text-white px-3 py-1 rounded text-xs font-bold hover:bg-primary">Pagar</button>
+<button class="hover:text-primary"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Normal Row - Paga -->
+<tr class="hover:bg-orange-50/30 transition-colors">
+<td class="px-6 py-4 text-xs font-mono text-gray-500">#8820</td>
+<td class="px-6 py-4 text-sm font-semibold text-on-background">Aluguel Escritório Central</td>
+<td class="px-6 py-4 text-sm text-secondary">Imobiliária Horizonte</td>
+<td class="px-6 py-4 text-xs font-medium"><span class="bg-gray-100 text-gray-700 px-2 py-1 rounded">Fixo</span></td>
+<td class="px-6 py-4 text-sm text-secondary">Administrativo</td>
+<td class="px-6 py-4 text-sm text-secondary">25/10/2023</td>
+<td class="px-6 py-4 text-sm font-bold text-on-background">R$ 5.400,00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">Paga</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-orange-500 text-lg cursor-pointer hover:scale-110 transition-transform">attachment</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-3 text-gray-400">
+<button class="hover:text-primary"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="hover:text-primary"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="hover:text-primary"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Normal Row - Cancelada -->
+<tr class="hover:bg-orange-50/30 transition-colors">
+<td class="px-6 py-4 text-xs font-mono text-gray-500">#8819</td>
+<td class="px-6 py-4 text-sm font-semibold text-on-background">Manutenção Ar Condicionado</td>
+<td class="px-6 py-4 text-sm text-secondary">Clima Tech Ltda</td>
+<td class="px-6 py-4 text-xs font-medium"><span class="bg-gray-100 text-gray-700 px-2 py-1 rounded">Manutenção</span></td>
+<td class="px-6 py-4 text-sm text-secondary">Geral</td>
+<td class="px-6 py-4 text-sm text-secondary">20/10/2023</td>
+<td class="px-6 py-4 text-sm font-bold text-on-background">R$ 450,00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-200 text-gray-600 line-through">Cancelada</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-gray-300 text-lg cursor-not-allowed">attach_file_off</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-3 text-gray-400">
+<button class="hover:text-primary"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="hover:text-primary"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Another Row - Prevista -->
+<tr class="hover:bg-orange-50/30 transition-colors">
+<td class="px-6 py-4 text-xs font-mono text-gray-500">#8818</td>
+<td class="px-6 py-4 text-sm font-semibold text-on-background">Material de Escritório Q4</td>
+<td class="px-6 py-4 text-sm text-secondary">Papelaria Central</td>
+<td class="px-6 py-4 text-xs font-medium"><span class="bg-gray-100 text-gray-700 px-2 py-1 rounded">Suprimentos</span></td>
+<td class="px-6 py-4 text-sm text-secondary">Vendas</td>
+<td class="px-6 py-4 text-sm text-secondary">28/10/2023</td>
+<td class="px-6 py-4 text-sm font-bold text-on-background">R$ 890,20</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">Prevista</span>
+</td>
+<td class="px-6 py-4 text-center">
+<span class="material-symbols-outlined text-orange-500 text-lg cursor-pointer hover:scale-110 transition-transform">attachment</span>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-3 text-gray-400">
+<button class="hover:text-primary"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="hover:text-primary"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="bg-primary-container text-white px-3 py-1 rounded text-xs font-bold hover:bg-primary">Pagar</button>
+<button class="hover:text-primary"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination -->
+<div class="px-6 py-4 bg-surface-container-low flex justify-between items-center border-t border-gray-100">
+<p class="text-xs text-secondary">Mostrando 1-10 de 156 despesas</p>
+<div class="flex gap-2">
+<button class="px-3 py-1 rounded border border-gray-200 text-xs font-bold text-secondary hover:bg-white transition-colors disabled:opacity-50" disabled="">Anterior</button>
+<button class="px-3 py-1 rounded border border-gray-200 text-xs font-bold text-on-background bg-white transition-colors">1</button>
+<button class="px-3 py-1 rounded border border-gray-200 text-xs font-bold text-secondary hover:bg-white transition-colors">2</button>
+<button class="px-3 py-1 rounded border border-gray-200 text-xs font-bold text-secondary hover:bg-white transition-colors">3</button>
+<button class="px-3 py-1 rounded border border-gray-200 text-xs font-bold text-secondary hover:bg-white transition-colors">Próximo</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- FAB Support (Design System Mandate) -->
+<!-- Suppressed for Details/Dashboard/Settings, but usually present on Lists. However, the JSON and instructions prioritized the Top Bar button. Keeping it simple as per "Shell Visibility & Relevance". -->
+<!-- Decorative Subtle Background Image -->
+<div class="fixed bottom-0 right-0 w-1/3 h-1/3 pointer-events-none opacity-[0.03] z-[-1]" data-alt="abstract mathematical architectural blueprint patterns with clean geometric lines on a light grey background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBoEtNqbRgaiKEIXAv2_0nlScn0fLstV6wTd6w8Utq7CHcf-mNYoz8FjlzGwbbpoIcixl0qUYcu3dLNboRMF40BIdZGtOWXg6SyVCXJG0t6aIcvfb_BaEPiSlLBe_m27MDVrhVP-lcCss7o9As0ZWi3CfL7f25IpLJLNcKJydWYQJCXamsUgBweaMSjBmszKRANcv3I21XleuWIX5S5mF9Ylj11_2FHCA7T6vvdQQ2RZdwy3_kmus02jhQFTtorscTHMHLdvXwkpcYh'); background-size: cover; background-position: center;">
+</div>
+</main>
+</body></html>

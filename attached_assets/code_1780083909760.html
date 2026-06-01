@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contas Bancárias | Precision ERP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-dropdown {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface-variant": "#584237",
+                      "on-primary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "primary": "#9d4300",
+                      "on-surface": "#141b2b",
+                      "surface-variant": "#dce2f7",
+                      "tertiary-fixed-dim": "#93ccff",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-container": "#f97316",
+                      "secondary": "#575e70",
+                      "on-primary-fixed": "#341100",
+                      "on-tertiary-fixed": "#001d32",
+                      "inverse-surface": "#293040",
+                      "inverse-primary": "#ffb690",
+                      "surface-container-highest": "#dce2f7",
+                      "on-primary-container": "#582200",
+                      "surface-container-high": "#e1e8fd",
+                      "tertiary": "#006398",
+                      "outline": "#8c7164",
+                      "tertiary-fixed": "#cde5ff",
+                      "secondary-fixed-dim": "#c0c6db",
+                      "on-tertiary-container": "#003554",
+                      "on-secondary-fixed-variant": "#404758",
+                      "surface-container": "#e9edff",
+                      "tertiary-container": "#00a2f4",
+                      "inverse-on-surface": "#edf0ff",
+                      "on-secondary-fixed": "#141b2b",
+                      "on-error-container": "#93000a",
+                      "surface": "#f9f9ff",
+                      "error": "#ba1a1a",
+                      "error-container": "#ffdad6",
+                      "surface-tint": "#9d4300",
+                      "surface-container-low": "#f1f3ff",
+                      "primary-fixed-dim": "#ffb690",
+                      "on-secondary-container": "#5c6274",
+                      "on-primary-fixed-variant": "#783200",
+                      "surface-bright": "#f9f9ff",
+                      "primary-fixed": "#ffdbca",
+                      "background": "#f9f9ff",
+                      "surface-dim": "#d3daef",
+                      "secondary-container": "#d9dff5",
+                      "on-tertiary": "#ffffff",
+                      "on-background": "#141b2b",
+                      "on-tertiary-fixed-variant": "#004b74",
+                      "secondary-fixed": "#dce2f7",
+                      "outline-variant": "#e0c0b1",
+                      "on-error": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              }
+            },
+          }
+        }
+      </script>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar -->
+<aside class="flex flex-col h-full w-[220px] z-50 bg-[#111827] fixed left-0 top-0">
+<div class="px-6 py-8">
+<h1 class="text-xl font-bold text-white tracking-tighter">Precision ERP</h1>
+<p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">Enterprise Management</p>
+</div>
+<nav class="flex-1 px-0 py-4">
+<a class="text-gray-400 hover:text-white flex items-center px-4 py-3 transition-colors hover:bg-white/10 group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">dashboard</span>
+<span class="font-['Inter'] font-medium text-sm">Dashboard</span>
+</a>
+<a class="text-gray-400 hover:text-white flex items-center px-4 py-3 transition-colors hover:bg-white/10 group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">shopping_cart</span>
+<span class="font-['Inter'] font-medium text-sm">Vendas</span>
+</a>
+<a class="text-gray-400 hover:text-white flex items-center px-4 py-3 transition-colors hover:bg-white/10 group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">payments</span>
+<span class="font-['Inter'] font-medium text-sm">Financeiro</span>
+</a>
+<!-- Active Tab -->
+<a class="text-white font-semibold border-l-4 border-[#F97316] bg-white/5 flex items-center px-4 py-3 active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined mr-3 text-lg text-[#F97316]">account_balance</span>
+<span class="font-['Inter'] font-medium text-sm">Contas Bancárias</span>
+</a>
+<a class="text-gray-400 hover:text-white flex items-center px-4 py-3 transition-colors hover:bg-white/10 group" href="#">
+<span class="material-symbols-outlined mr-3 text-lg">settings</span>
+<span class="font-['Inter'] font-medium text-sm">Configurações</span>
+</a>
+</nav>
+<div class="p-4 bg-white/5 mx-4 mb-6 rounded-xl border border-white/10">
+<div class="flex items-center space-x-3">
+<img alt="Organization Logo" class="w-8 h-8 rounded-lg" data-alt="minimalist corporate logo for an enterprise resource planning system with clean geometric lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXzvWjh5PoW95MFIssM6wPtjtJMb_6oXG8dXM_3htw_48YghPbYWG5z6xqidWV-0iJOS16F34bc1KVi5m9wGsqWjypEGlPu8BwgXsyngEPtHRn8_2LbfdNBiWU-etfuTX2OFN0oZNCsZ4Rce3dJvoX0pL166DI6817BfIODTIStdWJxq2_j2OAgB484ydma7E4tzWThtLhEhlIFqOlGq3TJLCWPxhjYRGRGIM8039uTi8E8gGWMuRq_HCLWHxWQLqCwmkd3g-5_8y-"/>
+<div>
+<p class="text-xs font-bold text-white leading-none">Matriz Brasil</p>
+<p class="text-[10px] text-gray-500 mt-1">SaaS Platinum</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<main class="ml-[220px] min-h-screen">
+<!-- TopNavBar -->
+<header class="h-16 w-full sticky top-0 z-40 bg-[#F3F4F6] flex justify-between items-center px-8 shadow-sm">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg">search</span>
+<input class="w-full bg-white/50 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary-container/20" placeholder="Buscar no sistema..." type="text"/>
+</div>
+</div>
+<div class="flex items-center space-x-6">
+<div class="flex space-x-2">
+<button class="p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-all">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+<div class="h-8 w-px bg-gray-200"></div>
+<div class="flex items-center space-x-3">
+<span class="text-sm font-medium text-gray-700">Support</span>
+<div class="relative group">
+<img alt="User Profile Avatar" class="w-8 h-8 rounded-full border-2 border-white shadow-sm cursor-pointer" data-alt="professional corporate headshot of a business executive for a user profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtrPjixK-RanR2ha44rmHYhmaGkdUt4wWFbGT7CF8gJrw36gqqI1AdjnhNQ3aP0rybiSqAIXoIkAL63DXu6cXco7-E55BW26n2D-o7Nts3KAx6hlTBUChvNHCGo1H6ODHsplR8rXT0RXHW52ZXqSuluPV-r1dtF8qdI2VX_1GA37o5n0DNRCiif0EtUbNXqxOYLAnwSIH1Zzob4EVnKtLrbENcWjsKxq8xofVShQj3Bp1pwqJ3a8FHmirF-J03nnXUhfnsZyJs3VQg"/>
+<div class="absolute right-0 mt-2 w-48 glass-dropdown opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 p-2 rounded-xl shadow-2xl z-50">
+<a class="block px-4 py-2 text-xs text-gray-700 hover:bg-primary-container/10 rounded-lg" href="#">Meu Perfil</a>
+<a class="block px-4 py-2 text-xs text-error hover:bg-error-container/20 rounded-lg" href="#">Sair</a>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-8 space-y-8">
+<!-- Header Section -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="text-3xl font-bold tracking-tight text-on-surface">Contas Bancárias</h2>
+<p class="text-secondary mt-1">Gestão de contas da empresa</p>
+</div>
+<button class="bg-primary-container text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 hover:bg-primary transition-all shadow-lg active:scale-95">
+<span class="material-symbols-outlined">add</span>
+                    Nova Conta Bancária
+                </button>
+</div>
+<!-- Info Banner -->
+<div class="bg-surface-container-lowest border-2 border-primary-container/20 p-4 rounded-xl flex items-start gap-4">
+<span class="text-primary-container mt-0.5">ℹ️</span>
+<p class="text-sm text-on-surface-variant font-medium leading-relaxed">
+                    As contas bancárias são a base do Fluxo de Caixa. Todo movimento financeiro está vinculado a uma conta. Contas não são excluídas fisicamente — apenas inativadas.
+                </p>
+</div>
+<!-- KPI Row -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-transparent hover:border-primary-container/10 transition-all">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-bold text-secondary tracking-widest uppercase">Saldo Total Consolidado</span>
+<div class="bg-primary-container/10 p-2 rounded-lg text-primary-container">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+</div>
+<div class="text-2xl font-bold text-primary-container">R$ 1.245.670,42</div>
+<p class="text-[10px] text-gray-400 mt-2 flex items-center">
+<span class="material-symbols-outlined text-xs mr-1">trending_up</span> 
+                        +2.4% em relação ao mês anterior
+                    </p>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-transparent">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-bold text-secondary tracking-widest uppercase">Contas Ativas</span>
+<div class="bg-emerald-100 p-2 rounded-lg text-emerald-600">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+</div>
+<div class="text-2xl font-bold text-on-surface">12 <span class="text-sm font-normal text-secondary">Contas</span></div>
+<p class="text-[10px] text-gray-400 mt-2">Sem contas pendentes de regularização</p>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border border-transparent">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-bold text-secondary tracking-widest uppercase">Última movimentação</span>
+<div class="bg-surface-container-low p-2 rounded-lg text-secondary">
+<span class="material-symbols-outlined">update</span>
+</div>
+</div>
+<div class="text-lg font-bold text-on-surface">Hoje, 14:32</div>
+<p class="text-sm text-secondary mt-1">Conta: Bradesco Corporate</p>
+</div>
+</div>
+<!-- Table Section -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden">
+<div class="p-6 border-b border-surface-container">
+<h3 class="text-lg font-bold text-on-surface">Listagem de Contas</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-6 py-4 text-xs font-bold text-secondary uppercase tracking-wider">ID</th>
+<th class="px-6 py-4 text-xs font-bold text-secondary uppercase tracking-wider">Nome da Conta</th>
+<th class="px-6 py-4 text-xs font-bold text-secondary uppercase tracking-wider">Banco</th>
+<th class="px-6 py-4 text-xs font-bold text-secondary uppercase tracking-wider">Agência</th>
+<th class="px-6 py-4 text-xs font-bold text-secondary uppercase tracking-wider">Conta</th>
+<th class="px-6 py-4 text-xs font-bold text-secondary uppercase tracking-wider">Saldo Inicial</th>
+<th class="px-6 py-4 text-xs font-bold text-secondary uppercase tracking-wider">Saldo Atual</th>
+<th class="px-6 py-4 text-xs font-bold text-secondary uppercase tracking-wider">Status</th>
+<th class="px-6 py-4 text-xs font-bold text-secondary uppercase tracking-wider text-center">Ações</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-[#FFF7ED] transition-colors group">
+<td class="px-6 py-4 text-sm font-medium text-secondary">#001</td>
+<td class="px-6 py-4 text-sm font-bold text-on-surface">Principal Bradesco</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Bradesco (237)</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">4500-1</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">123456-7</td>
+<td class="px-6 py-4 text-sm text-secondary/60">R$ 50.000,00</td>
+<td class="px-6 py-4 text-sm font-bold text-primary-container">R$ 842.120,50</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-700">Ativa</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex justify-center items-center space-x-2">
+<button class="p-2 text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="p-2 text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<div class="relative group/actions">
+<button class="p-2 text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+<div class="absolute right-0 bottom-0 translate-y-full mb-2 w-32 glass-dropdown opacity-0 invisible group-hover/actions:opacity-100 group-hover/actions:visible transition-all duration-200 rounded-xl shadow-xl p-1 z-10 border border-white/50">
+<button class="w-full text-left px-3 py-2 text-xs font-medium text-on-surface-variant hover:bg-error-container/20 hover:text-error rounded-lg">Inativar</button>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-[#FFF7ED] transition-colors group">
+<td class="px-6 py-4 text-sm font-medium text-secondary">#002</td>
+<td class="px-6 py-4 text-sm font-bold text-on-surface">Reserva Itaú</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">Itaú (341)</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">0900</td>
+<td class="px-6 py-4 text-sm text-on-surface-variant">98765-4</td>
+<td class="px-6 py-4 text-sm text-secondary/60">R$ 100.000,00</td>
+<td class="px-6 py-4 text-sm font-bold text-primary-container">R$ 403.549,92</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-700">Ativa</span>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="flex justify-center items-center space-x-2">
+<button class="p-2 text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="p-2 text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<button class="p-2 text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 - Inactive -->
+<tr class="hover:bg-gray-50 transition-colors group">
+<td class="px-6 py-4 text-sm font-medium text-secondary">#003</td>
+<td class="px-6 py-4 text-sm font-bold text-secondary">Conta Investimento XP</td>
+<td class="px-6 py-4 text-sm text-secondary/70">XP Invest (102)</td>
+<td class="px-6 py-4 text-sm text-secondary/70">0001</td>
+<td class="px-6 py-4 text-sm text-secondary/70">554433-2</td>
+<td class="px-6 py-4 text-sm text-secondary/40">R$ 0,00</td>
+<td class="px-6 py-4 text-sm font-bold text-secondary/50">R$ 0,00</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-gray-200 text-gray-500">Inativa</span>
+</td>
+<td class="px-6 py-4 text-center">
+<div class="flex justify-center items-center space-x-2">
+<button class="p-2 text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">visibility</span></button>
+<button class="p-2 text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">edit</span></button>
+<div class="relative group/actions">
+<button class="p-2 text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+<div class="absolute right-0 bottom-0 translate-y-full mb-2 w-32 glass-dropdown opacity-0 invisible group-hover/actions:opacity-100 group-hover/actions:visible transition-all duration-200 rounded-xl shadow-xl p-1 z-10 border border-white/50">
+<button class="w-full text-left px-3 py-2 text-xs font-medium text-on-surface-variant hover:bg-primary-container/10 hover:text-primary-container rounded-lg">Reativar</button>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<!-- Totals Row -->
+<tr class="bg-primary-container/5">
+<td class="px-6 py-5 text-right font-bold text-on-surface uppercase tracking-wider text-xs" colspan="6">Saldo Total</td>
+<td class="px-6 py-5 text-sm font-extrabold text-primary-container">R$ 1.245.670,42</td>
+<td class="px-6 py-5" colspan="2"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 bg-surface-container-low/30 border-t border-surface-container flex justify-between items-center">
+<span class="text-xs text-secondary">Exibindo 3 de 3 contas cadastradas</span>
+<div class="flex space-x-2">
+<button class="p-2 bg-white rounded-lg border border-surface-container text-secondary hover:bg-gray-50 disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="p-2 bg-white rounded-lg border border-surface-container text-secondary hover:bg-gray-50">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Visual Context - Decorative Section -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+<div class="relative h-64 rounded-3xl overflow-hidden shadow-2xl group">
+<img alt="Financial analysis dashboard" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" data-alt="Modern high-end corporate office interior with glass walls and professional financial documents on a clean minimalist desk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu68BRJR1qjsqlfZFANsJopt9UkWF1EMPbyhT49I2WXwfMaWuyEGn8rVlHklh6cn05LH7BlzhZy-A1U6F7b30_9A4SUpTGMXLFq200ifiqi-en_zhi7NpejemFXRtSlGj8ZPvGsRq1jGkM_U7ONxmbjxe9vbLYvO-YuUZezfJTw4c15zNcehZXwj-0uiY5ZxpKRKQuyAnKDf1kaDa-aqplHTvLlk3ujZWKp40rgmsEbF48N7wENFUOxzQzqVAkj-mKj3IwFS1DFLiI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-6 left-6 text-white">
+<h4 class="text-xl font-bold">Relatórios Avançados</h4>
+<p class="text-sm text-gray-300">Acesse o detalhamento completo do fluxo de caixa.</p>
+</div>
+</div>
+<div class="relative h-64 rounded-3xl overflow-hidden shadow-2xl group">
+<img alt="Bank digital interface" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" data-alt="Digital representation of secure global financial transactions with glowing orange lines and data points on a dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv3JymHNsvWCZt7UOB36R2sPXvVBb330yG4DE6U5T2CdelvSoA4TICQGF0_UHxZV7CnsT6UPeJzAV0roiIrHfAslJm_UgnfdWj5KmMxSaxi65pgS39TxOVQAYMs93TQNzVqatp622FAzEYbeElaledWcr9uQil__Cf59jazRUzi4q4WvHqwxpSlNIlfZl9kv6N5yISL1YYZr0kfHUrE8AGcoYQHil_jz8Ln91KZeNUjxNnwlYRFdLJLyCcyBFlUEUAWnc5ycAr56dB"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary via-transparent to-transparent opacity-60"></div>
+<div class="absolute bottom-6 left-6 text-white">
+<h4 class="text-xl font-bold">Segurança &amp; Auditoria</h4>
+<p class="text-sm text-white/80">Rastreabilidade completa de todas as inativações de conta.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB for quick action -->
+<button class="fixed bottom-8 right-8 bg-primary-container text-white h-14 w-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 md:hidden">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+</body></html>

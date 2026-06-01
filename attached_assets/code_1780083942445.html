@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#584237",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "primary": "#9d4300",
+                        "on-surface": "#141b2b",
+                        "surface-variant": "#dce2f7",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#f97316",
+                        "secondary": "#575e70",
+                        "on-primary-fixed": "#341100",
+                        "on-tertiary-fixed": "#001d32",
+                        "inverse-surface": "#293040",
+                        "inverse-primary": "#ffb690",
+                        "surface-container-highest": "#dce2f7",
+                        "on-primary-container": "#582200",
+                        "surface-container-high": "#e1e8fd",
+                        "tertiary": "#006398",
+                        "outline": "#8c7164",
+                        "tertiary-fixed": "#cde5ff",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "on-tertiary-container": "#003554",
+                        "on-secondary-fixed-variant": "#404758",
+                        "surface-container": "#e9edff",
+                        "tertiary-container": "#00a2f4",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-secondary-fixed": "#141b2b",
+                        "on-error-container": "#93000a",
+                        "surface": "#f9f9ff",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#9d4300",
+                        "surface-container-low": "#f1f3ff",
+                        "primary-fixed-dim": "#ffb690",
+                        "on-secondary-container": "#5c6274",
+                        "on-primary-fixed-variant": "#783200",
+                        "surface-bright": "#f9f9ff",
+                        "primary-fixed": "#ffdbca",
+                        "background": "#f9f9ff",
+                        "surface-dim": "#d3daef",
+                        "secondary-container": "#d9dff5",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#141b2b",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "secondary-fixed": "#dce2f7",
+                        "outline-variant": "#e0c0b1",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- Background Mockup (Bank Accounts List) -->
+<div class="flex h-screen overflow-hidden opacity-40 grayscale-[20%]">
+<!-- SideNavBar -->
+<aside class="flex flex-col h-full w-[220px] z-50 bg-[#111827] fixed left-0 top-0">
+<div class="px-6 py-8">
+<span class="text-xl font-bold text-white tracking-tighter">Precision ERP</span>
+<p class="text-xs text-gray-400 mt-1">Enterprise Management</p>
+</div>
+<nav class="flex-1 space-y-1 mt-4">
+<div class="text-gray-400 hover:text-white flex items-center px-6 py-3 transition-colors hover:bg-white/10">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</div>
+<div class="text-gray-400 hover:text-white flex items-center px-6 py-3 transition-colors hover:bg-white/10">
+<span class="material-symbols-outlined mr-3">shopping_cart</span>
+<span class="font-medium">Vendas</span>
+</div>
+<div class="text-gray-400 hover:text-white flex items-center px-6 py-3 transition-colors hover:bg-white/10">
+<span class="material-symbols-outlined mr-3">payments</span>
+<span class="font-medium">Financeiro</span>
+</div>
+<div class="text-white font-semibold border-l-4 border-[#F97316] bg-white/5 flex items-center px-6 py-3">
+<span class="material-symbols-outlined mr-3 text-[#F97316]">account_balance</span>
+<span class="font-medium">Contas Bancárias</span>
+</div>
+<div class="text-gray-400 hover:text-white flex items-center px-6 py-3 transition-colors hover:bg-white/10">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-medium">Configurações</span>
+</div>
+</nav>
+</aside>
+<!-- Main Content (Mockup) -->
+<main class="ml-[220px] flex-1 bg-surface min-h-screen">
+<header class="h-16 flex justify-between items-center px-8 bg-[#F3F4F6] shadow-sm sticky top-0 z-40">
+<div class="flex items-center space-x-4">
+<span class="text-lg font-bold text-[#111827]">Bank Management</span>
+<div class="relative ml-8">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">search</span>
+<input class="bg-surface border-none rounded-lg text-sm pl-10 pr-4 py-2 w-64 focus:ring-1 focus:ring-primary-container" placeholder="Search accounts..." type="text"/>
+</div>
+</div>
+<div class="flex items-center space-x-6">
+<span class="material-symbols-outlined text-gray-600">notifications</span>
+<span class="material-symbols-outlined text-gray-600">help_outline</span>
+<div class="h-8 w-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="User Profile Avatar" data-alt="Close-up portrait of a professional businessman in a navy suit with natural soft lighting and neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzKZZrgJc0Lbw8IFow38YA1JE4qKyp5lDZSa8u53edWftq_4-tUNgHPapX64elSNs2uXIATdXRqG0GSyP2IJ24RHMQEIJf2qz_i0b1oRojZx-PL0T9KxFbDpNvk-CELM4nHpmj9MHvdWbGWDZd7SYwCQ0rfrgcxvG0TD4mftOaO0P0N8p3rPzeL4Kg_sSTEj1B2i1KItygUc39zavGaahbTbgGQsZsYHIRJt9sgfEs2e1thJdhDWlImTEF2KHFSKRtH52OjVFtt9Bg"/>
+</div>
+</div>
+</header>
+<div class="p-8">
+<h1 class="text-3xl font-bold text-on-surface tracking-tight mb-8">Contas Bancárias</h1>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Cards Dummy -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border-none">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-primary-container">account_balance</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2 py-1 rounded">Ativo</span>
+</div>
+<h3 class="text-lg font-bold">Bradesco Principal</h3>
+<p class="text-sm text-on-secondary-container">Ag: 1234 | CC: 56789-0</p>
+<div class="mt-6">
+<p class="text-xs text-secondary uppercase font-bold tracking-widest">Saldo Atual</p>
+<p class="text-2xl font-bold text-on-surface">R$ 145.280,00</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl border-none">
+<div class="flex justify-between items-start mb-4">
+<div class="p-3 bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-primary-container">payments</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-wider text-green-600 bg-green-50 px-2 py-1 rounded">Ativo</span>
+</div>
+<h3 class="text-lg font-bold">Itaú Investimentos</h3>
+<p class="text-sm text-on-secondary-container">Ag: 4321 | CC: 98765-4</p>
+<div class="mt-6">
+<p class="text-xs text-secondary uppercase font-bold tracking-widest">Saldo Atual</p>
+<p class="text-2xl font-bold text-on-surface">R$ 892.400,00</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- SIDE PANEL OVERLAY -->
+<div class="fixed inset-0 z-50 flex justify-end">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-on-surface/20 backdrop-blur-sm"></div>
+<!-- Panel Container -->
+<aside class="relative w-[520px] h-full bg-surface-container-lowest shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+<!-- Panel Header -->
+<header class="h-20 flex items-center justify-between px-8 bg-surface-container-low/50">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 flex items-center justify-center rounded-lg bg-primary-container/10 text-primary-container">
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+<div>
+<h2 class="text-xl font-bold text-on-surface tracking-tight">Conta — Bradesco Principal</h2>
+<span class="text-xs font-bold uppercase tracking-widest text-on-secondary-container">Detalhes da Conta</span>
+</div>
+</div>
+<button class="p-2 hover:bg-surface-container-high rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">close</span>
+</button>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto no-scrollbar px-8 py-8 space-y-10">
+<!-- Section 1: Dados da Conta -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xs font-extrabold uppercase tracking-widest text-secondary">Dados da Conta</h3>
+<div class="h-[1px] flex-1 bg-outline-variant/30 ml-4"></div>
+</div>
+<div class="grid grid-cols-2 gap-y-6 gap-x-4">
+<div>
+<p class="text-[10px] font-bold uppercase text-on-secondary-container tracking-tighter mb-1">Nome</p>
+<p class="text-sm font-semibold text-on-surface">Bradesco Principal</p>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase text-on-secondary-container tracking-tighter mb-1">Banco</p>
+<p class="text-sm font-semibold text-on-surface">Banco Bradesco S.A.</p>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase text-on-secondary-container tracking-tighter mb-1">Agência</p>
+<p class="text-sm font-semibold text-on-surface">1234-5</p>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase text-on-secondary-container tracking-tighter mb-1">Número da Conta</p>
+<p class="text-sm font-semibold text-on-surface">56789-0</p>
+</div>
+<div class="col-span-2">
+<p class="text-[10px] font-bold uppercase text-on-secondary-container tracking-tighter mb-1">Status</p>
+<div class="flex items-center gap-2">
+<span class="h-2 w-2 rounded-full bg-green-500"></span>
+<span class="text-sm font-semibold text-green-700">Ativo para movimentações</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Balance Highlight -->
+<section class="bg-surface-container-low rounded-2xl p-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-5">
+<span class="material-symbols-outlined text-8xl" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<div class="relative z-10">
+<p class="text-[11px] font-medium text-on-secondary-container mb-1">Saldo Inicial (01/01/2023)</p>
+<p class="text-sm text-secondary font-medium mb-4">R$ 50.000,00</p>
+<p class="text-xs font-bold uppercase tracking-widest text-primary mb-1">Saldo Atual Disponível</p>
+<div class="flex items-baseline gap-2">
+<span class="text-4xl font-extrabold text-primary-container tracking-tighter">R$ 145.280,00</span>
+<span class="material-symbols-outlined text-primary-container text-xl animate-pulse">trending_up</span>
+</div>
+</div>
+</section>
+<!-- Section 3: Últimas Movimentações -->
+<section>
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-xs font-extrabold uppercase tracking-widest text-secondary">Últimas Movimentações</h3>
+<div class="h-[1px] flex-1 bg-outline-variant/30 ml-4"></div>
+</div>
+<div class="space-y-0.5 mb-6">
+<!-- Table Header -->
+<div class="grid grid-cols-5 text-[10px] font-bold uppercase tracking-wider text-secondary px-3 py-2 bg-surface-container-low rounded-t-lg">
+<div class="col-span-1">Data</div>
+<div class="col-span-1">Tipo</div>
+<div class="col-span-1">Origem</div>
+<div class="col-span-1 text-right">Valor</div>
+<div class="col-span-1 text-right">Saldo</div>
+</div>
+<!-- Row 1 -->
+<div class="grid grid-cols-5 items-center text-xs py-3 px-3 hover:bg-orange-50 transition-colors">
+<div class="text-on-surface">15 Out</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-green-500 text-sm">arrow_upward</span>
+<span class="text-[10px] font-medium">Entrada</span>
+</div>
+<div class="truncate text-on-secondary-container">Venda Serv.</div>
+<div class="text-right font-semibold text-green-600">+1.200</div>
+<div class="text-right text-on-surface">145.280</div>
+</div>
+<!-- Row 2 -->
+<div class="grid grid-cols-5 items-center text-xs py-3 px-3 hover:bg-orange-50 transition-colors">
+<div class="text-on-surface">14 Out</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-red-500 text-sm">arrow_downward</span>
+<span class="text-[10px] font-medium">Saída</span>
+</div>
+<div class="truncate text-on-secondary-container">Aluguel</div>
+<div class="text-right font-semibold text-red-600">-4.500</div>
+<div class="text-right text-on-surface">144.080</div>
+</div>
+<!-- Row 3 -->
+<div class="grid grid-cols-5 items-center text-xs py-3 px-3 hover:bg-orange-50 transition-colors">
+<div class="text-on-surface">12 Out</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-orange-500 text-sm">circle</span>
+<span class="text-[10px] font-medium">Ajuste</span>
+</div>
+<div class="truncate text-on-secondary-container">Taxas</div>
+<div class="text-right font-semibold text-orange-600">-25,00</div>
+<div class="text-right text-on-surface">148.580</div>
+</div>
+<!-- Row 4 -->
+<div class="grid grid-cols-5 items-center text-xs py-3 px-3 hover:bg-orange-50 transition-colors">
+<div class="text-on-surface">10 Out</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-green-500 text-sm">arrow_upward</span>
+<span class="text-[10px] font-medium">Entrada</span>
+</div>
+<div class="truncate text-on-secondary-container">Pix Rec.</div>
+<div class="text-right font-semibold text-green-600">+850,00</div>
+<div class="text-right text-on-surface">148.605</div>
+</div>
+<!-- Row 5 -->
+<div class="grid grid-cols-5 items-center text-xs py-3 px-3 hover:bg-orange-50 transition-colors">
+<div class="text-on-surface">08 Out</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-red-500 text-sm">arrow_downward</span>
+<span class="text-[10px] font-medium">Saída</span>
+</div>
+<div class="truncate text-on-secondary-container">Internet</div>
+<div class="text-right font-semibold text-red-600">-199,90</div>
+<div class="text-right text-on-surface">147.755</div>
+</div>
+</div>
+<a class="inline-flex items-center text-xs font-bold text-primary-container hover:underline group" href="#">
+                        Ver todas no Fluxo de Caixa
+                        <span class="material-symbols-outlined text-xs ml-1 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</section>
+<!-- Section 4: Histórico Collapsible -->
+<section>
+<div class="border-t border-outline-variant/30 pt-6">
+<button class="w-full flex items-center justify-between group">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">history</span>
+<h3 class="text-xs font-extrabold uppercase tracking-widest text-secondary">Histórico de Alterações</h3>
+</div>
+<span class="material-symbols-outlined text-secondary group-hover:text-primary transition-colors">expand_more</span>
+</button>
+<div class="mt-4 hidden space-y-4">
+<div class="flex gap-3 items-start">
+<div class="w-1 h-full bg-primary-container min-h-[40px] rounded-full"></div>
+<div>
+<p class="text-xs font-semibold">Conta Criada</p>
+<p class="text-[10px] text-on-secondary-container">Por: Ricardo M. em 10/01/2023</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Panel Footer -->
+<footer class="h-24 px-8 border-t border-outline-variant/20 bg-surface-container-lowest flex items-center justify-end gap-3 shrink-0">
+<button class="px-6 py-2.5 text-sm font-semibold text-secondary hover:bg-surface-container-low rounded-lg transition-all">
+                    Fechar
+                </button>
+<button class="px-8 py-2.5 text-sm font-bold text-white bg-gradient-to-t from-primary to-primary-container rounded-lg shadow-lg shadow-primary-container/20 hover:scale-[1.02] active:scale-95 transition-all">
+                    Editar Conta
+                </button>
+</footer>
+</aside>
+</div>
+</body></html>

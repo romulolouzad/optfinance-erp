@@ -1,0 +1,87 @@
+# OptFinance ERP — Fase 2: Dashboard
+> Depende das Fases 0 e 1.
+> Referência visual: dashboard_optsolv_erp_screen.png
+> O dashboard é COMERCIAL — foco em vendas, metas e faturamento, não financeiro.
+
+---
+
+## 2.1 — Estrutura da página
+
+Criar `src/pages/Dashboard/index.jsx`.
+
+`PageHeader` com título "Dashboard" e subtítulo "Visão geral do negócio". Sem botões de ação.
+
+Layout em grid abaixo do header:
+```
+[Card 1] [Card 2] [Card 3] [Card 4] [Card 5]   ← linha de 5 cards
+[Receita Realizada vs Projetada (60%)] [Faturamento por Cliente (40%)]
+[Distribuição por Status de Venda (40%)] [Metas x Realizado por Vendedor (60%)]
+```
+
+Rodapé da página: `© 2026 OPTSOLV ERP` + links "Privacy Policy", "Terms of Service", "System Status" em `text-xs text-muted`.
+
+---
+
+## 2.2 — 5 Cards no topo
+
+Usar `SummaryCards` com os seguintes cards calculados dos mocks:
+
+| Label | Cálculo | Cor |
+|---|---|---|
+| Total de Vendas Ativas | count de vendas com situacao === 'ativa' | info (azul) |
+| Faturamento Bruto | soma valorTotal de vendas ativas | neutral |
+| Recebido no Mês | soma recebimentos em parcelas no mês atual | success (verde) |
+| Comissões a Pagar | soma comissões com status pronta ou aguardando-nf | warning (amarelo) |
+| Margem Média | (Recebido - Despesas) / Recebido * 100 | neutral |
+
+Cards sem borda — fundo surface-container-lowest sobre surface. Ícone pequeno no canto superior direito. Delta (variação vs mês anterior) em texto pequeno abaixo do valor.
+
+---
+
+## 2.3 — Gráfico: Receita Realizada vs Projetada por Mês
+
+Criar `src/pages/Dashboard/GraficoReceita.jsx`.
+
+Usar LineChart do Recharts:
+- 2 linhas: Realizado (laranja sólido #F97316) + Projetado (laranja tracejado #FDBA74)
+- Eixo X: últimos 4 meses abreviados (Jan, Fev, Mar, Abr)
+- Eixo Y: valores em R$ com formatação compacta (1M, 500k)
+- Legenda: "● REALIZADO" e "● PROJETADO" no canto superior direito
+- Tooltip: valor em R$ formatado
+- Subtítulo: "Dados consolidados [mês-mês/ano]"
+- Sem grid vertical, grid horizontal suave em surface-container
+
+---
+
+## 2.4 — Gráfico: Faturamento por Cliente
+
+Criar `src/pages/Dashboard/GraficoClientes.jsx`.
+
+Barras horizontais com CSS (não Recharts):
+- Lista de top 4 clientes com maior faturamento
+- Cada item: nome à esquerda, valor à direita, barra laranja progressiva no meio
+- Barra de fundo: bg-surface-container-high; barra de progresso: bg-primary-container
+- Largura: (valor / maxValor) * 100%
+
+---
+
+## 2.5 — Gráfico: Distribuição por Status de Venda
+
+Criar `src/pages/Dashboard/GraficoStatus.jsx`.
+
+Usar PieChart do Recharts (donut):
+- Fatias: Ativa (verde), Projeção (cinza claro), Inativa (cinza), Perdida (vermelho), Encerrada (preto #111827)
+- Total no centro em text-2xl font-bold
+- Legenda abaixo com bolinhas coloridas
+
+---
+
+## 2.6 — Gráfico: Metas x Realizado por Vendedor
+
+Criar `src/pages/Dashboard/GraficoMetas.jsx`.
+
+Barras horizontais duplas com CSS:
+- Para cada vendedor: nome + valor total + percentual alcançado
+- Barra cinza claro = meta total; barra laranja sobreposta = realizado
+- Percentual: verde se >= 100%, laranja se < 100%
+- Legenda "■ META ■ REALIZADO" no canto superior direito

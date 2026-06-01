@@ -1,0 +1,94 @@
+# OptFinance ERP — Fase 16: Histórico (Audit Trail)
+> Depende das Fases 0 e 1. Tela completamente somente leitura.
+> Referência visual: historico_optsolv_erp_screen.png
+> Nome oficial na topbar: "Audit Trail". Subtítulo da página: "Histórico".
+
+---
+
+## 16.1 — Estrutura da página
+
+Criar `src/pages/Historico/index.jsx`.
+
+A topbar desta tela exibe 3 abas horizontais: **Histórico** (ativa) | Recente | Mais Pesquisados
+
+`PageHeader` com:
+- Título: "Histórico"
+- Subtítulo: "Auditoria completa de todas as ações do sistema"
+- Ações: "Exportar CSV" (`Download`, outline, permissao: `historico/exportar`), "Filtrar" (`Filter`, ghost)
+
+---
+
+## 16.2 — Filtros
+
+`FilterBar` com:
+- **Período** — `dateRange`, padrão = últimos 30 dias
+- **Busca textual** — filtra por descrição, entidade, usuário
+- **Entidade** — `select`: Venda, Parcela, Despesa, Contrato, Comissão, Conta Financeira, etc.
+- **Tipo de Evento** — `select`: Normal, Ação Crítica, Automático
+- **Usuário** — `text`
+- Toggle "Mostrar eventos automáticos" — padrão = desligado
+
+---
+
+## 16.3 — Tabela paginada
+
+`DataTable` com paginação: "Página 1 de 26 | 50 registros por página"
+
+Colunas:
+
+| Coluna | Campo | Observação |
+|---|---|---|
+| Data/Hora | `dataHora` | "dd/mm/aaaa HH:mm:ss" |
+| Entidade | `entidade` + badge | badge colorido por tipo de entidade |
+| Tipo de Evento | `tipoEvento` | Normal (sem badge), Ação Crítica (vermelho + ícone ⚠️), Automático (cinza "Sistema") |
+| Usuário | `usuario` | nome + ID entre parênteses se disponível |
+| Descrição | `descricaoCompleta` truncada | max 80 chars com "..." |
+
+- Eventos automáticos ocultos por padrão — toggle os exibe
+- Nenhuma linha tem botões de editar/excluir
+- Clicar em qualquer linha abre o modal de detalhe (16.4)
+
+---
+
+## 16.4 — Modal "Detalhe do Evento"
+
+Ao clicar em qualquer linha, abrir `<Dialog>` (não SlidePanel — é modal centralizado).
+
+**Título:** "Detalhe do Evento #H[id]"
+
+**Campos em grid 2 colunas:**
+
+| Campo | Valor |
+|---|---|
+| Data/Hora | `20/10/2023 14:32:01` |
+| Entidade | badge colorido + ID (`VENDA #0038`) |
+| Tipo de Evento | `⚠️ Ação Crítica` em vermelho, ou "Normal", ou "Automático" |
+| Usuário | Nome completo + ID (`Carlos Silva (ID: 442)`) |
+
+**Seção "Descrição Completa":**
+Box com fundo `surface-container-low rounded-lg p-4`. Texto longo descrevendo o contexto completo da ação.
+
+**Seção "Campos Alterados"** (exibir apenas quando `camposAlterados.length > 0`):
+Tabela com colunas: **Campo** | **Valor Anterior** (texto vermelho) | **Novo Valor** (texto verde)
+
+Exemplo:
+| percent_comissao | 5.00 (vermelho) | 7.00 (verde) |
+| motivo_ajuste | null (cinza) | Bonificação Especial (verde) |
+
+**Metadados adicionais** (grid 3 colunas, texto pequeno):
+- IP do Cliente: `192.168.1.142`
+- Empresa: `Optsolv Corp`
+- Filial: `Matriz SP`
+
+**Rodapé do modal:**
+Texto em cinza: "ESTE REGISTRO NÃO PODE SER EDITADO OU EXCLUÍDO." + botão "Fechar" (outline)
+
+---
+
+## 16.5 — Exportação
+
+Ao clicar "Exportar CSV":
+- Modal de configuração: filtros ativos em chips + seletor de formato (CSV/PDF)
+- Ao confirmar: gerar CSV dos dados filtrados como Blob para download
+- **Registrar o próprio evento de exportação no histórico**: `{ acao: 'Exportação do histórico', tipoEvento: 'normal', automatico: false }`
+- Toast: "Histórico exportado com sucesso (X registros)"

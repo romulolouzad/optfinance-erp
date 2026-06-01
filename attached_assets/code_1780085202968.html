@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nova Venda | Optsolv ERP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#f97316",
+                        "surface-variant": "#dce2f7",
+                        "on-secondary-fixed-variant": "#404758",
+                        "surface-container-low": "#f1f3ff",
+                        "on-tertiary-fixed": "#001d32",
+                        "outline-variant": "#e0c0b1",
+                        "surface-bright": "#f9f9ff",
+                        "tertiary-fixed": "#cde5ff",
+                        "on-tertiary-container": "#003554",
+                        "error-container": "#ffdad6",
+                        "background": "#f9f9ff",
+                        "secondary-container": "#d9dff5",
+                        "secondary": "#575e70",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-background": "#141b2b",
+                        "primary-fixed-dim": "#ffb690",
+                        "on-surface-variant": "#584237",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "primary-fixed": "#ffdbca",
+                        "on-error": "#ffffff",
+                        "surface": "#f9f9ff",
+                        "secondary-fixed": "#dce2f7",
+                        "inverse-on-surface": "#edf0ff",
+                        "surface-container": "#e9edff",
+                        "surface-container-high": "#e1e8fd",
+                        "primary": "#9d4300",
+                        "tertiary-container": "#00a2f4",
+                        "surface-tint": "#9d4300",
+                        "on-secondary-container": "#5c6274",
+                        "tertiary": "#006398",
+                        "surface-dim": "#d3daef",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#141b2b",
+                        "inverse-primary": "#ffb690",
+                        "on-surface": "#141b2b",
+                        "on-primary-fixed-variant": "#783200",
+                        "inverse-surface": "#293040",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "on-primary-fixed": "#341100",
+                        "on-primary-container": "#582200",
+                        "surface-container-highest": "#dce2f7",
+                        "outline": "#8c7164"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="w-[220px] h-screen fixed left-0 top-0 bg-slate-950 flex flex-col py-6 z-50">
+<div class="px-6 mb-8">
+<h1 class="text-xl font-bold text-white tracking-tighter">Optsolv ERP</h1>
+<p class="text-[10px] text-slate-400 font-medium tracking-widest uppercase mt-1">Enterprise Management</p>
+</div>
+<nav class="flex-1 overflow-y-auto custom-scrollbar px-2 space-y-1">
+<div class="text-slate-400 hover:text-white hover:bg-slate-900 transition-colors duration-200 flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer font-inter text-sm font-medium tracking-tight">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+<span>Dashboard</span>
+</div>
+<div class="text-slate-400 hover:text-white hover:bg-slate-900 transition-colors duration-200 flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer font-inter text-sm font-medium tracking-tight">
+<span class="material-symbols-outlined text-lg">bar_chart</span>
+<span>Analytics</span>
+</div>
+<div class="text-slate-400 hover:text-white hover:bg-slate-900 transition-colors duration-200 flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer font-inter text-sm font-medium tracking-tight">
+<span class="material-symbols-outlined text-lg">inventory_2</span>
+<span>Inventory</span>
+</div>
+<div class="text-slate-400 hover:text-white hover:bg-slate-900 transition-colors duration-200 flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer font-inter text-sm font-medium tracking-tight">
+<span class="material-symbols-outlined text-lg">shopping_cart</span>
+<span>Procurement</span>
+</div>
+<!-- ACTIVE TAB: Sales (Vendas & Contratos) -->
+<div class="text-white border-l-4 border-orange-500 bg-slate-900/50 flex items-center gap-3 px-4 py-2.5 rounded-r-lg cursor-pointer font-inter text-sm font-medium tracking-tight">
+<span class="material-symbols-outlined text-lg text-orange-500">payments</span>
+<span>Sales</span>
+</div>
+<div class="text-slate-400 hover:text-white hover:bg-slate-900 transition-colors duration-200 flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer font-inter text-sm font-medium tracking-tight">
+<span class="material-symbols-outlined text-lg">account_balance</span>
+<span>Finance</span>
+</div>
+<div class="text-slate-400 hover:text-white hover:bg-slate-900 transition-colors duration-200 flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer font-inter text-sm font-medium tracking-tight">
+<span class="material-symbols-outlined text-lg">groups</span>
+<span>Human Resources</span>
+</div>
+<div class="text-slate-400 hover:text-white hover:bg-slate-900 transition-colors duration-200 flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer font-inter text-sm font-medium tracking-tight">
+<span class="material-symbols-outlined text-lg">conveyor_belt</span>
+<span>Supply Chain</span>
+</div>
+<div class="text-slate-400 hover:text-white hover:bg-slate-900 transition-colors duration-200 flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer font-inter text-sm font-medium tracking-tight">
+<span class="material-symbols-outlined text-lg">precision_manufacturing</span>
+<span>Production</span>
+</div>
+<div class="text-slate-400 hover:text-white hover:bg-slate-900 transition-colors duration-200 flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer font-inter text-sm font-medium tracking-tight">
+<span class="material-symbols-outlined text-lg">local_shipping</span>
+<span>Logistics</span>
+</div>
+<div class="text-slate-400 hover:text-white hover:bg-slate-900 transition-colors duration-200 flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer font-inter text-sm font-medium tracking-tight">
+<span class="material-symbols-outlined text-lg">verified_user</span>
+<span>Compliance</span>
+</div>
+<div class="text-slate-400 hover:text-white hover:bg-slate-900 transition-colors duration-200 flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer font-inter text-sm font-medium tracking-tight">
+<span class="material-symbols-outlined text-lg">account_tree</span>
+<span>Projects</span>
+</div>
+<div class="text-slate-400 hover:text-white hover:bg-slate-900 transition-colors duration-200 flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer font-inter text-sm font-medium tracking-tight">
+<span class="material-symbols-outlined text-lg">assessment</span>
+<span>Reports</span>
+</div>
+</nav>
+<div class="mt-auto px-2 space-y-1 border-t border-slate-800 pt-4">
+<div class="text-slate-400 hover:text-white hover:bg-slate-900 transition-colors duration-200 flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer font-inter text-sm font-medium tracking-tight">
+<span class="material-symbols-outlined text-lg">settings</span>
+<span>Settings</span>
+</div>
+<div class="text-slate-400 hover:text-white hover:bg-slate-900 transition-colors duration-200 flex items-center gap-3 px-4 py-2.5 rounded-lg cursor-pointer font-inter text-sm font-medium tracking-tight">
+<span class="material-symbols-outlined text-lg">help</span>
+<span>Help</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-[220px] bg-surface min-h-screen">
+<!-- TopNavBar -->
+<header class="h-16 fixed top-0 right-0 left-[220px] bg-slate-50 dark:bg-slate-900/50 backdrop-blur-md flex items-center justify-between px-8 z-40 border-b border-slate-200/50">
+<div class="flex items-center gap-4">
+<span class="text-lg font-black text-slate-900 tracking-tight">Optsolv</span>
+<div class="h-8 w-[1px] bg-slate-200 mx-2"></div>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-1.5 text-sm w-64 focus:ring-2 focus:ring-primary-container transition-all" placeholder="Global search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-slate-500 hover:text-primary-container transition-all">notifications</button>
+<button class="material-symbols-outlined text-slate-500 hover:text-primary-container transition-all">apps</button>
+<button class="material-symbols-outlined text-slate-500 hover:text-primary-container transition-all">chat_bubble</button>
+</div>
+<button class="bg-primary-container text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                    Create New
+                </button>
+<div class="flex items-center gap-3 pl-6 border-l border-slate-200">
+<div class="text-right">
+<p class="text-xs font-bold text-on-surface">Administrator</p>
+<p class="text-[10px] text-slate-500">Super User</p>
+</div>
+<img alt="Administrator" class="w-8 h-8 rounded-full border border-slate-200" data-alt="Professional studio portrait of a corporate male administrator wearing a dark suit with soft neutral background lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP9E2vcGPWfGlMN13hKIVUbOTfCRA6JMm8wVvYrWgQ-BcW7oQlzTPhYPbbORo8sd-Efgl3-R-mJGoh1UTfTMnNvjRBXWyDdEMt4-JtguNzGPCeeR7laXvCvhm-r3SVmuUZJPg2rul_kxjNuy9ESgKbXDfTAUbN1kPStDnleWaLMxjwSRDSG3chY11zrDs-Ufr4oDetlL0Ywhqg6kG3PFb9OxwL3TwE4soT7LeHKqBVIc5grxEyR96gj5F9SU4vMpdoRZC5AU2K8KpY"/>
+</div>
+</div>
+</header>
+<!-- Content Page -->
+<div class="mt-16 p-8">
+<div class="max-w-5xl mx-auto">
+<!-- Main Form Card -->
+<div class="bg-surface-container-lowest rounded-lg shadow-sm overflow-hidden flex flex-col border border-slate-100">
+<!-- Card Header -->
+<div class="px-8 pt-8 pb-4">
+<nav aria-label="Breadcrumb" class="flex mb-2">
+<ol class="flex items-center space-x-2 text-xs font-medium text-slate-400">
+<li>Vendas &amp; Contratos</li>
+<li class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[10px]">chevron_right</span>
+<span class="text-slate-500">Nova Venda</span>
+</li>
+</ol>
+</nav>
+<h2 class="text-2xl font-bold text-inverse-surface tracking-tight">Nova Venda</h2>
+</div>
+<!-- Form Content -->
+<div class="px-8 pb-24 space-y-10">
+<!-- SECTION 1: Dados Comerciais -->
+<section class="space-y-6">
+<div class="flex items-center gap-4">
+<span class="text-[10px] font-black uppercase tracking-[0.2em] text-primary-container">Section 01</span>
+<h3 class="text-sm font-bold text-on-surface whitespace-nowrap">Dados Comerciais</h3>
+<div class="w-full h-[1px] bg-slate-100"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Row 1 -->
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Cliente <span class="text-primary-container">*</span></label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-none rounded-lg px-4 py-2.5 text-sm appearance-none focus:ring-2 focus:ring-primary-container">
+<option value="">Selecione o cliente...</option>
+<option>Tech Innovations Ltda</option>
+<option>Global Logistics S.A.</option>
+<option>Marketplace Alpha</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Vendedor <span class="text-primary-container">*</span></label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-none rounded-lg px-4 py-2.5 text-sm appearance-none focus:ring-2 focus:ring-primary-container">
+<option>Ricardo Oliveira</option>
+<option>Ana Clara Silva</option>
+<option>Marcos Santos</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Tipo de Venda</label>
+<div class="flex items-center gap-6 py-2.5">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input checked="" class="text-primary-container focus:ring-primary-container border-slate-300 w-4 h-4" name="tipo_venda" type="radio"/>
+<span class="text-sm font-medium text-on-surface group-hover:text-primary-container transition-colors">Pontual</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="text-primary-container focus:ring-primary-container border-slate-300 w-4 h-4" name="tipo_venda" type="radio"/>
+<span class="text-sm font-medium text-on-surface group-hover:text-primary-container transition-colors">Recorrente</span>
+</label>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Estado Inicial</label>
+<div class="flex items-center gap-6 py-2.5">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="text-primary-container focus:ring-primary-container border-slate-300 w-4 h-4" name="estado_inicial" type="radio"/>
+<span class="text-sm font-medium text-on-surface group-hover:text-primary-container transition-colors">Projeção</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input checked="" class="text-primary-container focus:ring-primary-container border-slate-300 w-4 h-4" name="estado_inicial" type="radio"/>
+<span class="text-sm font-medium text-on-surface group-hover:text-primary-container transition-colors">Ativa</span>
+</label>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Valor Total <span class="text-primary-container">*</span></label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">R$</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-12 pr-4 py-2.5 text-sm font-semibold focus:ring-2 focus:ring-primary-container" step="0.01" type="number" value="15000.00"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Competência <span class="text-primary-container">*</span></label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary-container" type="month" value="2023-11"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Descrição</label>
+<textarea class="w-full bg-surface-container-low border-none rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary-container" placeholder="Detalhes adicionais da venda..." rows="3"></textarea>
+</div>
+</section>
+<!-- Duplicate Alert Banner -->
+<div class="bg-orange-50 border border-orange-200 rounded-xl p-5 flex items-start gap-4">
+<div class="bg-primary-container text-white rounded-full p-1.5 flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">warning</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-primary mb-3">Já existe uma venda para este cliente com o mesmo valor e competência. Deseja continuar?</p>
+<div class="flex gap-3">
+<button class="px-4 py-1.5 text-xs font-bold border border-primary-container text-primary-container rounded-lg hover:bg-primary-container hover:text-white transition-all">Sim, continuar</button>
+<button class="px-4 py-1.5 text-xs font-bold border border-slate-300 text-slate-600 rounded-lg hover:bg-slate-100 transition-all">Cancelar</button>
+</div>
+</div>
+</div>
+<!-- SECTION 2: Parcelamento -->
+<section class="space-y-6">
+<div class="flex items-center gap-4">
+<span class="text-[10px] font-black uppercase tracking-[0.2em] text-primary-container">Section 02</span>
+<h3 class="text-sm font-bold text-on-surface whitespace-nowrap">Parcelamento</h3>
+<div class="w-full h-[1px] bg-slate-100"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Quantidade de Parcelas</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary-container" type="number" value="3"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Periodicidade</label>
+<div class="relative">
+<select class="w-full bg-surface-container-low border-none rounded-lg px-4 py-2.5 text-sm appearance-none focus:ring-2 focus:ring-primary-container">
+<option>Mensal</option>
+<option>Quinzenal</option>
+<option>Trimestral</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Data de Início</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary-container" type="date" value="2023-11-20"/>
+</div>
+</div>
+<div class="space-y-3">
+<label class="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Parcelas geradas</label>
+<div class="bg-surface rounded-xl overflow-hidden">
+<table class="w-full text-left text-sm">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-6 py-3 font-bold text-slate-500 uppercase text-[10px] tracking-wider">Nº</th>
+<th class="px-6 py-3 font-bold text-slate-500 uppercase text-[10px] tracking-wider">Competência</th>
+<th class="px-6 py-3 font-bold text-slate-500 uppercase text-[10px] tracking-wider">Vencimento</th>
+<th class="px-6 py-3 font-bold text-slate-500 uppercase text-[10px] tracking-wider">Valor</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<tr class="hover:bg-orange-50/50 transition-colors">
+<td class="px-6 py-3 font-medium">01/03</td>
+<td class="px-6 py-3">11/2023</td>
+<td class="px-6 py-3">20/11/2023</td>
+<td class="px-6 py-3 font-semibold">R$ 5.000,00</td>
+</tr>
+<tr class="hover:bg-orange-50/50 transition-colors">
+<td class="px-6 py-3 font-medium">02/03</td>
+<td class="px-6 py-3">12/2023</td>
+<td class="px-6 py-3">20/12/2023</td>
+<td class="px-6 py-3 font-semibold">R$ 5.000,00</td>
+</tr>
+<tr class="hover:bg-orange-50/50 transition-colors">
+<td class="px-6 py-3 font-medium">03/03</td>
+<td class="px-6 py-3">01/2024</td>
+<td class="px-6 py-3">20/01/2024</td>
+<td class="px-6 py-3 font-semibold">R$ 4.500,00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex items-center gap-2 text-primary-container font-semibold text-xs mt-2">
+<span class="material-symbols-outlined text-sm">warning</span>
+<span>Soma das parcelas (R$ 14.500,00) difere do valor total (R$ 15.000,00)</span>
+</div>
+</div>
+</section>
+<!-- SECTION 3: Impostos -->
+<section class="space-y-6">
+<div class="flex items-center gap-4">
+<span class="text-[10px] font-black uppercase tracking-[0.2em] text-primary-container">Section 03</span>
+<h3 class="text-sm font-bold text-on-surface whitespace-nowrap">Impostos</h3>
+<div class="w-full h-[1px] bg-slate-100"></div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider text-center block">ISS %</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-3 py-2.5 text-sm text-center font-medium focus:ring-2 focus:ring-primary-container" step="0.01" type="number" value="5.00"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider text-center block">PIS %</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-3 py-2.5 text-sm text-center font-medium focus:ring-2 focus:ring-primary-container" step="0.01" type="number" value="0.65"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider text-center block">COFINS %</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-3 py-2.5 text-sm text-center font-medium focus:ring-2 focus:ring-primary-container" step="0.01" type="number" value="3.00"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider text-center block">CSLL %</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-3 py-2.5 text-sm text-center font-medium focus:ring-2 focus:ring-primary-container" step="0.01" type="number" value="1.08"/>
+</div>
+<div class="space-y-1.5">
+<label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider text-center block">IRPJ %</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg px-3 py-2.5 text-sm text-center font-medium focus:ring-2 focus:ring-primary-container" step="0.01" type="number" value="1.20"/>
+</div>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-2">
+<p class="text-xs text-slate-500 max-w-lg">
+                                    Os impostos podem ser ajustados manualmente a qualquer momento. Clique em 'Aplicar padrão' para preencher automaticamente.
+                                </p>
+<button class="text-xs font-bold text-primary-container border border-primary-container/20 px-6 py-2 rounded-lg hover:bg-primary-container/5 transition-all">
+                                    Aplicar padrão de impostos
+                                </button>
+</div>
+</section>
+</div>
+<!-- Sticky Footer Action Bar -->
+<div class="absolute bottom-0 right-0 left-0 bg-surface-container-lowest/80 backdrop-blur-md border-t border-slate-100 px-8 py-4 flex items-center justify-between z-10 rounded-b-lg">
+<button class="text-sm font-bold text-slate-500 hover:text-on-surface transition-all px-4 py-2">
+                            Cancelar
+                        </button>
+<div class="flex gap-4">
+<button class="bg-primary-container text-white px-8 py-2.5 rounded-lg text-sm font-bold shadow-lg shadow-orange-500/20 hover:bg-primary hover:scale-[1.02] active:scale-[0.98] transition-all">
+                                Salvar Venda
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

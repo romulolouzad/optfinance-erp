@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Precision ERP - DRE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#ffb690",
+                        "on-primary-fixed-variant": "#783200",
+                        "on-surface": "#141b2b",
+                        "tertiary-container": "#00a2f4",
+                        "surface-bright": "#f9f9ff",
+                        "outline": "#8c7164",
+                        "background": "#f9f9ff",
+                        "inverse-on-surface": "#edf0ff",
+                        "surface-container-high": "#e1e8fd",
+                        "primary-fixed": "#ffdbca",
+                        "on-primary-container": "#582200",
+                        "surface-variant": "#dce2f7",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004b74",
+                        "on-background": "#141b2b",
+                        "on-secondary-fixed-variant": "#404758",
+                        "error": "#ba1a1a",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#dce2f7",
+                        "on-primary-fixed": "#341100",
+                        "surface-container-low": "#f1f3ff",
+                        "tertiary-fixed-dim": "#93ccff",
+                        "surface-tint": "#9d4300",
+                        "on-tertiary-fixed": "#001d32",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed": "#cde5ff",
+                        "surface-container": "#e9edff",
+                        "primary-fixed-dim": "#ffb690",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#006398",
+                        "outline-variant": "#e0c0b1",
+                        "primary-container": "#f97316",
+                        "on-tertiary-container": "#003554",
+                        "surface-dim": "#d3daef",
+                        "secondary": "#575e70",
+                        "on-surface-variant": "#584237",
+                        "on-secondary-fixed": "#141b2b",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "secondary-container": "#d9dff5",
+                        "surface-container-highest": "#dce2f7",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#5c6274",
+                        "error-container": "#ffdad6",
+                        "surface": "#f9f9ff",
+                        "inverse-surface": "#293040",
+                        "primary": "#9d4300"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased flex min-h-screen">
+<!-- SideNavBar Anchor -->
+<aside class="w-[220px] h-screen fixed left-0 top-0 bg-slate-950 flex flex-col shadow-xl z-50">
+<div class="px-6 py-8 flex flex-col gap-1">
+<span class="text-xl font-bold text-white tracking-tight">Precision ERP</span>
+<span class="text-[10px] uppercase tracking-[0.1em] text-slate-500 font-bold">Enterprise Management</span>
+</div>
+<nav class="flex-1 flex flex-col mt-4">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-slate-900/50 transition-colors font-['Inter'] font-medium text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-white border-l-4 border-orange-500 bg-slate-900 font-['Inter'] font-medium text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span> Financials
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-slate-900/50 transition-colors font-['Inter'] font-medium text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span> Sales
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-slate-900/50 transition-colors font-['Inter'] font-medium text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span> Inventory
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-slate-900/50 transition-colors font-['Inter'] font-medium text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span> HR
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white hover:bg-slate-900/50 transition-colors font-['Inter'] font-medium text-sm tracking-wide" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span> Settings
+            </a>
+</nav>
+<div class="mt-auto p-4 border-t border-slate-900">
+<div class="flex items-center gap-3 p-2 bg-slate-900 rounded-lg">
+<img alt="ERP User Profile" class="w-8 h-8 rounded-full bg-slate-800" data-alt="close-up profile photo of a professional male executive in a modern office with soft cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIrVrF8m1cbRQzncFuhkzCSeUN449lrnBg8rqMj1MX9UGOpI-5vX2CtZi-gqxuvsq8ZGLmf6oi4S-bBHXQi2Roct1upAKNXg5y-MQlHXoT6xbQxm31LMzm16mQV1FAkvEYZC_NwRsPteHIwUQpwkxXCxHvb5XxzecDV11HZn-7n-eEXimE2yXiseFi7oPV20bNKyXmwapf-Qi2vccyixNWYjO5-XHZ4xvp9x9klwRLEQJn1D03sLXTfElj8RDrpxx3pk-H0BrsEdzk"/>
+<div class="flex flex-col min-w-0">
+<span class="text-xs font-bold text-white truncate">Admin User</span>
+<span class="text-[10px] text-slate-500 truncate">admin@optsolv.com</span>
+</div>
+<div class="ml-auto">
+<span class="px-1.5 py-0.5 rounded bg-primary-container/20 text-primary-container text-[8px] font-black uppercase tracking-wider">Admin</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<main class="flex-1 ml-[220px] flex flex-col min-h-screen">
+<!-- TopNavBar Anchor -->
+<header class="w-[calc(100%-220px)] h-16 fixed top-0 right-0 bg-slate-50/80 backdrop-blur-md flex justify-between items-center px-8 z-40 border-b border-slate-200/50">
+<div class="flex items-center gap-4">
+<h1 class="text-slate-900 font-black text-lg">DRE Report</h1>
+<nav class="hidden md:flex items-center gap-6 ml-8">
+<span class="text-orange-600 font-semibold text-sm cursor-pointer">DRE</span>
+<span class="text-slate-500 font-medium text-sm cursor-pointer hover:text-orange-500 transition-colors">Fluxo de Caixa</span>
+<span class="text-slate-500 font-medium text-sm cursor-pointer hover:text-orange-500 transition-colors">Conciliação</span>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-primary transition-colors" data-icon="help">help</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-primary transition-colors" data-icon="apps">apps</span>
+</div>
+<div class="h-6 w-[1px] bg-slate-200 mx-2"></div>
+<button class="flex items-center gap-2 px-4 py-2 border border-outline/15 rounded-lg text-sm font-bold text-on-surface hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span> Filter
+                </button>
+<button class="bg-gradient-to-t from-primary to-primary-container text-white px-5 py-2 rounded-lg text-sm font-bold shadow-lg shadow-primary/10 hover:scale-[1.02] active:scale-95 transition-all">
+                    Export PDF
+                </button>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="mt-16 p-8 flex flex-col gap-6">
+<!-- Header Section -->
+<div class="flex flex-col">
+<h2 class="text-3xl font-bold tracking-tight text-on-surface">DRE</h2>
+<p class="text-secondary font-medium text-body-md">Demonstrativo de Resultado do Exercício</p>
+</div>
+<!-- Filter Bar Card -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm flex flex-wrap items-end gap-6">
+<div class="flex flex-col gap-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-secondary">Período</label>
+<div class="flex items-center gap-2">
+<div class="flex items-center px-3 py-2 bg-surface-container-low rounded-lg border border-transparent focus-within:border-primary-container transition-all">
+<span class="text-[10px] font-bold text-slate-400 mr-2">DE</span>
+<input class="bg-transparent border-none p-0 text-sm font-bold w-20 focus:ring-0" type="text" value="Jan/2026"/>
+</div>
+<div class="flex items-center px-3 py-2 bg-surface-container-low rounded-lg border border-transparent focus-within:border-primary-container transition-all">
+<span class="text-[10px] font-bold text-slate-400 mr-2">ATÉ</span>
+<input class="bg-transparent border-none p-0 text-sm font-bold w-20 focus:ring-0" type="text" value="Abr/2026"/>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-secondary">Centro de Custo</label>
+<div class="relative">
+<select class="appearance-none bg-surface-container-low border-none rounded-lg px-4 py-2 pr-10 text-sm font-bold focus:ring-2 focus:ring-primary-container/20 w-48">
+<option>Todos os Centros</option>
+<option>Operacional</option>
+<option>Marketing</option>
+<option>P&amp;D</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-secondary">Visualização</label>
+<div class="flex bg-surface-container-low p-1 rounded-lg">
+<button class="px-4 py-1 rounded-md text-xs font-bold bg-white shadow-sm text-primary">Mensal</button>
+<button class="px-4 py-1 rounded-md text-xs font-bold text-slate-500 hover:text-on-surface">Acumulado</button>
+</div>
+</div>
+<div class="ml-auto flex gap-3">
+<button class="flex items-center gap-2 px-4 py-2 text-slate-600 hover:bg-slate-100 rounded-lg text-sm font-bold transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="description">description</span> Exportar CSV
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 text-slate-600 hover:bg-slate-100 rounded-lg text-sm font-bold transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="picture_as_pdf">picture_as_pdf</span> Exportar PDF
+                    </button>
+</div>
+</div>
+<!-- Main DRE Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden overflow-x-auto">
+<table class="w-full text-left border-collapse min-w-[1000px]">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="py-4 px-6 text-[11px] font-bold uppercase tracking-widest text-slate-500 w-[300px]">Categoria</th>
+<th class="py-4 px-6 text-[11px] font-bold uppercase tracking-widest text-slate-500 text-right">Jan/26</th>
+<th class="py-4 px-6 text-[11px] font-bold uppercase tracking-widest text-slate-500 text-right">Fev/26</th>
+<th class="py-4 px-6 text-[11px] font-bold uppercase tracking-widest text-slate-500 text-right">Mar/26</th>
+<th class="py-4 px-6 text-[11px] font-bold uppercase tracking-widest text-slate-500 text-right">Abr/26</th>
+<th class="py-4 px-6 text-[11px] font-bold uppercase tracking-widest text-slate-900 text-right">Total</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<!-- RECEITA BRUTA -->
+<tr class="hover:bg-orange-50/30 transition-colors">
+<td class="py-4 px-6 font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-lg cursor-pointer" data-icon="expand_more">expand_more</span>
+                                RECEITA BRUTA
+                            </td>
+<td class="py-4 px-6 text-right font-bold">R$ 150.000,00</td>
+<td class="py-4 px-6 text-right font-bold">R$ 165.000,00</td>
+<td class="py-4 px-6 text-right font-bold">R$ 172.000,00</td>
+<td class="py-4 px-6 text-right font-bold">R$ 185.000,00</td>
+<td class="py-4 px-6 text-right font-bold">R$ 672.000,00</td>
+</tr>
+<tr class="text-slate-500">
+<td class="py-3 px-6 pl-14">Receitas de Contratos Ativos</td>
+<td class="py-3 px-6 text-right">R$ 120.000,00</td>
+<td class="py-3 px-6 text-right">R$ 130.000,00</td>
+<td class="py-3 px-6 text-right">R$ 135.000,00</td>
+<td class="py-3 px-6 text-right">R$ 145.000,00</td>
+<td class="py-3 px-6 text-right font-medium">R$ 530.000,00</td>
+</tr>
+<tr class="text-slate-500">
+<td class="py-3 px-6 pl-14">Receitas Recorrentes</td>
+<td class="py-3 px-6 text-right">R$ 30.000,00</td>
+<td class="py-3 px-6 text-right">R$ 35.000,00</td>
+<td class="py-3 px-6 text-right">R$ 37.000,00</td>
+<td class="py-3 px-6 text-right">R$ 40.000,00</td>
+<td class="py-3 px-6 text-right font-medium">R$ 142.000,00</td>
+</tr>
+<!-- DEDUCOES -->
+<tr class="hover:bg-orange-50/30 transition-colors">
+<td class="py-4 px-6 font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-lg cursor-pointer" data-icon="expand_more">expand_more</span>
+                                (-) DEDUÇÕES
+                            </td>
+<td class="py-4 px-6 text-right font-bold text-error">R$ -15.000,00</td>
+<td class="py-4 px-6 text-right font-bold text-error">R$ -16.500,00</td>
+<td class="py-4 px-6 text-right font-bold text-error">R$ -17.200,00</td>
+<td class="py-4 px-6 text-right font-bold text-error">R$ -18.500,00</td>
+<td class="py-4 px-6 text-right font-bold text-error">R$ -67.200,00</td>
+</tr>
+<tr class="text-slate-500">
+<td class="py-3 px-6 pl-14">Impostos sobre Receita (ISS, PIS, COFINS)</td>
+<td class="py-3 px-6 text-right">R$ -15.000,00</td>
+<td class="py-3 px-6 text-right">R$ -16.500,00</td>
+<td class="py-3 px-6 text-right">R$ -17.200,00</td>
+<td class="py-3 px-6 text-right">R$ -18.500,00</td>
+<td class="py-3 px-6 text-right font-medium">R$ -67.200,00</td>
+</tr>
+<!-- RECEITA LIQUIDA -->
+<tr class="bg-surface-container-low border-l-4 border-primary">
+<td class="py-4 px-6 font-black tracking-tight">RECEITA LÍQUIDA</td>
+<td class="py-4 px-6 text-right font-black">R$ 135.000,00</td>
+<td class="py-4 px-6 text-right font-black">R$ 148.500,00</td>
+<td class="py-4 px-6 text-right font-black">R$ 154.800,00</td>
+<td class="py-4 px-6 text-right font-black">R$ 166.500,00</td>
+<td class="py-4 px-6 text-right font-black">R$ 604.800,00</td>
+</tr>
+<!-- CUSTOS DIRETOS -->
+<tr class="hover:bg-orange-50/30 transition-colors">
+<td class="py-4 px-6 font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-lg cursor-pointer" data-icon="expand_more">expand_more</span>
+                                (-) CUSTOS DIRETOS
+                            </td>
+<td class="py-4 px-6 text-right font-bold text-error">R$ -45.000,00</td>
+<td class="py-4 px-6 text-right font-bold text-error">R$ -52.000,00</td>
+<td class="py-4 px-6 text-right font-bold text-error">R$ -51.000,00</td>
+<td class="py-4 px-6 text-right font-bold text-error">R$ -55.000,00</td>
+<td class="py-4 px-6 text-right font-bold text-error">R$ -203.000,00</td>
+</tr>
+<tr class="text-slate-500">
+<td class="py-3 px-6 pl-14">Comissões de Vendedores</td>
+<td class="py-3 px-6 text-right">R$ -12.000,00</td>
+<td class="py-3 px-6 text-right">R$ -14.000,00</td>
+<td class="py-3 px-6 text-right">R$ -15.000,00</td>
+<td class="py-3 px-6 text-right">R$ -16.000,00</td>
+<td class="py-3 px-6 text-right font-medium">R$ -57.000,00</td>
+</tr>
+<tr class="text-slate-500">
+<td class="py-3 px-6 pl-14">Custos de Entrega de Projeto</td>
+<td class="py-3 px-6 text-right">R$ -33.000,00</td>
+<td class="py-3 px-6 text-right">R$ -38.000,00</td>
+<td class="py-3 px-6 text-right">R$ -36.000,00</td>
+<td class="py-3 px-6 text-right">R$ -39.000,00</td>
+<td class="py-3 px-6 text-right font-medium">R$ -146.000,00</td>
+</tr>
+<!-- LUCRO BRUTO -->
+<tr class="bg-surface-container-low border-l-4 border-primary">
+<td class="py-4 px-6 font-black tracking-tight">LUCRO BRUTO</td>
+<td class="py-4 px-6 text-right font-black">R$ 90.000,00</td>
+<td class="py-4 px-6 text-right font-black">R$ 96.500,00</td>
+<td class="py-4 px-6 text-right font-black">R$ 103.800,00</td>
+<td class="py-4 px-6 text-right font-black">R$ 111.500,00</td>
+<td class="py-4 px-6 text-right font-black">R$ 401.800,00</td>
+</tr>
+<!-- DESPESAS OPERACIONAIS -->
+<tr class="hover:bg-orange-50/30 transition-colors">
+<td class="py-4 px-6 font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-400 text-lg cursor-pointer" data-icon="expand_more">expand_more</span>
+                                (-) DESPESAS OPERACIONAIS
+                            </td>
+<td class="py-4 px-6 text-right font-bold text-error">R$ -42.000,00</td>
+<td class="py-4 px-6 text-right font-bold text-error">R$ -42.000,00</td>
+<td class="py-4 px-6 text-right font-bold text-error">R$ -43.500,00</td>
+<td class="py-4 px-6 text-right font-bold text-error">R$ -45.000,00</td>
+<td class="py-4 px-6 text-right font-bold text-error">R$ -172.500,00</td>
+</tr>
+<tr class="text-slate-500">
+<td class="py-2 px-6 pl-14">Salários e Encargos</td>
+<td class="py-2 px-6 text-right">R$ -30.000,00</td>
+<td class="py-2 px-6 text-right">R$ -30.000,00</td>
+<td class="py-2 px-6 text-right">R$ -31.000,00</td>
+<td class="py-2 px-6 text-right">R$ -32.000,00</td>
+<td class="py-2 px-6 text-right">R$ -123.000,00</td>
+</tr>
+<tr class="text-slate-500">
+<td class="py-2 px-6 pl-14">Infraestrutura</td>
+<td class="py-2 px-6 text-right">R$ -5.000,00</td>
+<td class="py-2 px-6 text-right">R$ -5.000,00</td>
+<td class="py-2 px-6 text-right">R$ -5.000,00</td>
+<td class="py-2 px-6 text-right">R$ -5.500,00</td>
+<td class="py-2 px-6 text-right">R$ -20.500,00</td>
+</tr>
+<tr class="text-slate-500">
+<td class="py-2 px-6 pl-14">Marketing</td>
+<td class="py-2 px-6 text-right">R$ -4.000,00</td>
+<td class="py-2 px-6 text-right">R$ -4.000,00</td>
+<td class="py-2 px-6 text-right">R$ -4.500,00</td>
+<td class="py-2 px-6 text-right">R$ -4.500,00</td>
+<td class="py-2 px-6 text-right">R$ -17.000,00</td>
+</tr>
+<tr class="text-slate-500 border-b border-slate-100">
+<td class="py-2 px-6 pl-14">Administrativo</td>
+<td class="py-2 px-6 text-right">R$ -3.000,00</td>
+<td class="py-2 px-6 text-right">R$ -3.000,00</td>
+<td class="py-2 px-6 text-right">R$ -3.000,00</td>
+<td class="py-2 px-6 text-right">R$ -3.000,00</td>
+<td class="py-2 px-6 text-right">R$ -12.000,00</td>
+</tr>
+<!-- EBITDA -->
+<tr class="bg-primary-container/10">
+<td class="py-5 px-6 font-black tracking-tight text-primary">EBITDA</td>
+<td class="py-5 px-6 text-right font-black text-primary">R$ 48.000,00</td>
+<td class="py-5 px-6 text-right font-black text-primary">R$ 54.500,00</td>
+<td class="py-5 px-6 text-right font-black text-primary">R$ 60.300,00</td>
+<td class="py-5 px-6 text-right font-black text-primary">R$ 66.500,00</td>
+<td class="py-5 px-6 text-right font-black text-primary">R$ 229.300,00</td>
+</tr>
+<!-- Depreciacao -->
+<tr class="hover:bg-slate-50">
+<td class="py-4 px-6 font-bold">(-) Depreciação / Amortização</td>
+<td class="py-4 px-6 text-right font-medium text-error">R$ -5.000,00</td>
+<td class="py-4 px-6 text-right font-medium text-error">R$ -5.000,00</td>
+<td class="py-4 px-6 text-right font-medium text-error">R$ -5.000,00</td>
+<td class="py-4 px-6 text-right font-medium text-error">R$ -5.000,00</td>
+<td class="py-4 px-6 text-right font-medium text-error">R$ -20.000,00</td>
+</tr>
+<!-- LUCRO OPERACIONAL -->
+<tr class="bg-surface-container-low border-b border-slate-200">
+<td class="py-4 px-6 font-bold">LUCRO OPERACIONAL</td>
+<td class="py-4 px-6 text-right font-bold">R$ 43.000,00</td>
+<td class="py-4 px-6 text-right font-bold">R$ 49.500,00</td>
+<td class="py-4 px-6 text-right font-bold">R$ 55.300,00</td>
+<td class="py-4 px-6 text-right font-bold">R$ 61.500,00</td>
+<td class="py-4 px-6 text-right font-bold">R$ 209.300,00</td>
+</tr>
+<!-- Resultado Financeiro -->
+<tr class="hover:bg-slate-50">
+<td class="py-4 px-6 font-bold">(+/-) Resultado Financeiro</td>
+<td class="py-4 px-6 text-right font-medium text-error">R$ -1.200,00</td>
+<td class="py-4 px-6 text-right font-medium text-error">R$ -800,00</td>
+<td class="py-4 px-6 text-right font-medium text-error">R$ -950,00</td>
+<td class="py-4 px-6 text-right font-medium text-error">R$ -1.100,00</td>
+<td class="py-4 px-6 text-right font-medium text-error">R$ -4.050,00</td>
+</tr>
+<!-- LUCRO LIQUIDO -->
+<tr class="bg-slate-900 text-white">
+<td class="py-6 px-6 font-black text-lg tracking-tight">LUCRO LÍQUIDO</td>
+<td class="py-6 px-6 text-right font-black text-lg text-emerald-400">R$ 41.800,00</td>
+<td class="py-6 px-6 text-right font-black text-lg text-emerald-400">R$ 48.700,00</td>
+<td class="py-6 px-6 text-right font-black text-lg text-emerald-400">R$ 54.350,00</td>
+<td class="py-6 px-6 text-right font-black text-lg text-emerald-400">R$ 60.400,00</td>
+<td class="py-6 px-6 text-right font-black text-lg text-emerald-400">R$ 205.250,00</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Bento Widgets for Contextual Insight -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-8">
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm flex flex-col gap-4">
+<span class="text-[10px] font-bold uppercase tracking-widest text-secondary">Margem Líquida Média</span>
+<div class="flex items-end gap-3">
+<span class="text-4xl font-black text-on-surface">32.4%</span>
+<span class="text-emerald-500 font-bold text-sm mb-1">↑ 4.2%</span>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[32.4%]"></div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm flex flex-col gap-4">
+<span class="text-[10px] font-bold uppercase tracking-widest text-secondary">Burn Rate Operacional</span>
+<div class="flex items-end gap-3">
+<span class="text-4xl font-black text-on-surface">R$ 43k</span>
+<span class="text-slate-400 font-bold text-sm mb-1">Estável</span>
+</div>
+<div class="flex gap-1 h-8 items-end">
+<div class="w-full bg-slate-200 h-1/2 rounded-t-sm"></div>
+<div class="w-full bg-slate-200 h-2/3 rounded-t-sm"></div>
+<div class="w-full bg-slate-200 h-1/2 rounded-t-sm"></div>
+<div class="w-full bg-primary h-3/4 rounded-t-sm"></div>
+</div>
+</div>
+<div class="bg-slate-900 p-6 rounded-xl shadow-lg flex flex-col gap-4">
+<span class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Projeção Próximo Mês</span>
+<div class="flex items-end gap-3">
+<span class="text-4xl font-black text-white">R$ 68k</span>
+<span class="text-primary-container font-bold text-sm mb-1">+12%</span>
+</div>
+<p class="text-[11px] text-slate-400 font-medium">Estimativa baseada no pipeline atual de vendas e contratos recorrentes.</p>
+</div>
+</div>
+</div>
+</main>
+</body></html>

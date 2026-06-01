@@ -1,0 +1,93 @@
+# OptFinance ERP — Fase 10: Comissões
+> Depende das Fases 0, 1 e 8B (Detalhe da Venda).
+> Módulo próprio no sidebar. Gerencia o ciclo completo de comissões por vendedor/parcela.
+
+---
+
+## 10.1 — Estrutura da página
+
+Criar `src/pages/Comissoes/index.jsx`.
+
+`PageHeader` com:
+- Título: "Comissões"
+- Subtítulo: "Controle de comissões por vendedor e parcela"
+- Ações: "Exportar" (`Download`, outline)
+
+---
+
+## 10.2 — Filtros inline
+
+- **Vendedor** — select: "Todos os Vendedores"
+- **Status** — select: Todos / Aguardando NF / Pronta / Paga
+- **Período** — date range
+- **Venda** — busca por número (#VEN-XXXX)
+- Botão "Limpar"
+
+---
+
+## 10.3 — 4 Cards de resumo
+
+| Label | Cálculo | Cor |
+|---|---|---|
+| Aguardando NF | soma de comissões com status aguardando-nf | warning (amarelo) |
+| Prontas para Pagar | soma de comissões com status pronta | info (azul) |
+| Pagas no Mês | soma de comissões pagas no mês atual | success (verde) |
+| Total Provisionado | soma de todas as comissões pendentes | neutral |
+
+---
+
+## 10.4 — Tabela de comissões
+
+Colunas:
+
+| Coluna | Campo | Observação |
+|---|---|---|
+| Parcela | `parcelaNumero` | "01/12" — link para Detalhe da Venda |
+| Venda | `vendaId` | "#VEN-XXXX" link laranja |
+| Cliente | `clienteNome` | — |
+| Vendedor | `vendedor` | — |
+| % | `percentual` | "5%" |
+| Valor | `valor` | R$ formatado |
+| Status | `status` | badge colorido |
+
+**Status de comissão e lógica:**
+
+| Status | Cor | Condição |
+|---|---|---|
+| `AGUARDANDO NF` | Amarelo | Parcela paga, mas NF ainda não emitida |
+| `PRONTA` | Azul | NF emitida, comissão pode ser paga |
+| `PAGA` | Verde | Comissão efetivamente paga ao vendedor |
+
+---
+
+## 10.5 — Ação: Pagar comissão
+
+Botão "Pagar" na coluna de ações (apenas para comissões com status `PRONTA`).
+
+Modal `FormPagarComissao.jsx`:
+- Vendedor: [nome]
+- Valor da comissão: R$ [valor]
+- Data do pagamento (date picker, padrão = hoje)
+- Conta bancária de débito (select)
+- Comprovante (upload opcional)
+- Botões: "Cancelar" + "Confirmar Pagamento" (laranja)
+
+Ao confirmar:
+1. `status = 'paga'`
+2. Criar movimentação de saída no Fluxo de Caixa
+3. Toast: "Comissão paga com sucesso"
+4. Registrar no histórico: `{ acao: 'Pagamento de comissão' }`
+
+---
+
+## 10.6 — Ajustar percentual de comissão (Admin only)
+
+Botão "Ajustar %" na coluna de ações (apenas Admin, apenas para comissões não pagas).
+
+Modal simples:
+- Percentual atual (somente leitura)
+- Novo percentual (input numérico)
+- Motivo do ajuste (textarea, obrigatório)
+- Botões: "Cancelar" + "Salvar Ajuste"
+
+Ao salvar: recalcular valor, registrar no histórico com `tipoEvento: 'acao-critica'` e campos alterados (percentual anterior / novo).
