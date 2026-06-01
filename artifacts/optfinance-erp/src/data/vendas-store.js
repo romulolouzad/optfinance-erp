@@ -3,6 +3,7 @@ import vendasData from './vendas.json'
 export const vendas = [...vendasData]
 
 export function addVenda(venda) {
+  if (!venda?.centroCustoId) throw new Error('centroCustoId é obrigatório para vendas')
   vendas.unshift(venda)
 }
 

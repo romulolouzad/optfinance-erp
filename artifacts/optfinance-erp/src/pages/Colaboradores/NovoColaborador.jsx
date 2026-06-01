@@ -4,6 +4,7 @@ import { ChevronRight, Save, Info, UserCircle2, Building2, Link, Settings } from
 import PageHeader from '../../components/shared/PageHeader'
 import { addColaborador } from '../../data/colaboradores-store'
 import { centrosCusto } from '../../data/index'
+import { registrarHistorico } from '../../data/historico-store'
 import { toast } from '../../hooks/use-toast'
 import { cn } from '../../utils/cn'
 
@@ -49,7 +50,8 @@ export default function NovoColaborador() {
   const canSave =
     nome.trim() &&
     (tipo === 'PF' ? cpf.trim() : cnpj.trim()) &&
-    email.trim()
+    email.trim() &&
+    centroDeCusto
 
   function formatCpf(val) {
     const d = val.replace(/\D/g, '').slice(0, 11)
@@ -74,7 +76,7 @@ export default function NovoColaborador() {
 
     const ccNome = CENTROS.find((c) => c.id === centroDeCusto)?.nome || centroDeCusto || 'Geral'
 
-    addColaborador({
+    const col = addColaborador({
       nome: nome.trim(),
       tipo,
       cpf: tipo === 'PF' ? cpf : null,
@@ -85,6 +87,20 @@ export default function NovoColaborador() {
       centroDeCusto: ccNome,
       custoMensal: 0,
       status: ativo ? 'ativo' : 'inativo',
+    })
+
+    registrarHistorico({
+      acao: `Cadastro de colaborador — ${nome.trim()} — ${tipo}`,
+      tipoEvento: 'normal',
+      entidade: 'Colaborador',
+      entidadeId: col?.id || '',
+      camposAlterados: [
+        { campo: 'nome', valorAnterior: null, novoValor: nome.trim() },
+        { campo: 'tipo', valorAnterior: null, novoValor: tipo },
+        { campo: 'email', valorAnterior: null, novoValor: email.trim() },
+        { campo: 'centroDeCusto', valorAnterior: null, novoValor: ccNome },
+        { campo: 'status', valorAnterior: null, novoValor: ativo ? 'ativo' : 'inativo' },
+      ],
     })
 
     toast({ title: 'Colaborador cadastrado com sucesso' })
@@ -284,10 +300,13 @@ export default function NovoColaborador() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-end">
             <div>
-              <Label>Centro de Custo</Label>
+              <Label required>Centro de Custo</Label>
               <div className="relative">
                 <select
-                  className="w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-sm text-on-surface focus:ring-2 focus:ring-primary/20 focus:outline-none appearance-none pr-10"
+                  className={cn(
+                    'w-full bg-surface-container-low border-none rounded-lg px-4 py-3 text-sm text-on-surface focus:ring-2 focus:outline-none appearance-none pr-10',
+                    !centroDeCusto ? 'ring-2 ring-error/30 focus:ring-error/40' : 'focus:ring-primary/20'
+                  )}
                   value={centroDeCusto}
                   onChange={(e) => setCentroDeCusto(e.target.value)}
                 >

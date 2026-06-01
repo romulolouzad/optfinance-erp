@@ -19,6 +19,8 @@
   { "id": "COM018", "parcelaNumero": "04/24", "vendaId": "VND014", "vendedor": "Juliana Pereira", "clienteNome": "Construtora Neves", "competencia": "2026-04", "valorBase": 22000.00, "percentual": 5.5, "valor": 1210.00, "status": "pronta", "nfEmitida": true, "dataPagamento": null },
   { "id": "COM019", "parcelaNumero": "01/12", "vendaId": "VND015", "vendedor": "Juliana Pereira", "clienteNome": "Log Brasil", "competencia": "2026-04", "valorBase": 9500.00, "percentual": 5.0, "valor": 475.00, "status": "pronta", "nfEmitida": true, "dataPagamento": null },
   { "id": "COM020", "parcelaNumero": "05/24", "vendaId": "VND002", "vendedor": "Pedro Henrique Lima", "clienteNome": "Nexus Tech", "competencia": "2026-05", "valorBase": 7500.00, "percentual": 6.0, "valor": 450.00, "status": "pronta", "nfEmitida": true, "dataPagamento": null },
+  { "id": "COM021", "parcelaNumero": "03/04", "vendaId": "VND005", "vendedor": "Marcos Oliveira", "clienteNome": "Metalúrgica SP", "competencia": "2026-03", "valorBase": 16000.00, "percentual": 4.5, "valor": 720.00, "status": "estorno", "nfEmitida": false, "dataPagamento": null },
+  { "id": "COM022", "parcelaNumero": "05/12", "vendaId": "VND001", "vendedor": "Marcos Oliveira", "clienteNome": "AMT Engenharia", "competencia": "2026-05", "valorBase": 10000.00, "percentual": 5.0, "valor": 500.00, "status": "estorno", "nfEmitida": false, "dataPagamento": null },
   { "id": "META001", "tipo": "meta", "vendedor": "Ricardo S.", "meta": 180000, "realizado": 162000 },
   { "id": "META002", "tipo": "meta", "vendedor": "Ana Clara", "meta": 200000, "realizado": 210000 },
   { "id": "META003", "tipo": "meta", "vendedor": "M. Oliveira", "meta": 220000, "realizado": 154000 },

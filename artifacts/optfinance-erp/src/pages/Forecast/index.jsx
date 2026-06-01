@@ -7,6 +7,8 @@ import {
 import { Download, Filter, RefreshCw } from 'lucide-react'
 import PageHeader from '../../components/shared/PageHeader'
 import DataTable from '../../components/shared/DataTable'
+import NoPermissionState from '../../components/shared/NoPermissionState'
+import { useAuth } from '../../context/AuthContext'
 import forecastData from '../../data/forecast.json'
 import centrosCusto from '../../data/centros-custo.json'
 
@@ -115,6 +117,7 @@ function buildMonthlyData(filteredParcelas, horizonte) {
 }
 
 export default function ForecastPage() {
+  const { temPermissao } = useAuth()
   const [horizonte, setHorizonte] = useState('6')
   const [centroCusto, setCentroCusto] = useState('todos')
   const [vendedor, setVendedor] = useState('todos')
@@ -233,6 +236,8 @@ export default function ForecastPage() {
       cell: (row) => <BadgeRisco nivel={row.nivelRisco} />,
     },
   ]
+
+  if (!temPermissao('forecast', 'visualizar')) return <NoPermissionState message="Você não tem permissão para acessar o Forecast." />
 
   return (
     <div className="space-y-6">

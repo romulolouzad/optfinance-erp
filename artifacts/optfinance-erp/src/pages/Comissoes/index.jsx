@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Link } from 'wouter'
 import { Download, DollarSign, Clock, CheckCircle, TrendingUp } from 'lucide-react'
 import { useToast } from '../../hooks/use-toast'
@@ -8,7 +8,8 @@ import SummaryCards from '../../components/shared/SummaryCards'
 import DataTable from '../../components/shared/DataTable'
 import Pagination from '../../components/shared/Pagination'
 import { comissoes as comissoesMock } from '../../data/index'
-import { registrarPagamentoComissao, registrarAjusteComissao } from '../../hooks/useParcelas'
+import { registrarPagamentoComissao } from '../../hooks/useParcelas'
+import { registrarHistorico } from '../../data/historico-store'
 import { cn } from '../../utils/cn'
 import FormPagarComissao from './FormPagarComissao'
 import FormAjustarPercentual from './FormAjustarPercentual'
@@ -38,7 +39,11 @@ function StatusComissaoBadge({ status }) {
 export default function ComissoesPage() {
   const { perfil, usuario } = useAuth()
   const { toast } = useToast()
+  const [loading, setLoading] = useState(true)
+  useEffect(() => { const t = setTimeout(() => setLoading(false), 350); return () => clearTimeout(t) }, [])
   const isAdmin = perfil === 'admin'
+  const COMERCIAL_VENDEDOR = { comercial: 'Marcos Oliveira' }
+  const vendedorPermitido = COMERCIAL_VENDEDOR[perfil] || null
 
   const [comissoes, setComissoes] = useState(COMISSOES_BASE)
 
@@ -70,6 +75,7 @@ export default function ComissoesPage() {
 
   const filtered = useMemo(() => {
     return comissoes.filter(c => {
+      if (vendedorPermitido && c.vendedor !== vendedorPermitido) return false
       if (vendedorFiltro && c.vendedor !== vendedorFiltro) return false
       if (statusFiltro && c.status !== statusFiltro) return false
       if (dataInicio && c.competencia < dataInicio.slice(0, 7)) return false
@@ -80,7 +86,7 @@ export default function ComissoesPage() {
       }
       return true
     })
-  }, [comissoes, vendedorFiltro, statusFiltro, dataInicio, dataFim, vendaSearch])
+  }, [comissoes, vendedorFiltro, statusFiltro, dataInicio, dataFim, vendaSearch, vendedorPermitido])
 
   const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
 
@@ -179,6 +185,7 @@ export default function ComissoesPage() {
       header: 'Ações',
       accessor: '_acoes',
       sortable: false,
+      printHidden: true,
       cell: r => (
         <div className="flex items-center gap-2">
           {r.status === 'pronta' && (
@@ -247,16 +254,16 @@ export default function ComissoesPage() {
       )
     )
     if (comissao) {
-      registrarAjusteComissao({
-        comissaoId: comissao.id,
-        vendedor: comissao.vendedor,
-        clienteNome: comissao.clienteNome,
-        parcelaNumero: comissao.parcelaNumero,
-        percentualAnterior: payload.percentualAnterior,
-        novoPercentual: payload.novoPercentual,
-        novoValor: payload.novoValor,
-        motivo: payload.motivo,
-        usuario: usuario?.usuario,
+      registrarHistorico({
+        acao: `Ajuste de comissão — ${comissao.vendedor} — Parcela ${comissao.parcelaNumero}`,
+        tipoEvento: 'normal',
+        entidade: 'Comissao',
+        entidadeId: comissao.id,
+        detalhes: payload.motivo ? `Motivo: ${payload.motivo}` : undefined,
+        camposAlterados: [
+          { campo: 'percentual', valorAnterior: String(payload.percentualAnterior), novoValor: String(payload.novoPercentual) },
+          { campo: 'valor', valorAnterior: null, novoValor: String(payload.novoValor) },
+        ],
       })
     }
     setAjustando(null)
@@ -374,6 +381,9 @@ export default function ComissoesPage() {
         columns={columns}
         data={paginated}
         keyField="id"
+        emptyMessage={hasFilters ? 'Nenhuma comissão corresponde ao filtro aplicado.' : 'Nenhuma comissão cadastrada.'}
+        onRetry={hasFilters ? resetFilters : undefined}
+        loading={loading}
       />
       <Pagination
         page={page}

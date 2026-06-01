@@ -4,6 +4,7 @@ import { ChevronRight, Save, Search, Lock, AlertTriangle, ShieldCheck, Package, 
 import PageHeader from '../../components/shared/PageHeader'
 import { addFornecedor, isCnpjDuplicadoEmClientes } from '../../data/fornecedores-store'
 import { centrosCusto } from '../../data/index'
+import { registrarHistorico } from '../../data/historico-store'
 import { toast } from '../../hooks/use-toast'
 import { cn } from '../../utils/cn'
 
@@ -89,21 +90,33 @@ export default function NovoFornecedor() {
     toast({ title: 'Consulta SEFAZ simulada', description: 'Dados validados com sucesso.' })
   }
 
-  const canSave = razaoSocial.trim() && docValid
+  const canSave = razaoSocial.trim() && docValid && centroCustoId
 
   function handleSubmit(e) {
     e.preventDefault()
     if (!canSave) return
 
-    addFornecedor({
+    const forn = addFornecedor({
       razaoSocial: razaoSocial.trim(),
       nomeFantasia: nomeFantasia.trim() || razaoSocial.trim(),
       cnpj: documento,
       tipoPessoa,
       emailFinanceiro: '',
       telefone: '',
-      centroCustoId: centroCustoId || 'CC001',
+      centroCustoId,
       status: ativo ? 'ativo' : 'inativo',
+    })
+
+    registrarHistorico({
+      acao: `Cadastro de fornecedor — ${razaoSocial.trim()} — ${tipoPessoa}`,
+      tipoEvento: 'normal',
+      entidade: 'Fornecedor',
+      entidadeId: forn?.id || '',
+      camposAlterados: [
+        { campo: 'razaoSocial', valorAnterior: null, novoValor: razaoSocial.trim() },
+        { campo: 'tipoPessoa', valorAnterior: null, novoValor: tipoPessoa },
+        { campo: 'status', valorAnterior: null, novoValor: ativo ? 'ativo' : 'inativo' },
+      ],
     })
 
     toast({ title: 'Fornecedor cadastrado com sucesso' })
@@ -248,7 +261,7 @@ export default function NovoFornecedor() {
           <div className="px-6 pb-6 grid grid-cols-12 gap-6">
             {/* Centro de Custo */}
             <div className="col-span-12 md:col-span-6 space-y-1.5">
-              <Label>Centro de Custo Padrão</Label>
+              <Label required>Centro de Custo Padrão</Label>
               <div className="relative">
                 <select
                   className="w-full bg-surface-container-low border-none rounded-lg py-3 px-4 appearance-none focus:ring-2 focus:ring-primary-container/30 focus:outline-none text-on-surface text-sm pr-10"

@@ -2,11 +2,14 @@ import { useState, useMemo } from 'react'
 import { Link, useLocation } from 'wouter'
 import { AlertTriangle, ChevronRight, Info } from 'lucide-react'
 import PageHeader from '../../components/shared/PageHeader'
-import { clientes, colaboradores, historico } from '../../data/index'
+import { clientes, colaboradores, centrosCusto } from '../../data/index'
 import { getImpostos } from '../../data/configuracoes-store'
 import { vendas, addVenda, getNextVendaId, getNextVendaNumero, detectDuplicatas } from '../../data/vendas-store'
+import { registrarHistorico } from '../../data/historico-store'
 import { toast } from '../../hooks/use-toast'
 import { useAuth } from '../../context/AuthContext'
+
+const CENTROS = centrosCusto.filter(c => c.ativo)
 
 const MESES = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
 const PERIODICIDADE_MESES = { mensal: 1, bimestral: 2, trimestral: 3, semestral: 6, anual: 12 }
@@ -87,6 +90,7 @@ export default function NovaVenda() {
     valorTotal: '',
     competencia: '',
     descricao: '',
+    centroCustoId: '',
     qtdParcelas: '',
     periodicidade: 'mensal',
     dataInicio: '',
@@ -178,6 +182,7 @@ export default function NovaVenda() {
     if (!form.vendedorId) errs.vendedorId = true
     if (!form.valorTotal || valorNum <= 0) errs.valorTotal = true
     if (!form.competencia) errs.competencia = true
+    if (!form.centroCustoId) errs.centroCustoId = true
     return errs
   }
 
@@ -193,6 +198,7 @@ export default function NovaVenda() {
     const novoNumero = getNextVendaNumero()
     const clienteNome = clienteSelecionado?.nomeFantasia || clienteSelecionado?.razaoSocial || ''
     const vendedorNome = vendedorSelecionado?.nome || ''
+    const ccNome = CENTROS.find(c => c.id === form.centroCustoId)?.nome || ''
 
     const qtd = parseInt(form.qtdParcelas) || 0
     const parcelasGeradas = parcelas
@@ -217,6 +223,8 @@ export default function NovaVenda() {
       competencia: form.competencia,
       situacao: form.estadoInicial,
       descricao: form.descricao,
+      centroCustoId: form.centroCustoId,
+      centroCusto: ccNome,
       impostos: { ...form.impostos },
       parcelas: parcelasGeradas,
       ...(form.tipoVenda === 'recorrente' ? { recorrencia: { ...form.recorrencia } } : {}),
@@ -224,20 +232,16 @@ export default function NovaVenda() {
 
     addVenda(novaVenda)
 
-    const newHistId = `HIS${String(historico.length + 1).padStart(3, '0')}`
-    historico.unshift({
-      id: newHistId,
-      dataHora: new Date().toISOString(),
+    registrarHistorico({
+      acao: `Criação de venda — ${clienteNome} — ${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valorNum)}.`,
+      tipoEvento: 'normal',
       entidade: 'Venda',
       entidadeId: novoId,
-      tipoEvento: 'normal',
-      usuario: usuario?.usuario || 'Admin User',
-      usuarioId: 'COL001',
-      descricaoCompleta: `Criação de venda — ${clienteNome} — ${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(valorNum)}.`,
-      camposAlterados: [],
-      ipCliente: '192.168.1.100',
-      empresa: 'Optsolv',
-      filial: 'São Paulo',
+      camposAlterados: [
+        { campo: 'cliente', valorAnterior: null, novoValor: clienteNome },
+        { campo: 'valorTotal', valorAnterior: null, novoValor: valorNum },
+        { campo: 'centroCustoId', valorAnterior: null, novoValor: form.centroCustoId },
+      ],
     })
 
     toast({ title: 'Venda criada com sucesso' })
@@ -286,6 +290,21 @@ export default function NovaVenda() {
                 <option key={c.id} value={c.id}>{c.nome} — {c.cargo}</option>
               ))}
             </select>
+          </div>
+
+          <div>
+            <Label required>Centro de Custo</Label>
+            <select
+              value={form.centroCustoId}
+              onChange={e => { set('centroCustoId', e.target.value); setErrors(p => ({ ...p, centroCustoId: false })) }}
+              className={inputCls(errors.centroCustoId)}
+            >
+              <option value="">Selecione o centro de custo...</option>
+              {CENTROS.map(c => (
+                <option key={c.id} value={c.id}>{c.nome}</option>
+              ))}
+            </select>
+            {errors.centroCustoId && <p className="text-xs text-error mt-1">Centro de custo é obrigatório</p>}
           </div>
 
           <div>
@@ -514,7 +533,7 @@ export default function NovaVenda() {
             Os impostos podem ser ajustados manualmente a qualquer momento.
           </p>
           <button
-            onClick={() => setForm(p => ({ ...p, impostos: { ...IMPOSTOS_PADRAO } }))}
+            onClick={() => setForm(p => ({ ...p, impostos: { ...getImpostos() } }))}
             className="text-xs font-semibold text-primary-container hover:underline transition-colors"
           >
             Aplicar padrão de impostos
@@ -630,7 +649,8 @@ export default function NovaVenda() {
         </Link>
         <button
           onClick={handleSalvar}
-          className="flex items-center gap-2 px-6 py-2.5 text-sm rounded-lg bg-primary-container text-on-primary hover:bg-primary transition-colors font-semibold"
+          disabled={!!Object.keys(validate()).length}
+          className="flex items-center gap-2 px-6 py-2.5 text-sm rounded-lg bg-primary-container text-on-primary hover:bg-primary transition-colors font-semibold disabled:opacity-60 disabled:cursor-not-allowed"
         >
           Salvar Venda
         </button>

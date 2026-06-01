@@ -1,5 +1,6 @@
 import PageHeader from '../../components/shared/PageHeader'
-import { Target, TrendingUp } from 'lucide-react'
+import PrintHeader from '../../components/shared/PrintHeader'
+import { Target } from 'lucide-react'
 
 const fmt = (v) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v)
 
@@ -26,7 +27,10 @@ function ProgressBar({ pct, ok }) {
 export default function MetasPage() {
   return (
     <div>
+      <PrintHeader titulo="Metas & OKRs" />
+
       <PageHeader title="Metas & OKRs" subtitle="Acompanhamento de metas estratégicas 2026" />
+
       <div className="space-y-4">
         {metas.map((m, i) => {
           const pct = m.inverso
@@ -50,7 +54,12 @@ export default function MetasPage() {
                 </div>
               </div>
               <ProgressBar pct={pct} ok={ok} />
-              <p className="text-xs text-text-muted mt-2">{pct.toFixed(1)}% da meta {m.inverso ? 'máxima' : ''}</p>
+              <div className="flex justify-between mt-2">
+                <span className="text-xs text-text-muted">{Math.round(pct)}% atingido</span>
+                <span className={`text-xs font-bold ${ok ? 'text-green-600' : 'text-text-muted'}`}>
+                  {ok ? '✓ Meta atingida' : `Falta ${fmt2(m.meta - m.realizado)}`}
+                </span>
+              </div>
             </div>
           )
         })}

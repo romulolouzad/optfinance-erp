@@ -9,6 +9,7 @@ export function getFornecedores() {
 }
 
 export function addFornecedor(dados) {
+  if (!dados?.centroCustoId) throw new Error('centroCustoId é obrigatório para fornecedores')
   const padded = String(_nextNum).padStart(3, '0')
   const id = `FOR${padded}`
   _nextNum++

@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import { Link, useLocation } from 'wouter'
+import { useAuth } from '../../context/AuthContext'
 import {
   Building2, Eye, Plus, ChevronDown, ChevronUp, X, Receipt, Search
 } from 'lucide-react'
@@ -315,6 +316,7 @@ export default function FornecedoresPage() {
   const [tipoPessoa, setTipoPessoa] = useState('Todos')
   const [statusFilter, setStatusFilter] = useState('Todos')
   const [selected, setSelected] = useState(null)
+  const { temPermissao } = useAuth()
 
   const fornecedores = getFornecedores()
 
@@ -359,14 +361,16 @@ export default function FornecedoresPage() {
         title="Fornecedores"
         subtitle="Cadastro de fornecedores e prestadores de serviços"
         actions={
-          <button
-            onClick={() => navigate('/fornecedores/novo')}
-            className="flex items-center gap-2 px-5 py-2.5 text-sm rounded-lg text-white font-bold shadow-lg transition-all hover:brightness-110 active:scale-[0.98]"
-            style={{ background: 'linear-gradient(to top, #9d4300, #f97316)' }}
-          >
-            <Plus className="w-4 h-4" />
-            Novo Fornecedor
-          </button>
+          temPermissao('fornecedores', 'criar') ? (
+            <button
+              onClick={() => navigate('/fornecedores/novo')}
+              className="flex items-center gap-2 px-5 py-2.5 text-sm rounded-lg text-white font-bold shadow-lg transition-all hover:brightness-110 active:scale-[0.98]"
+              style={{ background: 'linear-gradient(to top, #9d4300, #f97316)' }}
+            >
+              <Plus className="w-4 h-4" />
+              Novo Fornecedor
+            </button>
+          ) : null
         }
       />
 

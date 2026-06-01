@@ -12,10 +12,7 @@ function formatValue(value, type) {
 
 export default function SummaryCards({ cards }) {
   return (
-    <div
-      className="grid gap-4 mb-6"
-      style={{ gridTemplateColumns: `repeat(${Math.min(cards.length, 4)}, minmax(0, 1fr))` }}
-    >
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
       {cards.map((card, idx) => (
         <SummaryCard key={idx} {...card} />
       ))}
@@ -34,10 +31,9 @@ function SummaryCard({ title, value, type = 'currency', icon: Icon, trend, trend
       className="rounded-xl p-5 bg-surface-container-lowest transition-shadow hover:shadow-md relative overflow-hidden"
       style={{
         borderLeft: `4px solid ${accentColor}`,
-        boxShadow: '0 1px 6px -1px rgba(157,67,0,0.05)'
+        boxShadow: '0 1px 6px -1px rgba(157,67,0,0.05)',
       }}
     >
-      {/* Subtle ambient tint in background */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{ background: `radial-gradient(ellipse at top right, ${accentColor}, transparent 70%)` }}

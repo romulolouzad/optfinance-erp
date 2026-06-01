@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { ChevronUp, ChevronDown, ChevronsUpDown } from 'lucide-react'
 import { cn } from '../../utils/cn'
 import EmptyState from './EmptyState'
+import LoadingState from './LoadingState'
+import ErrorState from './ErrorState'
 
 export default function DataTable({
   columns,
@@ -10,6 +12,10 @@ export default function DataTable({
   keyField = 'id',
   sortable = true,
   className,
+  emptyMessage,
+  onRetry,
+  loading,
+  error,
 }) {
   const [sortKey, setSortKey] = useState(null)
   const [sortDir, setSortDir] = useState('asc')
@@ -51,7 +57,8 @@ export default function DataTable({
                   'text-left px-4 py-3 text-xs font-bold uppercase tracking-label text-text-muted select-none',
                   sortable && col.sortable !== false && col.accessor ? 'cursor-pointer hover:text-on-surface transition-colors' : '',
                   col.align === 'right' ? 'text-right' : '',
-                  col.align === 'center' ? 'text-center' : ''
+                  col.align === 'center' ? 'text-center' : '',
+                  col.printHidden ? 'print:hidden' : ''
                 )}
               >
                 <span className="inline-flex items-center gap-1">
@@ -69,16 +76,28 @@ export default function DataTable({
           </tr>
         </thead>
         <tbody>
-          {sorted.length === 0 ? (
+          {loading ? (
             <tr>
               <td colSpan={columns.length}>
-                <EmptyState />
+                <LoadingState />
+              </td>
+            </tr>
+          ) : error ? (
+            <tr>
+              <td colSpan={columns.length}>
+                <ErrorState message={error} onRetry={onRetry} />
+              </td>
+            </tr>
+          ) : sorted.length === 0 ? (
+            <tr>
+              <td colSpan={columns.length}>
+                <EmptyState message={emptyMessage} onRetry={onRetry} />
               </td>
             </tr>
           ) : (
             sorted.map((row, rowIdx) => (
               <tr
-                key={row[keyField]}
+                key={row[keyField] ?? rowIdx}
                 onClick={() => onRowClick && onRowClick(row)}
                 className={cn(
                   'transition-colors',
@@ -93,7 +112,8 @@ export default function DataTable({
                       'px-4 py-3 text-on-surface',
                       col.align === 'right' ? 'text-right' : '',
                       col.align === 'center' ? 'text-center' : '',
-                      col.className
+                      col.className,
+                      col.printHidden ? 'print:hidden' : ''
                     )}
                   >
                     {col.cell ? col.cell(row) : (col.accessor ? row[col.accessor] : null)}

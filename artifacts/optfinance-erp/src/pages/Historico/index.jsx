@@ -1,9 +1,10 @@
 import { useState, useMemo } from 'react'
+import { Download } from 'lucide-react'
 import PageHeader from '../../components/shared/PageHeader'
 import FilterBar from '../../components/shared/FilterBar'
 import Pagination from '../../components/shared/Pagination'
 import StatusBadge from '../../components/shared/StatusBadge'
-import { getHistorico } from '../../data/historico-store'
+import { getHistorico, registrarHistorico } from '../../data/historico-store'
 import { cn } from '../../utils/cn'
 
 const PAGE_SIZE = 15
@@ -15,6 +16,34 @@ export default function HistoricoPage() {
   const [page, setPage] = useState(1)
 
   const historico = getHistorico()
+
+  function handleExport() {
+    const rows = getHistorico()
+    const header = ['Data/Hora', 'Entidade', 'Ação', 'Tipo', 'Usuário', 'Descrição']
+    const lines = rows.map(h => [
+      new Date(h.dataHora).toLocaleString('pt-BR'),
+      h.entidade,
+      h.acao,
+      h.tipoEvento,
+      h.usuario,
+      `"${(h.descricaoCompleta || '').replace(/"/g, '""')}"`
+    ].join(';'))
+    const csv = [header.join(';'), ...lines].join('\n')
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `historico-auditoria-${new Date().toISOString().slice(0, 10)}.csv`
+    a.click()
+    URL.revokeObjectURL(url)
+    registrarHistorico({
+      acao: 'exportar',
+      tipoEvento: 'normal',
+      entidade: 'Histórico',
+      detalhes: `Exportação de ${rows.length} eventos`,
+      camposAlterados: [{ campo: 'formato', valorAnterior: null, novoValor: 'CSV' }]
+    })
+  }
 
   const entidades = [...new Set(historico.map(h => h.entidade))].sort()
 
@@ -35,6 +64,15 @@ export default function HistoricoPage() {
       <PageHeader
         title="Histórico de Auditoria"
         subtitle={`${historico.length} eventos registrados`}
+        actions={
+          <button
+            onClick={handleExport}
+            className="flex items-center gap-2 px-4 py-2 text-sm rounded-lg text-on-primary font-semibold hover:opacity-90 transition-opacity"
+            style={{ background: 'linear-gradient(135deg, #F97316, #9D4300)' }}
+          >
+            <Download className="w-3.5 h-3.5" /> Exportar CSV
+          </button>
+        }
       />
       <FilterBar
         search={search}

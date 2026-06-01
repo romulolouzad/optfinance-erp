@@ -8,7 +8,7 @@ export default function Pagination({ page, totalPages, onPageChange, totalItems,
   const to = Math.min(page * pageSize, totalItems)
 
   return (
-    <div className="flex items-center justify-between mt-4 text-sm text-text-muted">
+    <div className="flex items-center justify-between mt-4 text-sm text-text-muted print:hidden">
       <span>
         Exibindo <strong className="text-on-surface">{from}–{to}</strong> de{' '}
         <strong className="text-on-surface">{totalItems}</strong> registros

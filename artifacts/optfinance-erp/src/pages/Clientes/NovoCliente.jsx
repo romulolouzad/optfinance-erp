@@ -4,6 +4,7 @@ import { ChevronRight, Save, Info } from 'lucide-react'
 import PageHeader from '../../components/shared/PageHeader'
 import { addCliente, isCnpjDuplicado } from '../../data/clientes-store'
 import { centrosCusto } from '../../data/index'
+import { registrarHistorico } from '../../data/historico-store'
 import { toast } from '../../hooks/use-toast'
 import { cn } from '../../utils/cn'
 
@@ -57,7 +58,7 @@ export default function NovoCliente() {
 
   const cnpjDigits = cnpj.replace(/\D/g, '')
   const cnpjValid = cnpjDigits.length === 14 && !cnpjError
-  const canSave = razaoSocial.trim() && cnpjValid
+  const canSave = razaoSocial.trim() && cnpjValid && centroCustoId
 
   function formatCnpj(val) {
     const digits = val.replace(/\D/g, '').slice(0, 14)
@@ -76,13 +77,25 @@ export default function NovoCliente() {
     e.preventDefault()
     if (!canSave) return
 
-    addCliente({
+    const cli = addCliente({
       razaoSocial: razaoSocial.trim(),
       cnpj,
       nomeFantasia: nomeFantasia.trim() || razaoSocial.trim(),
-      centroCustoId: centroCustoId || 'CC001',
+      centroCustoId,
       tipoPessoa,
       status: ativo ? 'ativo' : 'inativo',
+    })
+
+    registrarHistorico({
+      acao: `Cadastro de cliente — ${razaoSocial.trim()}`,
+      tipoEvento: 'normal',
+      entidade: 'Cliente',
+      entidadeId: cli?.id || '',
+      camposAlterados: [
+        { campo: 'razaoSocial', valorAnterior: null, novoValor: razaoSocial.trim() },
+        { campo: 'tipoPessoa', valorAnterior: null, novoValor: tipoPessoa },
+        { campo: 'status', valorAnterior: null, novoValor: ativo ? 'ativo' : 'inativo' },
+      ],
     })
 
     toast({ title: 'Cliente cadastrado com sucesso' })
@@ -156,7 +169,7 @@ export default function NovoCliente() {
 
               {/* Centro de Custo */}
               <div className="col-span-12 md:col-span-6 space-y-1.5">
-                <Label>Centro de Custo Padrão</Label>
+                <Label required>Centro de Custo Padrão</Label>
                 <div className="relative">
                   <select
                     className="w-full bg-surface-container-low border-none rounded-lg py-3 px-4 appearance-none focus:ring-2 focus:ring-primary-container/30 focus:outline-none text-on-surface text-sm pr-10"

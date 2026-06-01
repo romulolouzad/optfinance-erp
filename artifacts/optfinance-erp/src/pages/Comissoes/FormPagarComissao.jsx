@@ -2,6 +2,7 @@ import { useState, useRef, useCallback } from 'react'
 import { X, Upload, CheckCircle } from 'lucide-react'
 import { cn } from '../../utils/cn'
 import { contasFinanceiras } from '../../data/index'
+import { registrarHistorico } from '../../data/historico-store'
 
 const fmt = (v) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v)
 
@@ -50,6 +51,17 @@ export default function FormPagarComissao({ comissao, onClose, onConfirm }) {
   function handleConfirm() {
     const errs = validate()
     if (Object.keys(errs).length > 0) { setErrors(errs); return }
+    registrarHistorico({
+      acao: `Comissão paga — ${comissao.vendedor} — Parcela ${comissao.parcelaNumero}`,
+      tipoEvento: 'normal',
+      entidade: 'Comissao',
+      entidadeId: comissao.id,
+      camposAlterados: [
+        { campo: 'status', valorAnterior: comissao.status, novoValor: 'pago' },
+        { campo: 'dataPagamento', valorAnterior: null, novoValor: dataPagamento },
+        { campo: 'contaId', valorAnterior: null, novoValor: contaId },
+      ],
+    })
     onConfirm({
       comissaoId: comissao.id,
       dataPagamento,

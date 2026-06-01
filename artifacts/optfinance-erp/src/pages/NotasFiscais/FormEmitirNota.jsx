@@ -152,7 +152,7 @@ export default function FormEmitirNota({ open, onClose, onSuccess }) {
               <select
                 value={form.vendaId}
                 onChange={e => handleVendaChange(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                className="w-full px-3 py-2.5 rounded-lg border-none bg-surface-container-low text-sm focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-transparent"
               >
                 <option value="">Selecione uma venda aprovada...</option>
                 {vendas.map(v => (
@@ -180,7 +180,7 @@ export default function FormEmitirNota({ open, onClose, onSuccess }) {
                   value={form.numero}
                   onChange={e => setForm(f => ({ ...f, numero: e.target.value }))}
                   placeholder="NF-0000"
-                  className="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                  className="w-full px-3 py-2.5 rounded-lg border-none bg-surface-container-low text-sm focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-transparent"
                 />
                 {errors.numero && <p className="text-xs text-red-500 mt-1">{errors.numero}</p>}
               </div>
@@ -194,7 +194,7 @@ export default function FormEmitirNota({ open, onClose, onSuccess }) {
                   type="date"
                   value={form.dataEmissao}
                   onChange={e => setForm(f => ({ ...f, dataEmissao: e.target.value }))}
-                  className="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                  className="w-full px-3 py-2.5 rounded-lg border-none bg-surface-container-low text-sm focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-transparent"
                 />
                 {errors.dataEmissao && <p className="text-xs text-red-500 mt-1">{errors.dataEmissao}</p>}
               </div>
@@ -212,7 +212,7 @@ export default function FormEmitirNota({ open, onClose, onSuccess }) {
                   value={form.valor}
                   onChange={e => setForm(f => ({ ...f, valor: e.target.value }))}
                   placeholder="0,00"
-                  className="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                  className="w-full px-3 py-2.5 rounded-lg border-none bg-surface-container-low text-sm focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-transparent"
                 />
                 {errors.valor && <p className="text-xs text-red-500 mt-1">{errors.valor}</p>}
               </div>
@@ -225,7 +225,7 @@ export default function FormEmitirNota({ open, onClose, onSuccess }) {
                 <select
                   value={form.localPrestacao}
                   onChange={e => setForm(f => ({ ...f, localPrestacao: e.target.value }))}
-                  className="w-full px-3 py-2.5 rounded-lg border border-gray-200 bg-gray-50 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                  className="w-full px-3 py-2.5 rounded-lg border-none bg-surface-container-low text-sm focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-transparent"
                 >
                   <option value="">Selecione o município...</option>
                   {MUNICIPIOS.map(m => (

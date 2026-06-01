@@ -1,7 +1,10 @@
 import { useState, Fragment } from 'react'
 import { ChevronDown, ChevronRight, FileText, FileImage } from 'lucide-react'
 import PageHeader from '../../components/shared/PageHeader'
+import PrintHeader from '../../components/shared/PrintHeader'
+import NoPermissionState from '../../components/shared/NoPermissionState'
 import { MONTHS, getTotal, buildDreRows, applyVisualizacao } from './dreData'
+import { useAuth } from '../../context/AuthContext'
 
 function formatVal(value) {
   if (value === 0) return 'R$ 0,00'
@@ -118,6 +121,7 @@ function LucroLiquidoRow({ row }) {
 const COL_COUNT = MONTHS.length + 2
 
 export default function DrePage() {
+  const { temPermissao } = useAuth()
   const baseRows = buildDreRows()
 
   const [expanded, setExpanded] = useState(() => {
@@ -145,8 +149,12 @@ export default function DrePage() {
     : '0.0'
   const burnRateK = `R$ ${Math.round(totalDespesasOp / nMeses / 1000)}k`
 
+  if (!temPermissao('dre', 'visualizar')) return <NoPermissionState message="Você não tem permissão para acessar o DRE Gerencial." />
+
   return (
     <div className="flex flex-col gap-6">
+      <PrintHeader titulo="DRE Gerencial — Demonstrativo de Resultado do Exercício" />
+
       {/* Context topbar — DRE Report title + sub-tabs */}
       <div className="flex items-center gap-6 -mb-2">
         <h2 className="text-slate-900 font-black text-lg">DRE Report</h2>

@@ -12,8 +12,10 @@ import {
   ChevronDown,
 } from 'lucide-react'
 import { useToast } from '../../hooks/use-toast'
+import { useAuth } from '../../context/AuthContext'
 import { vendas } from '../../data/vendas-store'
 import FormRegistrarParcela from './FormRegistrarParcela'
+import NoPermissionState from '../../components/shared/NoPermissionState'
 import { cn } from '../../utils/cn'
 
 const fmt = (v) =>
@@ -199,6 +201,7 @@ function StatusVendaBadge({ situacao }) {
 export default function DetalheVenda() {
   const { id } = useParams()
   const { toast } = useToast()
+  const { perfil, usuario } = useAuth()
 
   const venda = vendas.find((v) => v.id === id) || vendas[0]
   const parcelas = buildMockParcelas(venda)
@@ -233,6 +236,12 @@ export default function DetalheVenda() {
   }
 
   const tipoLabel = venda?.tipoVenda === 'recorrente' ? 'Recorrente' : 'Pontual'
+
+  const COMERCIAL_VENDEDOR = { comercial: 'Marcos Oliveira' }
+  const vendedorPermitido = COMERCIAL_VENDEDOR[perfil] || null
+  if (vendedorPermitido && venda && venda.vendedor !== vendedorPermitido) {
+    return <NoPermissionState message="Você só pode visualizar detalhes das suas próprias vendas." />
+  }
 
   return (
     <div className="space-y-8">

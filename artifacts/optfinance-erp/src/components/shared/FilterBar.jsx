@@ -5,7 +5,7 @@ export default function FilterBar({ search, onSearchChange, filters, className }
   const activeFilters = (filters || []).filter(f => f.value)
 
   return (
-    <div className={cn('mb-4', className)}>
+    <div className={cn('mb-4 print:hidden', className)}>
       <div className="flex flex-wrap items-center gap-3">
         {onSearchChange !== undefined && (
           <div className="relative flex-1 min-w-[200px]">
@@ -57,7 +57,6 @@ export default function FilterBar({ search, onSearchChange, filters, className }
         ))}
       </div>
 
-      {/* Active filter chips */}
       {(activeFilters.length > 0 || search) && (
         <div className="flex flex-wrap items-center gap-2 mt-3">
           <span className="text-xs text-text-muted font-semibold">Filtros ativos:</span>

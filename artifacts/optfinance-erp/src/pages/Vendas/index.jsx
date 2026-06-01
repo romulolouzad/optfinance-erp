@@ -1,6 +1,7 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Link, useLocation } from 'wouter'
 import { Plus, AlertTriangle, Filter, X } from 'lucide-react'
+import { useAuth } from '../../context/AuthContext'
 import PageHeader from '../../components/shared/PageHeader'
 import DataTable from '../../components/shared/DataTable'
 import Pagination from '../../components/shared/Pagination'
@@ -50,6 +51,8 @@ const PAGE_SIZE = 8
 
 export default function VendasPage() {
   const [, navigate] = useLocation()
+  const [loading, setLoading] = useState(true)
+  useEffect(() => { const t = setTimeout(() => setLoading(false), 350); return () => clearTimeout(t) }, [])
   const [search, setSearch] = useState('')
   const [vendedorFiltro, setVendedorFiltro] = useState('')
   const [statusFiltro, setStatusFiltro] = useState('')
@@ -57,10 +60,15 @@ export default function VendasPage() {
   const [periodoFim, setPeriodoFim] = useState('')
   const [tipoFiltro, setTipoFiltro] = useState('')
   const [page, setPage] = useState(1)
+  const { perfil, temPermissao } = useAuth()
+
+  // Comercial profile sees only their own vendas (demo: Marcos Oliveira)
+  const COMERCIAL_VENDEDOR = { comercial: 'Marcos Oliveira' }
 
   const duplicatas = useMemo(() => detectDuplicatas(), [vendas.length])
 
   const filtered = useMemo(() => {
+    const vendedorProprio = COMERCIAL_VENDEDOR[perfil] || null
     return vendas.filter(v => {
       const matchSearch = !search ||
         (v.clienteNome || '').toLowerCase().includes(search.toLowerCase()) ||
@@ -72,9 +80,10 @@ export default function VendasPage() {
       const matchTipo = !tipoFiltro || v.tipoVenda === tipoFiltro
       const matchInicio = !periodoInicio || v.competencia >= periodoInicio
       const matchFim = !periodoFim || v.competencia <= periodoFim
-      return matchSearch && matchVendedor && matchStatus && matchTipo && matchInicio && matchFim
+      const matchComercial = !vendedorProprio || v.vendedor === vendedorProprio
+      return matchSearch && matchVendedor && matchStatus && matchTipo && matchInicio && matchFim && matchComercial
     })
-  }, [search, vendedorFiltro, statusFiltro, tipoFiltro, periodoInicio, periodoFim, vendas.length])
+  }, [search, vendedorFiltro, statusFiltro, tipoFiltro, periodoInicio, periodoFim, vendas.length, perfil])
 
   const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
 
@@ -167,11 +176,13 @@ export default function VendasPage() {
         title="Vendas & Contratos"
         subtitle="Gestão de contratos e vendas"
         actions={
-          <Link href="/vendas/nova">
-            <button className="flex items-center gap-2 px-4 py-2 text-sm rounded-lg bg-primary-container text-on-primary hover:bg-primary transition-colors font-semibold">
-              <Plus className="w-3.5 h-3.5" /> Nova Venda
-            </button>
-          </Link>
+          temPermissao('vendas', 'criar') ? (
+            <Link href="/vendas/nova">
+              <button className="flex items-center gap-2 px-4 py-2 text-sm rounded-lg text-on-primary font-semibold hover:opacity-90 transition-opacity" style={{ background: 'linear-gradient(135deg, #F97316, #9D4300)' }}>
+                <Plus className="w-3.5 h-3.5" /> Nova Venda
+              </button>
+            </Link>
+          ) : null
         }
       />
 
@@ -257,6 +268,9 @@ export default function VendasPage() {
         data={paginated}
         keyField="id"
         onRowClick={r => navigate(`/vendas/${r.id}`)}
+        emptyMessage={hasFilters ? 'Nenhuma venda corresponde ao filtro aplicado.' : 'Nenhuma venda cadastrada.'}
+        onRetry={hasFilters ? clearFilters : undefined}
+        loading={loading}
       />
       <Pagination
         page={page}

@@ -250,3 +250,11 @@ export function registrarPagamentoFatura({
 
   notifyMov()
 }
+
+export function addMovimentacao(dados) {
+  if (!dados.centroCustoId) throw new Error('centroCustoId é obrigatório para registrar uma movimentação')
+  const id = `MOV-${Date.now()}`
+  _movimentacoes = [..._movimentacoes, { id, ...dados }]
+  notifyMov()
+  return id
+}

@@ -2,6 +2,7 @@ import { useState, useRef, useCallback } from 'react'
 import { X, Upload, CheckCircle, ToggleLeft, ToggleRight } from 'lucide-react'
 import { cn } from '../../utils/cn'
 import { contasFinanceiras } from '../../data/index'
+import { registrarHistorico } from '../../data/historico-store'
 
 const fmt = (v) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v)
 
@@ -63,6 +64,17 @@ export default function FormRegistrarPagamento({ parcela, onClose, onConfirm }) 
   function handleConfirm() {
     const errs = validate()
     if (Object.keys(errs).length > 0) { setErrors(errs); return }
+    registrarHistorico({
+      acao: `Pagamento registrado — Parcela ${parcela.numero} — ${parcela.clienteNome}`,
+      tipoEvento: 'normal',
+      entidade: 'Parcela',
+      entidadeId: parcela.id,
+      camposAlterados: [
+        { campo: 'valorRecebido', valorAnterior: String(parcela.valorRecebido), novoValor: String(Number(valorRecebido)) },
+        { campo: 'dataRecebimento', valorAnterior: null, novoValor: dataRecebimento },
+        { campo: 'pagamentoParcial', valorAnterior: 'false', novoValor: String(pagamentoParcial) },
+      ],
+    })
     onConfirm({
       parcelaId: parcela.id,
       valorRecebido: Number(valorRecebido),

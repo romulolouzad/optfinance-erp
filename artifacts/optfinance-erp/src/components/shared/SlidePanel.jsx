@@ -12,17 +12,16 @@ export default function SlidePanel({ open, onClose, title, subtitle, children, w
     return () => { document.body.style.overflow = '' }
   }, [open])
 
-  const widthClass = {
-    sm: 'max-w-sm',
-    md: 'max-w-md',
-    lg: 'max-w-lg',
-    xl: 'max-w-xl',
-    '2xl': 'max-w-2xl',
-  }[width] || 'max-w-md'
+  const maxWidthClass = {
+    sm: 'sm:max-w-sm',
+    md: 'sm:max-w-md',
+    lg: 'sm:max-w-lg',
+    xl: 'sm:max-w-xl',
+    '2xl': 'sm:max-w-2xl',
+  }[width] || 'sm:max-w-md'
 
   return (
     <>
-      {/* Overlay */}
       <div
         className={cn(
           'fixed inset-0 z-40 bg-inverse-surface/40 transition-opacity duration-300',
@@ -30,29 +29,26 @@ export default function SlidePanel({ open, onClose, title, subtitle, children, w
         )}
         onClick={onClose}
       />
-      {/* Panel */}
       <div
         className={cn(
           'fixed right-0 top-0 h-full z-50 w-full bg-surface-container-lowest shadow-xl',
           'flex flex-col transform transition-transform duration-300 ease-in-out',
-          widthClass,
+          maxWidthClass,
           open ? 'translate-x-0' : 'translate-x-full'
         )}
       >
-        {/* Header */}
-        <div className="flex items-start justify-between p-6 bg-surface-container">
-          <div>
-            <h2 className="text-base font-bold text-on-surface tracking-editorial">{title}</h2>
-            {subtitle && <p className="text-xs text-text-muted mt-0.5">{subtitle}</p>}
+        <div className="flex items-start justify-between p-6 bg-surface-container flex-shrink-0">
+          <div className="min-w-0 flex-1 pr-3">
+            <h2 className="text-base font-bold text-on-surface tracking-editorial truncate">{title}</h2>
+            {subtitle && <p className="text-xs text-text-muted mt-0.5 truncate">{subtitle}</p>}
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg hover:bg-surface-container-high transition-colors ml-4 flex-shrink-0"
+            className="p-1.5 rounded-lg hover:bg-surface-container-high transition-colors flex-shrink-0"
           >
             <X className="w-4 h-4 text-text-muted" />
           </button>
         </div>
-        {/* Body */}
         <div className="flex-1 overflow-y-auto p-6">
           {children}
         </div>

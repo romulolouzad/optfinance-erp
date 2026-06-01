@@ -50,4 +50,9 @@ export function useAuth() {
   return ctx
 }
 
+export function usePermissao(recurso, acao = 'visualizar') {
+  const { temPermissao: tp } = useAuth()
+  return tp(recurso, acao)
+}
+
 export { temPermissao }

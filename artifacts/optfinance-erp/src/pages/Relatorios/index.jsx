@@ -6,6 +6,7 @@ import {
   Mail, ChevronDown, Clock, AlertTriangle, Info
 } from 'lucide-react'
 import PageHeader from '../../components/shared/PageHeader'
+import PrintHeader from '../../components/shared/PrintHeader'
 import SlidePanel from '../../components/shared/SlidePanel'
 import { useToast } from '../../hooks/use-toast'
 import { useAuth } from '../../context/AuthContext'
@@ -13,11 +14,13 @@ import {
   vendas, parcelas, comissoes, colaboradores, centrosCusto
 } from '../../data/index'
 import { detectDuplicatas } from '../../data/vendas-store'
+import { registrarHistorico } from '../../data/historico-store'
 import { cn } from '../../utils/cn'
 
 const RELATORIOS = [
   {
     id: 'dre',
+    recurso: 'dre',
     titulo: 'DRE Gerencial',
     descricao: 'Visão executiva de lucros e perdas do período atual.',
     icon: BarChart2,
@@ -26,6 +29,7 @@ const RELATORIOS = [
   },
   {
     id: 'fluxo',
+    recurso: 'fluxo-de-caixa',
     titulo: 'Fluxo de Caixa',
     descricao: 'Movimentação diária de entradas e saídas previstas.',
     icon: TrendingUp,
@@ -34,6 +38,7 @@ const RELATORIOS = [
   },
   {
     id: 'metas',
+    recurso: 'metas',
     titulo: 'Metas vs Realizado',
     descricao: 'Comparativo de performance comercial por equipe.',
     icon: Target,
@@ -42,6 +47,7 @@ const RELATORIOS = [
   },
   {
     id: 'comissoes',
+    recurso: 'comissoes',
     titulo: 'Comissões Detalhadas',
     descricao: 'Extrato detalhado de comissões por vendedor/venda.',
     icon: Receipt,
@@ -50,6 +56,7 @@ const RELATORIOS = [
   },
   {
     id: 'parcelas',
+    recurso: 'parcelas',
     titulo: 'Parcelas em Aberto',
     descricao: 'Listagem de recebíveis vencidos e vincendos.',
     icon: FileText,
@@ -58,6 +65,7 @@ const RELATORIOS = [
   },
   {
     id: 'forecast',
+    recurso: 'forecast',
     titulo: 'Forecast Detalhado',
     descricao: 'Projeção de faturamento baseada no pipeline atual.',
     icon: TrendingDown,
@@ -69,79 +77,77 @@ const RELATORIOS = [
 const FREQUENCIAS = ['Mensal', 'Semanal', 'Diária']
 
 function useAlerts() {
-  return useMemo(() => {
-    const comissoesBase = comissoes.filter(c => !c.tipo)
-    const duplicatas = detectDuplicatas()
-    const dupCount = Math.round(duplicatas.size / 2)
+  const comissoesBase = comissoes.filter(c => !c.tipo)
+  const duplicatas = detectDuplicatas()
+  const dupCount = Math.round(duplicatas.size / 2)
 
-    const activeVendedoresNomes = new Set(
-      colaboradores.filter(c => c.status === 'ativo').map(c => c.nome)
-    )
-    const vendasComVendedorInativo = vendas.filter(
-      v => v.situacao === 'ativa' && v.vendedor && !activeVendedoresNomes.has(v.vendedor)
-    ).length
+  const activeVendedoresNomes = new Set(
+    colaboradores.filter(c => c.status === 'ativo').map(c => c.nome)
+  )
+  const vendasComVendedorInativo = vendas.filter(
+    v => v.situacao === 'ativa' && v.vendedor && !activeVendedoresNomes.has(v.vendedor)
+  ).length
 
-    const parcelasPagasSemNF = parcelas.filter(
-      p => p.situacao === 'paga' && !p.nfEmitida
-    ).length
+  const parcelasPagasSemNF = parcelas.filter(
+    p => p.situacao === 'paga' && !p.nfEmitida
+  ).length
 
-    const parcelasParciais = parcelas.filter(
-      p => p.situacao === 'pagamento-parcial'
-    ).length
+  const comissoesEstorno = comissoesBase.filter(
+    c => c.status === 'estorno'
+  ).length
 
-    const comissoesAguardandoNF = comissoesBase.filter(
-      c => c.status === 'aguardando-nf'
-    ).length
+  const comissoesAguardandoNF = comissoesBase.filter(
+    c => c.status === 'aguardando-nf'
+  ).length
 
-    const comissoesProntas = comissoesBase.filter(
-      c => c.status === 'pronta'
-    ).length
+  const comissoesProntas = comissoesBase.filter(
+    c => c.status === 'pronta'
+  ).length
 
-    return [
-      {
-        id: 'dup',
-        cor: '#EF4444',
-        label: 'Vendas com suspeita de duplicidade',
-        count: dupCount || 2,
-        href: '/vendas',
-      },
-      {
-        id: 'vinativo',
-        cor: '#EAB308',
-        label: 'Vendas com vendedor inativo',
-        count: vendasComVendedorInativo || 1,
-        href: '/vendas',
-      },
-      {
-        id: 'parcelas-sem-nf',
-        cor: '#EAB308',
-        label: 'Parcelas pagas sem NF anexada',
-        count: parcelasPagasSemNF,
-        href: '/parcelas',
-      },
-      {
-        id: 'comp-pendente',
-        cor: '#F97316',
-        label: 'Comissões com compensação pendente',
-        count: parcelasParciais || 3,
-        href: '/comissoes',
-      },
-      {
-        id: 'aguard-nf',
-        cor: '#3B82F6',
-        label: 'Comissões aguardando NF do vendedor',
-        count: comissoesAguardandoNF,
-        href: '/comissoes',
-      },
-      {
-        id: 'prontas',
-        cor: '#22C55E',
-        label: 'Comissões prontas e não pagas',
-        count: comissoesProntas,
-        href: '/comissoes',
-      },
-    ]
-  }, [])
+  return [
+    {
+      id: 'dup',
+      cor: '#EF4444',
+      label: 'Vendas com suspeita de duplicidade',
+      count: dupCount,
+      href: '/vendas',
+    },
+    {
+      id: 'vinativo',
+      cor: '#EAB308',
+      label: 'Vendas com vendedor inativo',
+      count: vendasComVendedorInativo,
+      href: '/vendas',
+    },
+    {
+      id: 'parcelas-sem-nf',
+      cor: '#EAB308',
+      label: 'Parcelas pagas sem NF anexada',
+      count: parcelasPagasSemNF,
+      href: '/parcelas',
+    },
+    {
+      id: 'estorno',
+      cor: '#F97316',
+      label: 'Comissões com estorno',
+      count: comissoesEstorno,
+      href: '/comissoes',
+    },
+    {
+      id: 'aguard-nf',
+      cor: '#3B82F6',
+      label: 'Comissões aguardando NF do vendedor',
+      count: comissoesAguardandoNF,
+      href: '/comissoes',
+    },
+    {
+      id: 'prontas',
+      cor: '#22C55E',
+      label: 'Comissões prontas e não pagas',
+      count: comissoesProntas,
+      href: '/comissoes',
+    },
+  ]
 }
 
 function TabBar({ tab, setTab, search, setSearch, onNovoAlerta }) {
@@ -520,7 +526,7 @@ function HistoricoTab({ historico }) {
 export default function RelatoriosPage() {
   const [, navigate] = useLocation()
   const { toast } = useToast()
-  const { usuario } = useAuth()
+  const { usuario, temPermissao } = useAuth()
   const userEmail = usuario?.email || 'admin@optsolv.com'
 
   const [tab, setTab] = useState('VISÃO GERAL')
@@ -538,12 +544,13 @@ export default function RelatoriosPage() {
   const alertas = useAlerts()
 
   const filteredRelatorios = useMemo(() => {
-    if (!search.trim()) return RELATORIOS
+    const permitted = RELATORIOS.filter(r => temPermissao(r.recurso, 'visualizar'))
+    if (!search.trim()) return permitted
     const q = search.toLowerCase()
-    return RELATORIOS.filter(r =>
+    return permitted.filter(r =>
       r.titulo.toLowerCase().includes(q) || r.descricao.toLowerCase().includes(q)
     )
-  }, [search])
+  }, [search, temPermissao])
 
   function handleConfigurar(relatorio) {
     setSelectedRelatorio(relatorio)
@@ -562,6 +569,16 @@ export default function RelatoriosPage() {
     setExporting(relatorio.id)
     setTimeout(() => {
       setExporting(null)
+      registrarHistorico({
+        acao: `Exportação de relatório — ${relatorio.titulo}`,
+        tipoEvento: 'normal',
+        entidade: 'Relatorio',
+        detalhes: `Formato: ${filtros.formato || relatorio.formato} · Período: ${filtros.periodo || 'atual'}`,
+        camposAlterados: [
+          { campo: 'formato', valorAnterior: null, novoValor: filtros.formato || relatorio.formato },
+          { campo: 'periodo', valorAnterior: null, novoValor: filtros.periodo || 'atual' },
+        ],
+      })
       const hora = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
       setHistorico(prev => [
         {
@@ -644,6 +661,8 @@ export default function RelatoriosPage() {
       />
 
       <div className="flex-1 overflow-y-auto p-6">
+        <PrintHeader titulo="Relatórios & Alertas" />
+
         <PageHeader
           title="Relatórios & Alertas"
           subtitle="Exportações e checklist operacional diário"

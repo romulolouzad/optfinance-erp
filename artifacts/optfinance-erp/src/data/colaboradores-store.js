@@ -8,6 +8,7 @@ export function getColaboradores() {
 }
 
 export function addColaborador(dados) {
+  if (!dados?.centroCustoId) throw new Error('centroCustoId é obrigatório para colaboradores')
   const padded = String(_nextNum).padStart(3, '0')
   const id = `COL${padded}`
   _nextNum++

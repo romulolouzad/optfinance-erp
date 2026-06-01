@@ -40,8 +40,8 @@ const queryClient = new QueryClient()
 
 type PageComp = React.ComponentType
 
-function pr(component: PageComp, recurso?: string) {
-  return () => <PrivateRoute component={component} recurso={recurso} />
+function pr(component: PageComp, recurso?: string, acao = 'visualizar') {
+  return () => <PrivateRoute component={component} recurso={recurso} acao={acao} />
 }
 
 function Router() {
@@ -51,15 +51,15 @@ function Router() {
       <Route path="/"                       component={pr(DashboardPage, 'dashboard')} />
       <Route path="/dashboard"              component={pr(DashboardPage, 'dashboard')} />
       <Route path="/vendas"                 component={pr(VendasPage, 'vendas')} />
-      <Route path="/vendas/nova"            component={pr(NovaVendaPage, 'vendas')} />
+      <Route path="/vendas/nova"            component={pr(NovaVendaPage, 'vendas', 'criar')} />
       <Route path="/vendas/:id"             component={pr(DetalheVendaPage, 'vendas')} />
       <Route path="/parcelas"               component={pr(ParcelasPage, 'parcelas')} />
       <Route path="/comissoes"              component={pr(ComissoesPage, 'comissoes')} />
-      <Route path="/clientes/novo"           component={pr(NovoClientePage, 'clientes')} />
+      <Route path="/clientes/novo"           component={pr(NovoClientePage, 'clientes', 'criar')} />
       <Route path="/clientes"               component={pr(ClientesPage, 'clientes')} />
-      <Route path="/colaboradores/novo"      component={pr(NovoColaboradorPage, 'colaboradores')} />
+      <Route path="/colaboradores/novo"      component={pr(NovoColaboradorPage, 'colaboradores', 'criar')} />
       <Route path="/colaboradores"          component={pr(ColaboradoresPage, 'colaboradores')} />
-      <Route path="/fornecedores/novo"       component={pr(NovoFornecedorPage, 'fornecedores')} />
+      <Route path="/fornecedores/novo"       component={pr(NovoFornecedorPage, 'fornecedores', 'criar')} />
       <Route path="/fornecedores"           component={pr(FornecedoresPage, 'fornecedores')} />
       <Route path="/notas-fiscais"          component={pr(NotasFiscaisPage, 'notas-fiscais')} />
       <Route path="/dre"                    component={pr(DrePage, 'dre')} />
@@ -69,14 +69,14 @@ function Router() {
       <Route path="/despesas"               component={pr(DespesasPage, 'despesas')} />
       <Route path="/emprestimos"            component={pr(EmprestimosPage, 'emprestimos')} />
       <Route path="/contas-financeiras"            component={pr(ContasFinanceirasPage, 'contas-financeiras')} />
-      <Route path="/contas-financeiras/nova"       component={pr(NovaContaPage, 'contas-financeiras')} />
+      <Route path="/contas-financeiras/nova"       component={pr(NovaContaPage, 'contas-financeiras', 'criar')} />
       <Route path="/contas-financeiras/conciliacao" component={pr(ConciliacaoPage, 'contas-financeiras')} />
       <Route path="/relatorios"             component={pr(RelatoriosPage, 'relatorios')} />
       <Route path="/budget"                 component={pr(BudgetPage, 'budget')} />
       <Route path="/historico"              component={pr(HistoricoPage, 'historico')} />
       <Route path="/configuracoes"          component={pr(ConfiguracoesPage, 'configuracoes')} />
       <Route path="/cartao-corporativo"     component={pr(CartaoCorporativoPage, 'cartao-corporativo')} />
-      <Route path="/usuarios/novo"          component={pr(NovoUsuarioPage, 'usuarios')} />
+      <Route path="/usuarios/novo"          component={pr(NovoUsuarioPage, 'usuarios', 'criar')} />
       <Route path="/usuarios"              component={pr(UsuariosPage, 'usuarios')} />
     </Switch>
   )

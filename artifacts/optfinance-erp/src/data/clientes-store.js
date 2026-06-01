@@ -8,6 +8,7 @@ export function getClientes() {
 }
 
 export function addCliente(dadosCliente) {
+  if (!dadosCliente?.centroCustoId) throw new Error('centroCustoId é obrigatório para clientes')
   const padded = String(_nextNum).padStart(3, '0')
   const id = `CLI${padded}`
   _nextNum++

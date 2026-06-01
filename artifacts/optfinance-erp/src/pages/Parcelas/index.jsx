@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useToast } from '../../hooks/use-toast'
 import {
   Download, Plus, CheckCircle, Minus, AlertTriangle,
@@ -41,9 +41,12 @@ const TABS = [
 
 export default function ParcelasPage() {
   const { parcelas, registrarPagamento } = useParcelas()
-  const { usuario } = useAuth()
+  const { usuario, perfil } = useAuth()
+  const COMERCIAL_VENDEDOR = { comercial: 'Marcos Oliveira' }
+  const vendedorPermitido = COMERCIAL_VENDEDOR[perfil] || null
   const { toast } = useToast()
-
+  const [loading, setLoading] = useState(true)
+  useEffect(() => { const t = setTimeout(() => setLoading(false), 350); return () => clearTimeout(t) }, [])
   const [tab, setTab] = useState('todos')
   const [clienteSearch, setClienteSearch] = useState('')
   const [statusFiltro, setStatusFiltro] = useState('')
@@ -83,7 +86,10 @@ export default function ParcelasPage() {
       if (dataInicio && p.vencimento < dataInicio) return false
       if (dataFim && p.vencimento > dataFim) return false
 
-      // Vendedor
+      // Comercial seller scope
+      if (vendedorPermitido && vendedorMap[p.vendaId] !== vendedorPermitido) return false
+
+      // Vendedor filter
       if (vendedorFiltro) {
         const v = vendedorMap[p.vendaId] || ''
         if (!v.toLowerCase().includes(vendedorFiltro.toLowerCase())) return false
@@ -91,7 +97,7 @@ export default function ParcelasPage() {
 
       return true
     })
-  }, [parcelas, tab, clienteSearch, statusFiltro, dataInicio, dataFim, vendedorFiltro])
+  }, [parcelas, tab, clienteSearch, statusFiltro, dataInicio, dataFim, vendedorFiltro, vendedorPermitido])
 
   const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
 
@@ -176,6 +182,7 @@ export default function ParcelasPage() {
       header: 'Ações',
       accessor: '_acoes',
       sortable: false,
+      printHidden: true,
       cell: r => {
         const canRegister = ['em-aberto', 'vencida', 'pagamento-parcial'].includes(r.situacao)
         if (!canRegister) return <span className="text-xs text-text-muted">—</span>
@@ -348,6 +355,9 @@ export default function ParcelasPage() {
         data={paginated}
         keyField="id"
         onRowClick={setSelected}
+        emptyMessage={hasFilters ? 'Nenhuma parcela corresponde ao filtro aplicado.' : 'Nenhuma parcela cadastrada.'}
+        onRetry={hasFilters ? resetFilters : undefined}
+        loading={loading}
       />
       <Pagination
         page={page}

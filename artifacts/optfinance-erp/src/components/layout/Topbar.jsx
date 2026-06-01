@@ -8,17 +8,18 @@ import { cn } from '../../utils/cn'
 const DEV_PROFILES = [
   { value: 'admin',       label: 'Admin' },
   { value: 'financeiro',  label: 'Financeiro' },
+  { value: 'comercial',   label: 'Comercial' },
   { value: 'visualizacao', label: 'Visualização' },
 ]
 
 const QUICK_CREATE = [
-  { label: 'Nova Venda', href: '/vendas' },
+  { label: 'Nova Venda', href: '/vendas/nova' },
   { label: 'Nova Despesa', href: '/despesas' },
-  { label: 'Novo Cliente', href: '/clientes' },
+  { label: 'Novo Cliente', href: '/clientes/novo' },
 ]
 
 export default function Topbar({ onMenuToggle }) {
-  const { usuario, perfil, setPerfil } = useAuth()
+  const { usuario, perfil, setPerfil, temPermissao } = useAuth()
   const { centros, centroCustoAtivo, setCentroCustoAtivo } = useCentroCusto()
   const [createOpen, setCreateOpen] = useState(false)
   const [notifCount] = useState(3)
@@ -32,8 +33,7 @@ export default function Topbar({ onMenuToggle }) {
     : 'OP'
 
   return (
-    <header className="h-14 flex items-center gap-3 px-4 bg-surface flex-shrink-0 border-b border-[#E0C0B1]/20">
-      {/* Mobile hamburger */}
+    <header className="h-14 flex items-center gap-3 px-4 bg-surface flex-shrink-0 border-b border-[#E0C0B1]/20 print:hidden">
       <button
         onClick={onMenuToggle}
         className="lg:hidden p-2 rounded-lg hover:bg-surface-container transition-colors text-text-muted"
@@ -42,7 +42,6 @@ export default function Topbar({ onMenuToggle }) {
         <Menu className="w-5 h-5" />
       </button>
 
-      {/* Global search */}
       <div className="relative hidden sm:flex items-center">
         <Search className="absolute left-3 w-3.5 h-3.5 text-text-muted pointer-events-none" />
         <input
@@ -59,7 +58,6 @@ export default function Topbar({ onMenuToggle }) {
 
       <div className="flex-1" />
 
-      {/* Centro de custo selector */}
       <div className="hidden md:flex items-center">
         <select
           value={centroCustoAtivo ?? ''}
@@ -78,42 +76,44 @@ export default function Topbar({ onMenuToggle }) {
         </select>
       </div>
 
-      {/* Create New */}
-      <div className="relative">
-        <button
-          onClick={() => setCreateOpen(o => !o)}
-          className={cn(
-            'flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm font-bold text-white',
-            'transition-all hover:brightness-110 active:scale-[0.98]'
+      {temPermissao('vendas', 'criar') && (
+        <div className="relative">
+          <button
+            onClick={() => setCreateOpen(o => !o)}
+            className={cn(
+              'flex items-center gap-1.5 px-4 py-1.5 rounded-lg text-sm font-bold text-white',
+              'transition-all hover:brightness-110 active:scale-[0.98]'
+            )}
+            style={{ background: 'linear-gradient(to top, #9D4300, #F97316)' }}
+          >
+            <Plus className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Create New</span>
+          </button>
+
+          {createOpen && (
+            <>
+              <div className="fixed inset-0 z-10" onClick={() => setCreateOpen(false)} />
+              <div
+                className="absolute right-0 mt-1.5 w-44 rounded-xl z-20 py-1 overflow-hidden glass"
+                style={{ boxShadow: '0 8px 24px -4px rgba(157,67,0,0.15), 0 2px 8px -2px rgba(157,67,0,0.08)', background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(12px)' }}
+              >
+                {QUICK_CREATE.map(item => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setCreateOpen(false)}
+                    className="flex items-center gap-2 px-4 py-2.5 text-sm text-on-surface hover:bg-surface-container transition-colors"
+                  >
+                    <Plus className="w-3.5 h-3.5 text-primary-container" />
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </>
           )}
-          style={{ background: 'linear-gradient(to top, #9D4300, #F97316)' }}
-        >
-          <Plus className="w-3.5 h-3.5" />
-          <span className="hidden sm:inline">Create New</span>
-        </button>
+        </div>
+      )}
 
-        {createOpen && (
-          <>
-            <div className="fixed inset-0 z-10" onClick={() => setCreateOpen(false)} />
-            <div className="absolute right-0 mt-1.5 w-44 rounded-xl bg-surface-container-lowest z-20 py-1 overflow-hidden"
-              style={{ boxShadow: '0 8px 24px -4px rgba(157,67,0,0.15), 0 2px 8px -2px rgba(157,67,0,0.08)' }}>
-              {QUICK_CREATE.map(item => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setCreateOpen(false)}
-                  className="flex items-center gap-2 px-4 py-2.5 text-sm text-on-surface hover:bg-surface-container transition-colors"
-                >
-                  <Plus className="w-3.5 h-3.5 text-primary-container" />
-                  {item.label}
-                </Link>
-              ))}
-            </div>
-          </>
-        )}
-      </div>
-
-      {/* Notifications */}
       <button className="relative p-2 rounded-lg hover:bg-surface-container transition-colors text-text-muted">
         <Bell className="w-4 h-4" />
         {notifCount > 0 && (
@@ -123,12 +123,10 @@ export default function Topbar({ onMenuToggle }) {
         )}
       </button>
 
-      {/* Settings */}
       <button className="p-2 rounded-lg hover:bg-surface-container transition-colors text-text-muted">
         <Settings className="w-4 h-4" />
       </button>
 
-      {/* Dev profile switcher */}
       {import.meta.env.DEV && (
         <div className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-primary-container/10 border border-primary-container/20">
           <FlaskConical className="w-3 h-3 text-primary-container flex-shrink-0" />
@@ -145,7 +143,6 @@ export default function Topbar({ onMenuToggle }) {
         </div>
       )}
 
-      {/* User avatar */}
       <div className="flex items-center gap-2 pl-1">
         <div
           className="w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0"

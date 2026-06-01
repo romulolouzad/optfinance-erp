@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import { Link, useLocation } from 'wouter'
+import { useAuth } from '../../context/AuthContext'
 import { Users, Eye, Plus, ChevronDown, ChevronUp, X } from 'lucide-react'
 import PageHeader from '../../components/shared/PageHeader'
 import SlidePanel from '../../components/shared/SlidePanel'
@@ -295,6 +296,7 @@ export default function ClientesPage() {
   const [statusFilter, setStatusFilter] = useState('Todos')
   const [activeTab, setActiveTab] = useState('all')
   const [selected, setSelected] = useState(null)
+  const { temPermissao } = useAuth()
 
   const clientes = getClientes()
 
@@ -359,14 +361,16 @@ export default function ClientesPage() {
         title="Clientes"
         subtitle="Cadastro de clientes geradores de receita"
         actions={
-          <button
-            onClick={() => navigate('/clientes/novo')}
-            className="flex items-center gap-2 px-5 py-2.5 text-sm rounded-lg text-white font-bold shadow-lg transition-all hover:brightness-110 active:scale-[0.98]"
-            style={{ background: 'linear-gradient(to top, #9d4300, #f97316)' }}
-          >
-            <Plus className="w-4 h-4" />
-            Novo Cliente
-          </button>
+          temPermissao('clientes', 'criar') ? (
+            <button
+              onClick={() => navigate('/clientes/novo')}
+              className="flex items-center gap-2 px-5 py-2.5 text-sm rounded-lg text-white font-bold shadow-lg transition-all hover:brightness-110 active:scale-[0.98]"
+              style={{ background: 'linear-gradient(to top, #9d4300, #f97316)' }}
+            >
+              <Plus className="w-4 h-4" />
+              Novo Cliente
+            </button>
+          ) : null
         }
       />
 

@@ -7,7 +7,7 @@ export function getHistorico() {
   return _historico
 }
 
-export function addHistorico({ acao, tipoEvento, entidade = 'Usuário', entidadeId = '' }) {
+export function addHistorico({ acao, tipoEvento = 'normal', entidade = 'Sistema', entidadeId = '', detalhes = '', camposAlterados = [] }) {
   const padded = String(_nextNum).padStart(3, '0')
   const id = `HIS${padded}`
   _nextNum++
@@ -21,7 +21,8 @@ export function addHistorico({ acao, tipoEvento, entidade = 'Usuário', entidade
     usuario: 'admin@optsolv.com',
     usuarioId: 'USR001',
     descricaoCompleta: acao,
-    camposAlterados: [],
+    detalhes,
+    camposAlterados,
     ipCliente: '192.168.1.1',
     empresa: 'Optsolv',
     filial: 'São Paulo',
@@ -29,3 +30,5 @@ export function addHistorico({ acao, tipoEvento, entidade = 'Usuário', entidade
   _historico = [entry, ..._historico]
   return entry
 }
+
+export const registrarHistorico = addHistorico

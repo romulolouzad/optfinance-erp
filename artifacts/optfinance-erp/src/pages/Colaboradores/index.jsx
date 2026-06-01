@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
 import { Link, useLocation } from 'wouter'
+import { useAuth } from '../../context/AuthContext'
 import { Plus, Eye, ChevronDown, ChevronUp, X, UserCheck, Receipt, ArrowRight } from 'lucide-react'
 import PageHeader from '../../components/shared/PageHeader'
 import { getColaboradores } from '../../data/colaboradores-store'
@@ -272,6 +273,7 @@ export default function ColaboradoresPage() {
   const [tipoFilter, setTipoFilter] = useState('Todos')
   const [statusFilter, setStatusFilter] = useState('Todos')
   const [selected, setSelected] = useState(null)
+  const { temPermissao } = useAuth()
 
   const colaboradores = getColaboradores()
 
@@ -306,14 +308,16 @@ export default function ColaboradoresPage() {
         title="Colaboradores"
         subtitle="Pessoas físicas e jurídicas com custo interno registrado no sistema"
         actions={
-          <button
-            onClick={() => navigate('/colaboradores/novo')}
-            className="flex items-center gap-2 px-5 py-2.5 text-sm rounded-lg text-white font-bold shadow-lg transition-all hover:brightness-110 active:scale-[0.98]"
-            style={{ background: 'linear-gradient(to top, #9d4300, #f97316)' }}
-          >
-            <Plus className="w-4 h-4" />
-            Novo Colaborador
-          </button>
+          temPermissao('colaboradores', 'criar') ? (
+            <button
+              onClick={() => navigate('/colaboradores/novo')}
+              className="flex items-center gap-2 px-5 py-2.5 text-sm rounded-lg text-white font-bold shadow-lg transition-all hover:brightness-110 active:scale-[0.98]"
+              style={{ background: 'linear-gradient(to top, #9d4300, #f97316)' }}
+            >
+              <Plus className="w-4 h-4" />
+              Novo Colaborador
+            </button>
+          ) : null
         }
       />
 

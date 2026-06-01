@@ -4,6 +4,7 @@ import {
   FileText, Upload, AlertTriangle, TrendingUp, Search,
   Calendar, CheckCircle, Paperclip, Eye, MoreVertical, Loader2
 } from 'lucide-react'
+import { useAuth } from '../../context/AuthContext'
 import PageHeader from '../../components/shared/PageHeader'
 import FormEmitirNota from './FormEmitirNota'
 import { notasFiscais } from '../../data/notas-fiscais-store'
@@ -110,6 +111,7 @@ function DropUploadCard({ label, iconType, onFileReceived }) {
 
 export default function NotasFiscaisPage() {
   const [, navigate] = useLocation()
+  const { temPermissao } = useAuth()
   const [activeTab, setActiveTab] = useState('Visão Geral')
   const [tipoNF, setTipoNF] = useState('cliente')
   const [search, setSearch] = useState('')
@@ -198,7 +200,7 @@ export default function NotasFiscaisPage() {
             'px-6 py-2 text-sm font-bold rounded-lg transition-all',
             tipoNF === 'cliente'
               ? 'bg-[#F97316] text-white shadow-sm'
-              : 'text-gray-500 border border-gray-200 hover:bg-gray-50'
+              : 'text-text-muted bg-surface-container hover:bg-surface-container-high'
           )}
         >
           NF Cliente
@@ -209,7 +211,7 @@ export default function NotasFiscaisPage() {
             'px-6 py-2 text-sm font-bold rounded-lg transition-all',
             tipoNF === 'vendedor'
               ? 'bg-[#F97316] text-white shadow-sm'
-              : 'text-gray-500 border border-gray-200 hover:bg-gray-50'
+              : 'text-text-muted bg-surface-container hover:bg-surface-container-high'
           )}
         >
           NF Vendedor
@@ -231,7 +233,7 @@ export default function NotasFiscaisPage() {
                 value={search}
                 onChange={e => setSearch(e.target.value)}
                 placeholder="Buscar cliente ou NF..."
-                className="w-full pl-9 pr-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                className="w-full pl-9 pr-3 py-2.5 bg-surface-container-low border-none rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-transparent"
               />
             </div>
           </div>
@@ -248,7 +250,7 @@ export default function NotasFiscaisPage() {
                   type="date"
                   value={periodoInicio}
                   onChange={e => setPeriodoInicio(e.target.value)}
-                  className="w-full pl-8 pr-2 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                  className="w-full pl-8 pr-2 py-2.5 bg-surface-container-low border-none rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-transparent"
                 />
               </div>
               <span className="text-gray-400 text-xs">—</span>
@@ -256,7 +258,7 @@ export default function NotasFiscaisPage() {
                 type="date"
                 value={periodoFim}
                 onChange={e => setPeriodoFim(e.target.value)}
-                className="flex-1 px-2 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent"
+                className="flex-1 px-2 py-2.5 bg-surface-container-low border-none rounded-lg text-xs focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-transparent"
               />
             </div>
           </div>
@@ -269,7 +271,7 @@ export default function NotasFiscaisPage() {
             <select
               value={statusFiltro}
               onChange={e => setStatusFiltro(e.target.value)}
-              className="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-orange-400 focus:border-transparent appearance-none"
+              className="w-full px-3 py-2.5 bg-surface-container-low border border-surface-container rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-container/40 focus:border-transparent appearance-none"
             >
               <option value="">Todos os Status</option>
               <option value="emitida">Emitida</option>
@@ -280,16 +282,18 @@ export default function NotasFiscaisPage() {
 
           {/* Action buttons */}
           <div className="flex gap-2 ml-auto">
-            <button
-              onClick={() => setModalOpen(true)}
-              className="flex items-center gap-2 px-5 py-2.5 bg-[#F97316] text-white text-sm font-bold rounded-lg hover:bg-[#9D4300] transition-colors shadow-sm"
-            >
-              <FileText className="w-4 h-4" />
-              Emitir Nota
-            </button>
+            {temPermissao('notas-fiscais', 'criar') && (
+              <button
+                onClick={() => setModalOpen(true)}
+                className="flex items-center gap-2 px-5 py-2.5 bg-[#F97316] text-white text-sm font-bold rounded-lg hover:bg-[#9D4300] transition-colors shadow-sm"
+              >
+                <FileText className="w-4 h-4" />
+                Emitir Nota
+              </button>
+            )}
             <button
               onClick={() => toast({ title: 'Importação de XML em desenvolvimento' })}
-              className="flex items-center gap-2 px-5 py-2.5 border border-gray-300 text-[#9D4300] bg-white text-sm font-bold rounded-lg hover:bg-orange-50 transition-colors"
+              className="flex items-center gap-2 px-5 py-2.5 bg-surface-container border-none text-primary text-sm font-bold rounded-lg hover:bg-surface-container-high transition-colors"
             >
               <Upload className="w-4 h-4" />
               Importar XML
@@ -354,7 +358,7 @@ export default function NotasFiscaisPage() {
         </div>
 
         {/* Meta de Faturamento */}
-        <div className="bg-white rounded-xl border-l-4 border-gray-200 shadow-sm p-5 flex flex-col justify-between">
+        <div className="bg-surface-container-lowest rounded-xl border-l-4 border-surface-container shadow-sm p-5 flex flex-col justify-between">
           <p className="text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">
             Meta de Faturamento
           </p>
