@@ -1,0 +1,74 @@
+[
+  {
+    "id": "FOR001",
+    "razaoSocial": "TechEquip Informática e Suprimentos Ltda",
+    "cnpj": "11.222.333/0001-44",
+    "emailFinanceiro": "financeiro@techequip.com.br",
+    "telefone": "(11) 3456-7890",
+    "ativo": true,
+    "despesasVinculadas": ["DESP004", "DESP008"]
+  },
+  {
+    "id": "FOR002",
+    "razaoSocial": "Limpeza Profissional Rio Serviços Ltda",
+    "cnpj": "22.333.444/0001-55",
+    "emailFinanceiro": "cobranca@limpezario.com.br",
+    "telefone": "(21) 2345-6789",
+    "ativo": true,
+    "despesasVinculadas": ["DESP005"]
+  },
+  {
+    "id": "FOR003",
+    "razaoSocial": "Agência Criativa Pixel House Ltda",
+    "cnpj": "33.444.555/0001-66",
+    "emailFinanceiro": "billing@pixelhouse.com.br",
+    "telefone": "(11) 4567-8901",
+    "ativo": true,
+    "despesasVinculadas": ["DESP009", "DESP014"]
+  },
+  {
+    "id": "FOR004",
+    "razaoSocial": "Locaflex Locação de Imóveis Comerciais S.A.",
+    "cnpj": "44.555.666/0001-77",
+    "emailFinanceiro": "locacoes@locaflex.com.br",
+    "telefone": "(11) 5678-9012",
+    "ativo": true,
+    "despesasVinculadas": ["DESP006", "DESP011"]
+  },
+  {
+    "id": "FOR005",
+    "razaoSocial": "Energisa São Paulo Distribuidora de Energia",
+    "cnpj": "55.666.777/0001-88",
+    "emailFinanceiro": "faturamento@energisa.com.br",
+    "telefone": "0800-722-7272",
+    "ativo": true,
+    "despesasVinculadas": ["DESP007"]
+  },
+  {
+    "id": "FOR006",
+    "razaoSocial": "DataCloud Hospedagem e Servidores Ltda",
+    "cnpj": "66.777.888/0001-99",
+    "emailFinanceiro": "finance@datacloud.com.br",
+    "telefone": "(11) 6789-0123",
+    "ativo": true,
+    "despesasVinculadas": ["DESP010", "DESP016"]
+  },
+  {
+    "id": "FOR007",
+    "razaoSocial": "RH Parceiros Consultoria e Recrutamento Ltda",
+    "cnpj": "77.888.999/0001-10",
+    "emailFinanceiro": "rh@rhparceiros.com.br",
+    "telefone": "(11) 7890-1234",
+    "ativo": false,
+    "despesasVinculadas": []
+  },
+  {
+    "id": "FOR008",
+    "razaoSocial": "Seguros Aliança Empresarial Ltda",
+    "cnpj": "88.999.000/0001-21",
+    "emailFinanceiro": "sinistros@aliancaseg.com.br",
+    "telefone": "(11) 8901-2345",
+    "ativo": true,
+    "despesasVinculadas": ["DESP012"]
+  }
+]

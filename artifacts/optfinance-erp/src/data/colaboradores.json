@@ -1,0 +1,96 @@
+[
+  {
+    "id": "COL001",
+    "nome": "Rafael Monteiro",
+    "tipo": "PF",
+    "cpf": "123.456.789-00",
+    "dataNasc": "1985-04-12",
+    "email": "rafael.monteiro@optsolv.com",
+    "cargo": "Diretor Financeiro",
+    "ativo": true,
+    "despesasRecentes": [
+      { "id": "DESP001", "descricao": "Passagem aérea — São Paulo", "valor": 1240.00 }
+    ]
+  },
+  {
+    "id": "COL002",
+    "nome": "Juliana Faria",
+    "tipo": "PF",
+    "cpf": "234.567.890-11",
+    "dataNasc": "1991-09-23",
+    "email": "juliana.faria@optsolv.com",
+    "cargo": "Analista Financeiro Sênior",
+    "ativo": true,
+    "despesasRecentes": []
+  },
+  {
+    "id": "COL003",
+    "nome": "Marcos Oliveira",
+    "tipo": "PF",
+    "cpf": "345.678.901-22",
+    "dataNasc": "1988-07-05",
+    "email": "marcos.oliveira@optsolv.com",
+    "cargo": "Gerente Comercial",
+    "ativo": true,
+    "despesasRecentes": [
+      { "id": "DESP002", "descricao": "Almoço com cliente — AMT Engenharia", "valor": 380.00 }
+    ]
+  },
+  {
+    "id": "COL004",
+    "nome": "Beatriz Sousa",
+    "tipo": "PJ",
+    "cpf": "456.789.012-33",
+    "dataNasc": "1993-12-15",
+    "email": "beatriz@bscontabil.com.br",
+    "cargo": "Contadora",
+    "ativo": true,
+    "despesasRecentes": []
+  },
+  {
+    "id": "COL005",
+    "nome": "Pedro Henrique Lima",
+    "tipo": "PF",
+    "cpf": "567.890.123-44",
+    "dataNasc": "1990-03-28",
+    "email": "pedro.lima@optsolv.com",
+    "cargo": "Consultor de Vendas",
+    "ativo": true,
+    "despesasRecentes": []
+  },
+  {
+    "id": "COL006",
+    "nome": "Fernanda Castro",
+    "tipo": "PF",
+    "cpf": "678.901.234-55",
+    "dataNasc": "1987-06-19",
+    "email": "fernanda.castro@optsolv.com",
+    "cargo": "Coordenadora de Operações",
+    "ativo": false,
+    "despesasRecentes": []
+  },
+  {
+    "id": "COL007",
+    "nome": "Thiago Almeida",
+    "tipo": "PJ",
+    "cpf": "789.012.345-66",
+    "dataNasc": "1992-11-08",
+    "email": "thiago@talmeida.dev",
+    "cargo": "Desenvolvedor de Sistemas",
+    "ativo": true,
+    "despesasRecentes": [
+      { "id": "DESP003", "descricao": "Licença de software Adobe", "valor": 480.00 }
+    ]
+  },
+  {
+    "id": "COL008",
+    "nome": "Camila Rodrigues",
+    "tipo": "PF",
+    "cpf": "890.123.456-77",
+    "dataNasc": "1995-02-14",
+    "email": "camila.rodrigues@optsolv.com",
+    "cargo": "Assistente Administrativa",
+    "ativo": true,
+    "despesasRecentes": []
+  }
+]

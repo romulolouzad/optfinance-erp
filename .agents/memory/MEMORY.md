@@ -1,0 +1,2 @@
+- [OptFinance ERP design system](optfinance-erp-design.md) — Precision Architect tokens live in @theme{} block (not @theme inline) in index.css; all hex direct values, no HSL.
+- [OptFinance ERP routing](optfinance-erp-routing.md) — uses wouter (not react-router-dom); PrivateRoute sets location to /login if !autenticado; base= BASE_URL.replace(/\/$/, "").

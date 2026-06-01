@@ -1,0 +1,143 @@
+[
+  {
+    "id": "VND001", "numero": "0038", "clienteNome": "AMT Engenharia", "vendedor": "Marcos Oliveira",
+    "tipoVenda": "recorrente", "estadoInicial": "ativa", "valorTotal": 240000.00,
+    "competencia": "2025-01", "situacao": "ativa", "centroCustoId": "CC001",
+    "descricao": "Consultoria financeira mensal — pacote enterprise 24 meses",
+    "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
+    "parcelas": [
+      { "numero": "01/24", "vencimento": "2025-02-01", "valor": 10000.00, "situacao": "paga" },
+      { "numero": "02/24", "vencimento": "2025-03-01", "valor": 10000.00, "situacao": "paga" },
+      { "numero": "17/24", "vencimento": "2026-06-01", "valor": 10000.00, "situacao": "em-aberto" }
+    ]
+  },
+  {
+    "id": "VND002", "numero": "0039", "clienteNome": "Nexus Tech", "vendedor": "Pedro Henrique Lima",
+    "tipoVenda": "recorrente", "estadoInicial": "ativa", "valorTotal": 180000.00,
+    "competencia": "2025-03", "situacao": "ativa", "centroCustoId": "CC002",
+    "descricao": "Implantação ERP + suporte técnico mensal",
+    "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
+    "parcelas": [
+      { "numero": "01/12", "vencimento": "2025-04-01", "valor": 15000.00, "situacao": "paga" },
+      { "numero": "15/24", "vencimento": "2026-06-01", "valor": 7500.00, "situacao": "em-aberto" }
+    ]
+  },
+  {
+    "id": "VND003", "numero": "0040", "clienteNome": "Pharmavida", "vendedor": "Marcos Oliveira",
+    "tipoVenda": "pontual", "estadoInicial": "ativa", "valorTotal": 48500.00,
+    "competencia": "2026-01", "situacao": "ativa", "centroCustoId": "CC001",
+    "descricao": "Auditoria fiscal e regularização tributária",
+    "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
+    "parcelas": [
+      { "numero": "01/03", "vencimento": "2026-02-01", "valor": 16166.67, "situacao": "paga" },
+      { "numero": "02/03", "vencimento": "2026-03-01", "valor": 16166.67, "situacao": "paga" },
+      { "numero": "03/03", "vencimento": "2026-04-01", "valor": 16166.66, "situacao": "vencida" }
+    ]
+  },
+  {
+    "id": "VND004", "numero": "0041", "clienteNome": "Digital Minds", "vendedor": "Pedro Henrique Lima",
+    "tipoVenda": "recorrente", "estadoInicial": "projecao", "valorTotal": 96000.00,
+    "competencia": "2026-04", "situacao": "projecao", "centroCustoId": "CC002",
+    "descricao": "Gestão de projetos ágeis — suporte mensal",
+    "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
+    "parcelas": []
+  },
+  {
+    "id": "VND005", "numero": "0042", "clienteNome": "Metalúrgica SP", "vendedor": "Marcos Oliveira",
+    "tipoVenda": "pontual", "estadoInicial": "ativa", "valorTotal": 64000.00,
+    "competencia": "2025-11", "situacao": "ativa", "centroCustoId": "CC004",
+    "descricao": "Reestruturação financeira e plano de redução de custos",
+    "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
+    "parcelas": [
+      { "numero": "01/04", "vencimento": "2025-12-01", "valor": 16000.00, "situacao": "paga" },
+      { "numero": "04/04", "vencimento": "2026-03-01", "valor": 16000.00, "situacao": "paga" }
+    ]
+  },
+  {
+    "id": "VND006", "numero": "0043", "clienteNome": "Saúde Total", "vendedor": "Pedro Henrique Lima",
+    "tipoVenda": "recorrente", "estadoInicial": "ativa", "valorTotal": 72000.00,
+    "competencia": "2025-07", "situacao": "ativa", "centroCustoId": "CC001",
+    "descricao": "Consultoria de gestão financeira hospitalar",
+    "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
+    "parcelas": [
+      { "numero": "11/12", "vencimento": "2026-05-01", "valor": 6000.00, "situacao": "paga" },
+      { "numero": "12/12", "vencimento": "2026-06-01", "valor": 6000.00, "situacao": "em-aberto" }
+    ]
+  },
+  {
+    "id": "VND007", "numero": "0044", "clienteNome": "InnovaAgri", "vendedor": "Marcos Oliveira",
+    "tipoVenda": "pontual", "estadoInicial": "projecao", "valorTotal": 38000.00,
+    "competencia": "2026-06", "situacao": "projecao", "centroCustoId": "CC003",
+    "descricao": "Diagnóstico financeiro agronegócio",
+    "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
+    "parcelas": []
+  },
+  {
+    "id": "VND008", "numero": "0035", "clienteNome": "Construtora Horizonte Verde", "vendedor": "Pedro Henrique Lima",
+    "tipoVenda": "pontual", "estadoInicial": "ativa", "valorTotal": 28000.00,
+    "competencia": "2024-08", "situacao": "encerrada", "centroCustoId": "CC004",
+    "descricao": "Planejamento tributário anual",
+    "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
+    "parcelas": [
+      { "numero": "01/01", "vencimento": "2024-09-01", "valor": 28000.00, "situacao": "paga" }
+    ]
+  },
+  {
+    "id": "VND009", "numero": "0036", "clienteNome": "LogBrasil", "vendedor": "Marcos Oliveira",
+    "tipoVenda": "pontual", "estadoInicial": "ativa", "valorTotal": 55000.00,
+    "competencia": "2024-10", "situacao": "perdida", "centroCustoId": "CC004",
+    "descricao": "Consultoria em compliance e gestão de riscos",
+    "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
+    "parcelas": []
+  },
+  {
+    "id": "VND010", "numero": "0037", "clienteNome": "Palmares", "vendedor": "Pedro Henrique Lima",
+    "tipoVenda": "recorrente", "estadoInicial": "ativa", "valorTotal": 158000.00,
+    "competencia": "2023-05", "situacao": "encerrada", "centroCustoId": "CC001",
+    "descricao": "Gestão financeira integrada — contrato 24 meses encerrado",
+    "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
+    "parcelas": []
+  },
+  {
+    "id": "VND011", "numero": "0045", "clienteNome": "AMT Engenharia", "vendedor": "Marcos Oliveira",
+    "tipoVenda": "pontual", "estadoInicial": "projecao", "valorTotal": 22000.00,
+    "competencia": "2026-07", "situacao": "projecao", "centroCustoId": "CC001",
+    "descricao": "Análise de fusão e aquisição",
+    "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
+    "parcelas": []
+  },
+  {
+    "id": "VND012", "numero": "0046", "clienteNome": "Nexus Tech", "vendedor": "Pedro Henrique Lima",
+    "tipoVenda": "pontual", "estadoInicial": "ativa", "valorTotal": 15000.00,
+    "competencia": "2026-05", "situacao": "ativa", "centroCustoId": "CC002",
+    "descricao": "Treinamento equipe financeira — 40 horas",
+    "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
+    "parcelas": [
+      { "numero": "01/01", "vencimento": "2026-06-10", "valor": 15000.00, "situacao": "em-aberto" }
+    ]
+  },
+  {
+    "id": "VND013", "numero": "0047", "clienteNome": "Pharmavida", "vendedor": "Marcos Oliveira",
+    "tipoVenda": "recorrente", "estadoInicial": "projecao", "valorTotal": 144000.00,
+    "competencia": "2026-07", "situacao": "projecao", "centroCustoId": "CC001",
+    "descricao": "Contrato gestão financeira integrada — 12 meses",
+    "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
+    "parcelas": []
+  },
+  {
+    "id": "VND014", "numero": "0048", "clienteNome": "Digital Minds", "vendedor": "Pedro Henrique Lima",
+    "tipoVenda": "pontual", "estadoInicial": "ativa", "valorTotal": 8500.00,
+    "competencia": "2026-05", "situacao": "inativa", "centroCustoId": "CC002",
+    "descricao": "Workshop planejamento estratégico",
+    "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
+    "parcelas": []
+  },
+  {
+    "id": "VND015", "numero": "0049", "clienteNome": "Saúde Total", "vendedor": "Marcos Oliveira",
+    "tipoVenda": "recorrente", "estadoInicial": "projecao", "valorTotal": 84000.00,
+    "competencia": "2026-08", "situacao": "projecao", "centroCustoId": "CC001",
+    "descricao": "Renovação contrato consultoria — 12 meses",
+    "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
+    "parcelas": []
+  }
+]

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "CTR001", "numero": "0038", "clienteNome": "AMT Engenharia",
+    "dataInicio": "2025-01-01", "dataTermino": "2026-12-31",
+    "valorTotal": 240000.00, "situacao": "ativa", "centroCustoId": "CC001",
+    "vendedores": ["COL003"], "comissao": 5.0,
+    "aditivos": [{ "numero": 1, "data": "2025-06-15", "descricao": "Ampliação de escopo", "valorAdicional": 24000.00 }]
+  },
+  {
+    "id": "CTR002", "numero": "0039", "clienteNome": "Nexus Tech",
+    "dataInicio": "2025-03-01", "dataTermino": "2026-02-28",
+    "valorTotal": 180000.00, "situacao": "ativa", "centroCustoId": "CC002",
+    "vendedores": ["COL005"], "comissao": 4.0, "aditivos": []
+  },
+  {
+    "id": "CTR003", "numero": "0041", "clienteNome": "AMT Engenharia",
+    "dataInicio": "2023-01-01", "dataTermino": "2024-12-31",
+    "valorTotal": 85000.00, "situacao": "encerrada", "centroCustoId": "CC001",
+    "vendedores": ["COL003"], "comissao": 5.0, "aditivos": []
+  },
+  {
+    "id": "CTR004", "numero": "0042", "clienteNome": "Pharmavida",
+    "dataInicio": "2026-01-01", "dataTermino": "2026-06-30",
+    "valorTotal": 48500.00, "situacao": "ativa", "centroCustoId": "CC001",
+    "vendedores": ["COL003"], "comissao": 5.0, "aditivos": []
+  },
+  {
+    "id": "CTR005", "numero": "0043", "clienteNome": "Digital Minds",
+    "dataInicio": "2026-05-01", "dataTermino": "2027-04-30",
+    "valorTotal": 96000.00, "situacao": "projecao", "centroCustoId": "CC002",
+    "vendedores": ["COL005"], "comissao": 4.0, "aditivos": []
+  },
+  {
+    "id": "CTR006", "numero": "0044", "clienteNome": "Metalúrgica SP",
+    "dataInicio": "2025-11-01", "dataTermino": "2026-02-28",
+    "valorTotal": 64000.00, "situacao": "encerrada", "centroCustoId": "CC004",
+    "vendedores": ["COL003"], "comissao": 3.5, "aditivos": []
+  },
+  {
+    "id": "CTR007", "numero": "0045", "clienteNome": "Palmares",
+    "dataInicio": "2023-05-01", "dataTermino": "2025-04-30",
+    "valorTotal": 158000.00, "situacao": "encerrada", "centroCustoId": "CC001",
+    "vendedores": ["COL005"], "comissao": 4.5, "aditivos": []
+  },
+  {
+    "id": "CTR008", "numero": "0046", "clienteNome": "Saúde Total",
+    "dataInicio": "2025-07-01", "dataTermino": "2026-06-30",
+    "valorTotal": 72000.00, "situacao": "ativa", "centroCustoId": "CC001",
+    "vendedores": ["COL005"], "comissao": 4.0, "aditivos": []
+  },
+  {
+    "id": "CTR009", "numero": "0047", "clienteNome": "InnovaAgri",
+    "dataInicio": "2026-06-01", "dataTermino": "2026-09-30",
+    "valorTotal": 38000.00, "situacao": "projecao", "centroCustoId": "CC003",
+    "vendedores": ["COL003"], "comissao": 3.0, "aditivos": []
+  },
+  {
+    "id": "CTR010", "numero": "0048", "clienteNome": "LogBrasil",
+    "dataInicio": "2024-10-01", "dataTermino": "2025-09-30",
+    "valorTotal": 55000.00, "situacao": "perdida", "centroCustoId": "CC004",
+    "vendedores": ["COL003"], "comissao": 4.0, "aditivos": []
+  }
+]

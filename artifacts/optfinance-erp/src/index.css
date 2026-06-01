@@ -1,0 +1,161 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ======================================================
+   THE PRECISION ARCHITECT — Design Token System
+   OptFinance ERP — Official Design System
+   ====================================================== */
+
+@theme {
+  /* === Primary accent — laranja corporativo === */
+  --color-primary:           #9D4300;
+  --color-primary-container: #F97316;
+  --color-on-primary:        #FFFFFF;
+  --color-primary-fixed:     #FFDBCA;
+  --color-primary-fixed-dim: #FFB690;
+
+  /* === Surfaces — hierarquia de fundos === */
+  --color-surface:                   #F3F4F6;
+  --color-surface-bright:            #F9F9FF;
+  --color-surface-container-lowest:  #FFFFFF;
+  --color-surface-container-low:     #F1F3FF;
+  --color-surface-container:         #E9EDFF;
+  --color-surface-container-high:    #E1E8FD;
+  --color-surface-container-highest: #DCE2F7;
+
+  /* === Text === */
+  --color-on-surface:         #141B2B;
+  --color-on-surface-variant: #584237;
+  --color-text-muted:         #6B7280;
+
+  /* === Sidebar / deep contrast === */
+  --color-inverse-surface:    #111827;
+  --color-inverse-on-surface: #EDF0FF;
+  --color-inverse-primary:    #FFB690;
+
+  /* === Secondary === */
+  --color-secondary:           #575E70;
+  --color-secondary-container: #D9DFF5;
+  --color-on-secondary:        #FFFFFF;
+
+  /* === Tertiary / blue === */
+  --color-tertiary:           #006398;
+  --color-tertiary-container: #00A2F4;
+  --color-on-tertiary:        #FFFFFF;
+
+  /* === Status colors === */
+  --color-error:           #BA1A1A;
+  --color-error-container: #FFDAD6;
+  --color-on-error:        #FFFFFF;
+
+  /* === Borders === */
+  --color-outline:         #8C7164;
+  --color-outline-variant: #E0C0B1;
+
+  /* === Row hover (orange-tinted, very subtle) === */
+  --color-row-hover: #FFF7ED;
+
+  /* === shadcn compat aliases (Toaster, Tooltip, etc.) === */
+  --color-background:           #F3F4F6;
+  --color-foreground:           #141B2B;
+  --color-card:                 #FFFFFF;
+  --color-card-foreground:      #141B2B;
+  --color-popover:              #FFFFFF;
+  --color-popover-foreground:   #141B2B;
+  --color-muted:                #E9EDFF;
+  --color-muted-foreground:     #575E70;
+  --color-accent:               #F97316;
+  --color-accent-foreground:    #FFFFFF;
+  --color-destructive:          #BA1A1A;
+  --color-destructive-foreground: #FFFFFF;
+  --color-border:               #E0C0B1;
+  --color-input:                #F1F3FF;
+  --color-ring:                 #F97316;
+
+  /* === Fonts === */
+  --font-sans:     'Inter', sans-serif;
+  --font-headline: 'Inter', sans-serif;
+  --font-body:     'Inter', sans-serif;
+  --font-label:    'Inter', sans-serif;
+  --font-mono:     'Menlo', monospace;
+
+  /* === Radius === */
+  --radius:    0.5rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+
+  /* === Ambient tinted shadows (never pure black) === */
+  --shadow-sm: 0 1px 3px 0 rgba(249, 115, 22, 0.04), 0 1px 2px -1px rgba(249, 115, 22, 0.04);
+  --shadow-md: 0 4px 16px -2px rgba(157, 67, 0, 0.06), 0 2px 6px -2px rgba(157, 67, 0, 0.04);
+  --shadow-lg: 0 10px 32px -4px rgba(157, 67, 0, 0.08), 0 4px 12px -4px rgba(157, 67, 0, 0.06);
+  --shadow-xl: 0 20px 48px -8px rgba(157, 67, 0, 0.10), 0 8px 20px -8px rgba(157, 67, 0, 0.06);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #F3F4F6;
+    color: #141B2B;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #E0C0B1;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8C7164;
+  }
+}
+
+@layer utilities {
+  /* Precision Architect tracking utilities */
+  .tracking-editorial {
+    letter-spacing: -0.02em;
+  }
+  .tracking-label {
+    letter-spacing: 0.05em;
+  }
+
+  /* Ghost border (accessibility fallback) */
+  .border-ghost {
+    border: 1px solid rgba(224, 192, 177, 0.15);
+  }
+
+  /* Glassmorphism for floating elements */
+  .glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.40);
+  }
+
+  /* Tinted sidebar highlight */
+  .sidebar-item-active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;
+    background-color: #F97316;
+    border-radius: 0 4px 4px 0;
+  }
+}

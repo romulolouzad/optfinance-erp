@@ -1,0 +1,7 @@
+[
+  { "id": "CC001", "nome": "Comercial", "ativo": true },
+  { "id": "CC002", "nome": "Tecnologia da Informação", "ativo": true },
+  { "id": "CC003", "nome": "Administrativo & Financeiro", "ativo": true },
+  { "id": "CC004", "nome": "Operações", "ativo": true },
+  { "id": "CC005", "nome": "Marketing & Comunicação", "ativo": false }
+]

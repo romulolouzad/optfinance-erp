@@ -1,0 +1,48 @@
+[
+  {
+    "id": "FAT001",
+    "contaFinanceiraId": "CF004",
+    "mesReferencia": "2026-05",
+    "valorTotal": 8940.50,
+    "vencimento": "2026-06-15",
+    "status": "em-aberto",
+    "composicao": [
+      { "data": "2026-05-18", "descricao": "Passagem aérea LATAM SP-RJ", "valor": 1240.00 },
+      { "data": "2026-05-22", "descricao": "Restaurante Rubaiyat — cliente Pharmavida", "valor": 380.00 },
+      { "data": "2026-05-28", "descricao": "Google Ads — campanhas digitais", "valor": 5400.00 },
+      { "data": "2026-05-30", "descricao": "Uber Empresas — traslados", "valor": 428.50 },
+      { "data": "2026-05-31", "descricao": "Coffee break — reunião interna", "valor": 192.00 },
+      { "data": "2026-05-31", "descricao": "Amazon AWS — instâncias spot", "valor": 1300.00 }
+    ]
+  },
+  {
+    "id": "FAT002",
+    "contaFinanceiraId": "CF004",
+    "mesReferencia": "2026-04",
+    "valorTotal": 6752.30,
+    "vencimento": "2026-05-15",
+    "status": "paga",
+    "composicao": [
+      { "data": "2026-04-05", "descricao": "Passagem aérea GOL SP-BH", "valor": 980.00 },
+      { "data": "2026-04-12", "descricao": "Hotel Ibis — estadia cliente", "valor": 620.00 },
+      { "data": "2026-04-20", "descricao": "LinkedIn Ads — impulsionamento", "valor": 2800.00 },
+      { "data": "2026-04-25", "descricao": "Uber Empresas — traslados", "valor": 312.30 },
+      { "data": "2026-04-28", "descricao": "Jantar comercial — Nexus Tech", "valor": 540.00 },
+      { "data": "2026-04-30", "descricao": "Amazon AWS — custo mensal", "valor": 1500.00 }
+    ]
+  },
+  {
+    "id": "FAT003",
+    "contaFinanceiraId": "CF004",
+    "mesReferencia": "2026-03",
+    "valorTotal": 4820.00,
+    "vencimento": "2026-04-15",
+    "status": "paga",
+    "composicao": [
+      { "data": "2026-03-08", "descricao": "Meta Ads — impulsionamento", "valor": 2200.00 },
+      { "data": "2026-03-15", "descricao": "Viagem cliente — AMT Engenharia", "valor": 850.00 },
+      { "data": "2026-03-20", "descricao": "Software Slack Business", "valor": 420.00 },
+      { "data": "2026-03-28", "descricao": "Amazon AWS — custo mensal", "valor": 1350.00 }
+    ]
+  }
+]

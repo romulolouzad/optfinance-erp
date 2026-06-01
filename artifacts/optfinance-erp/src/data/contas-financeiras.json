@@ -1,0 +1,62 @@
+[
+  {
+    "id": "CF001",
+    "banco": "Banco do Brasil",
+    "nome": "BB Conta Corrente Principal",
+    "tipo": "corrente",
+    "saldoInicial": 85000.00,
+    "dataAbertura": "2021-03-15",
+    "saldoAtual": 142350.75,
+    "ativa": true,
+    "contaPadrao": true,
+    "agencia": "3421-8",
+    "conta": "12847-9",
+    "cnpjTitular": "12.345.678/0001-90",
+    "ultimaConciliacao": "2026-05-31"
+  },
+  {
+    "id": "CF002",
+    "banco": "Itaú Unibanco",
+    "nome": "Itaú Poupança Reserva",
+    "tipo": "poupança",
+    "saldoInicial": 50000.00,
+    "dataAbertura": "2022-01-10",
+    "saldoAtual": 68420.30,
+    "ativa": true,
+    "contaPadrao": false,
+    "agencia": "0842",
+    "conta": "23456-0",
+    "cnpjTitular": "12.345.678/0001-90",
+    "ultimaConciliacao": "2026-05-28"
+  },
+  {
+    "id": "CF003",
+    "banco": "Caixa Interna",
+    "nome": "Caixa Físico Escritório",
+    "tipo": "caixa",
+    "saldoInicial": 5000.00,
+    "dataAbertura": "2021-01-02",
+    "saldoAtual": 3280.00,
+    "ativa": true,
+    "contaPadrao": false,
+    "agencia": "-",
+    "conta": "-",
+    "cnpjTitular": "12.345.678/0001-90",
+    "ultimaConciliacao": "2026-06-01"
+  },
+  {
+    "id": "CF004",
+    "banco": "Nubank Empresas",
+    "nome": "Cartão Corporativo Nubank",
+    "tipo": "cartão",
+    "saldoInicial": 0.00,
+    "dataAbertura": "2023-06-20",
+    "saldoAtual": -8940.50,
+    "ativa": true,
+    "contaPadrao": false,
+    "agencia": "-",
+    "conta": "5478-****-****-9012",
+    "cnpjTitular": "12.345.678/0001-90",
+    "ultimaConciliacao": "2026-05-30"
+  }
+]

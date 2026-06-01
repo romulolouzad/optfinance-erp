@@ -1,0 +1,88 @@
+[
+  {
+    "id": "EMP001",
+    "descricao": "Financiamento Equipamentos TI — Itaú",
+    "tipo": "financiamento",
+    "credor": "Itaú Unibanco",
+    "taxaJuros": 1.2,
+    "valorOriginal": 120000.00,
+    "saldoDevedor": 78450.00,
+    "dataInicio": "2024-03-01",
+    "previsaoFim": "2027-02-28",
+    "centroCustoId": "CC002",
+    "situacao": "ativo",
+    "parcelas": [
+      { "numero": 1, "vencimento": "2024-04-01", "valor": 3800.00, "pago": true },
+      { "numero": 2, "vencimento": "2024-05-01", "valor": 3800.00, "pago": true },
+      { "numero": 3, "vencimento": "2026-06-01", "valor": 3800.00, "pago": false }
+    ]
+  },
+  {
+    "id": "EMP002",
+    "descricao": "Capital de Giro — Banco do Brasil",
+    "tipo": "capital-giro",
+    "credor": "Banco do Brasil",
+    "taxaJuros": 1.8,
+    "valorOriginal": 200000.00,
+    "saldoDevedor": 145200.00,
+    "dataInicio": "2025-01-15",
+    "previsaoFim": "2027-01-15",
+    "centroCustoId": "CC003",
+    "situacao": "ativo",
+    "parcelas": [
+      { "numero": 1, "vencimento": "2025-02-15", "valor": 9600.00, "pago": true },
+      { "numero": 2, "vencimento": "2025-03-15", "valor": 9600.00, "pago": true },
+      { "numero": 3, "vencimento": "2026-06-15", "valor": 9600.00, "pago": false }
+    ]
+  },
+  {
+    "id": "EMP003",
+    "descricao": "Leasing Frota Veicular — Santander",
+    "tipo": "leasing",
+    "credor": "Santander Brasil",
+    "taxaJuros": 0.95,
+    "valorOriginal": 85000.00,
+    "saldoDevedor": 0.00,
+    "dataInicio": "2021-06-01",
+    "previsaoFim": "2024-05-31",
+    "centroCustoId": "CC004",
+    "situacao": "quitado",
+    "parcelas": []
+  },
+  {
+    "id": "EMP004",
+    "descricao": "Financiamento Reforma Escritório — CEF",
+    "tipo": "financiamento",
+    "credor": "Caixa Econômica Federal",
+    "taxaJuros": 0.85,
+    "valorOriginal": 45000.00,
+    "saldoDevedor": 38700.00,
+    "dataInicio": "2025-09-01",
+    "previsaoFim": "2028-08-31",
+    "centroCustoId": "CC003",
+    "situacao": "inadimplente",
+    "parcelas": [
+      { "numero": 1, "vencimento": "2025-10-01", "valor": 1420.00, "pago": true },
+      { "numero": 2, "vencimento": "2025-11-01", "valor": 1420.00, "pago": false },
+      { "numero": 3, "vencimento": "2025-12-01", "valor": 1420.00, "pago": false }
+    ]
+  },
+  {
+    "id": "EMP005",
+    "descricao": "Antecipação de Recebíveis — BTG Pactual",
+    "tipo": "capital-giro",
+    "credor": "BTG Pactual",
+    "taxaJuros": 2.1,
+    "valorOriginal": 60000.00,
+    "saldoDevedor": 22800.00,
+    "dataInicio": "2025-11-01",
+    "previsaoFim": "2026-10-31",
+    "centroCustoId": "CC001",
+    "situacao": "ativo",
+    "parcelas": [
+      { "numero": 1, "vencimento": "2025-12-01", "valor": 6500.00, "pago": true },
+      { "numero": 2, "vencimento": "2026-01-01", "valor": 6500.00, "pago": true },
+      { "numero": 3, "vencimento": "2026-06-01", "valor": 6500.00, "pago": false }
+    ]
+  }
+]

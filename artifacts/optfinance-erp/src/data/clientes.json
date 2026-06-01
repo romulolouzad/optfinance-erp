@@ -1,0 +1,97 @@
+[
+  {
+    "id": "CLI001",
+    "razaoSocial": "AMT Engenharia e Construção Ltda",
+    "cnpj": "45.678.901/0001-23",
+    "nomeFantasia": "AMT Engenharia",
+    "centroCustoId": "CC001",
+    "contratosVinculados": [
+      { "id": "CTR001", "numero": "0038", "valorTotal": 240000.00, "situacao": "ativa" },
+      { "id": "CTR003", "numero": "0041", "valorTotal": 85000.00, "situacao": "encerrada" }
+    ]
+  },
+  {
+    "id": "CLI002",
+    "razaoSocial": "Grupo Nexus Tecnologia S.A.",
+    "cnpj": "56.789.012/0001-34",
+    "nomeFantasia": "Nexus Tech",
+    "centroCustoId": "CC002",
+    "contratosVinculados": [
+      { "id": "CTR002", "numero": "0039", "valorTotal": 180000.00, "situacao": "ativa" }
+    ]
+  },
+  {
+    "id": "CLI003",
+    "razaoSocial": "Pharmavida Saúde e Bem-Estar S.A.",
+    "cnpj": "67.890.123/0001-45",
+    "nomeFantasia": "Pharmavida",
+    "centroCustoId": "CC001",
+    "contratosVinculados": [
+      { "id": "CTR004", "numero": "0042", "valorTotal": 320000.00, "situacao": "ativa" }
+    ]
+  },
+  {
+    "id": "CLI004",
+    "razaoSocial": "Construtora Horizonte Verde Ltda",
+    "cnpj": "78.901.234/0001-56",
+    "nomeFantasia": "Horizonte Verde",
+    "centroCustoId": "CC004",
+    "contratosVinculados": []
+  },
+  {
+    "id": "CLI005",
+    "razaoSocial": "Digital Minds Consultoria em TI Ltda",
+    "cnpj": "89.012.345/0001-67",
+    "nomeFantasia": "Digital Minds",
+    "centroCustoId": "CC002",
+    "contratosVinculados": [
+      { "id": "CTR005", "numero": "0043", "valorTotal": 96000.00, "situacao": "projecao" }
+    ]
+  },
+  {
+    "id": "CLI006",
+    "razaoSocial": "Metalúrgica São Paulo Peças Ltda",
+    "cnpj": "90.123.456/0001-78",
+    "nomeFantasia": "Metalúrgica SP",
+    "centroCustoId": "CC004",
+    "contratosVinculados": [
+      { "id": "CTR006", "numero": "0044", "valorTotal": 64000.00, "situacao": "ativa" }
+    ]
+  },
+  {
+    "id": "CLI007",
+    "razaoSocial": "InnovaAgri Agropecuária e Exportação S.A.",
+    "cnpj": "01.234.567/0001-89",
+    "nomeFantasia": "InnovaAgri",
+    "centroCustoId": "CC003",
+    "contratosVinculados": []
+  },
+  {
+    "id": "CLI008",
+    "razaoSocial": "Construtora Palmares e Associados Ltda",
+    "cnpj": "12.345.678/0002-71",
+    "nomeFantasia": "Palmares",
+    "centroCustoId": "CC001",
+    "contratosVinculados": [
+      { "id": "CTR007", "numero": "0045", "valorTotal": 158000.00, "situacao": "encerrada" }
+    ]
+  },
+  {
+    "id": "CLI009",
+    "razaoSocial": "Clínica Saúde Total Medicina Diagnóstica Ltda",
+    "cnpj": "23.456.789/0001-90",
+    "nomeFantasia": "Saúde Total",
+    "centroCustoId": "CC001",
+    "contratosVinculados": [
+      { "id": "CTR008", "numero": "0046", "valorTotal": 72000.00, "situacao": "ativa" }
+    ]
+  },
+  {
+    "id": "CLI010",
+    "razaoSocial": "LogBrasil Logística e Transportes S.A.",
+    "cnpj": "34.567.890/0001-01",
+    "nomeFantasia": "LogBrasil",
+    "centroCustoId": "CC004",
+    "contratosVinculados": []
+  }
+]
