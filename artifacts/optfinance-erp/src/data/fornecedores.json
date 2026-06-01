@@ -2,73 +2,165 @@
   {
     "id": "FOR001",
     "razaoSocial": "TechEquip Informática e Suprimentos Ltda",
-    "cnpj": "11.222.333/0001-44",
+    "nomeFantasia": "TechEquip",
+    "cnpj": "45.678.901/0001-23",
+    "tipoPessoa": "PJ",
     "emailFinanceiro": "financeiro@techequip.com.br",
     "telefone": "(11) 3456-7890",
+    "centroCustoId": "CC002",
+    "status": "ativo",
     "ativo": true,
-    "despesasVinculadas": ["DESP004", "DESP008"]
+    "despesasVinculadas": ["DESP004", "DESP008"],
+    "historico": [
+      { "data": "2024-01-15", "acao": "Cadastro de fornecedor", "executor": "Admin", "tipo": "manual" },
+      { "data": "2024-01-16", "acao": "CNPJ validado via SEFAZ", "executor": "Automação API", "tipo": "api" },
+      { "data": "2025-03-10", "acao": "Despesa DESP004 vinculada", "executor": "Admin", "tipo": "manual" },
+      { "data": "2025-05-20", "acao": "Alíquotas de retenção atualizadas automaticamente", "executor": "Automação API", "tipo": "api" }
+    ]
   },
   {
     "id": "FOR002",
     "razaoSocial": "Limpeza Profissional Rio Serviços Ltda",
+    "nomeFantasia": "LimpezaRio",
     "cnpj": "22.333.444/0001-55",
+    "tipoPessoa": "PJ",
     "emailFinanceiro": "cobranca@limpezario.com.br",
     "telefone": "(21) 2345-6789",
+    "centroCustoId": "CC003",
+    "status": "ativo",
     "ativo": true,
-    "despesasVinculadas": ["DESP005"]
+    "despesasVinculadas": ["DESP005"],
+    "historico": [
+      { "data": "2023-11-08", "acao": "Cadastro de fornecedor", "executor": "Carlos Mota", "tipo": "manual" },
+      { "data": "2023-11-09", "acao": "CNPJ validado via SEFAZ", "executor": "Automação API", "tipo": "api" },
+      { "data": "2024-06-01", "acao": "Contrato de prestação de serviços renovado", "executor": "Admin", "tipo": "manual" }
+    ]
   },
   {
     "id": "FOR003",
     "razaoSocial": "Agência Criativa Pixel House Ltda",
+    "nomeFantasia": "Pixel House",
     "cnpj": "33.444.555/0001-66",
+    "tipoPessoa": "PJ",
     "emailFinanceiro": "billing@pixelhouse.com.br",
     "telefone": "(11) 4567-8901",
+    "centroCustoId": "CC005",
+    "status": "ativo",
     "ativo": true,
-    "despesasVinculadas": ["DESP009", "DESP014"]
+    "despesasVinculadas": ["DESP009", "DESP014"],
+    "historico": [
+      { "data": "2024-03-20", "acao": "Cadastro de fornecedor", "executor": "Fernanda Lima", "tipo": "manual" },
+      { "data": "2024-03-21", "acao": "CNPJ validado via SEFAZ", "executor": "Automação API", "tipo": "api" },
+      { "data": "2025-04-05", "acao": "Dados cadastrais atualizados", "executor": "Fernanda Lima", "tipo": "manual" },
+      { "data": "2026-01-10", "acao": "Integração com sistema de NF-e sincronizada", "executor": "Automação API", "tipo": "api" }
+    ]
   },
   {
     "id": "FOR004",
     "razaoSocial": "Locaflex Locação de Imóveis Comerciais S.A.",
+    "nomeFantasia": "Locaflex",
     "cnpj": "44.555.666/0001-77",
+    "tipoPessoa": "PJ",
     "emailFinanceiro": "locacoes@locaflex.com.br",
     "telefone": "(11) 5678-9012",
+    "centroCustoId": "CC003",
+    "status": "ativo",
     "ativo": true,
-    "despesasVinculadas": ["DESP006", "DESP011"]
+    "despesasVinculadas": ["DESP006", "DESP011"],
+    "historico": [
+      { "data": "2023-06-01", "acao": "Cadastro de fornecedor", "executor": "Admin", "tipo": "manual" },
+      { "data": "2023-06-02", "acao": "CNPJ validado via SEFAZ", "executor": "Automação API", "tipo": "api" },
+      { "data": "2024-01-05", "acao": "Reajuste de aluguel processado", "executor": "Automação API", "tipo": "api" },
+      { "data": "2025-01-07", "acao": "Reajuste de aluguel processado", "executor": "Automação API", "tipo": "api" }
+    ]
   },
   {
     "id": "FOR005",
     "razaoSocial": "Energisa São Paulo Distribuidora de Energia",
+    "nomeFantasia": "Energisa SP",
     "cnpj": "55.666.777/0001-88",
+    "tipoPessoa": "PJ",
     "emailFinanceiro": "faturamento@energisa.com.br",
     "telefone": "0800-722-7272",
+    "centroCustoId": "CC003",
+    "status": "ativo",
     "ativo": true,
-    "despesasVinculadas": ["DESP007"]
+    "despesasVinculadas": ["DESP007"],
+    "historico": [
+      { "data": "2022-09-15", "acao": "Cadastro de fornecedor", "executor": "Admin", "tipo": "manual" },
+      { "data": "2022-09-15", "acao": "CNPJ validado via SEFAZ", "executor": "Automação API", "tipo": "api" },
+      { "data": "2025-05-01", "acao": "Fatura de energia importada via integração bancária", "executor": "Automação API", "tipo": "api" }
+    ]
   },
   {
     "id": "FOR006",
     "razaoSocial": "DataCloud Hospedagem e Servidores Ltda",
+    "nomeFantasia": "DataCloud",
     "cnpj": "66.777.888/0001-99",
+    "tipoPessoa": "PJ",
     "emailFinanceiro": "finance@datacloud.com.br",
     "telefone": "(11) 6789-0123",
+    "centroCustoId": "CC002",
+    "status": "ativo",
     "ativo": true,
-    "despesasVinculadas": ["DESP010", "DESP016"]
+    "despesasVinculadas": ["DESP010", "DESP016"],
+    "historico": [
+      { "data": "2024-07-01", "acao": "Cadastro de fornecedor", "executor": "Admin", "tipo": "manual" },
+      { "data": "2024-07-01", "acao": "CNPJ validado via SEFAZ", "executor": "Automação API", "tipo": "api" },
+      { "data": "2025-12-01", "acao": "Renovação automática de licença detectada", "executor": "Automação API", "tipo": "api" }
+    ]
   },
   {
     "id": "FOR007",
     "razaoSocial": "RH Parceiros Consultoria e Recrutamento Ltda",
+    "nomeFantasia": "RH Parceiros",
     "cnpj": "77.888.999/0001-10",
+    "tipoPessoa": "PJ",
     "emailFinanceiro": "rh@rhparceiros.com.br",
     "telefone": "(11) 7890-1234",
+    "centroCustoId": "CC001",
+    "status": "inativo",
     "ativo": false,
-    "despesasVinculadas": []
+    "despesasVinculadas": [],
+    "historico": [
+      { "data": "2023-02-10", "acao": "Cadastro de fornecedor", "executor": "Admin", "tipo": "manual" },
+      { "data": "2023-02-10", "acao": "CNPJ validado via SEFAZ", "executor": "Automação API", "tipo": "api" },
+      { "data": "2024-08-15", "acao": "Status alterado para Inativo", "executor": "Admin", "tipo": "manual" }
+    ]
   },
   {
     "id": "FOR008",
     "razaoSocial": "Seguros Aliança Empresarial Ltda",
+    "nomeFantasia": "Aliança Seguros",
     "cnpj": "88.999.000/0001-21",
+    "tipoPessoa": "PJ",
     "emailFinanceiro": "sinistros@aliancaseg.com.br",
     "telefone": "(11) 8901-2345",
+    "centroCustoId": "CC003",
+    "status": "ativo",
     "ativo": true,
-    "despesasVinculadas": ["DESP012"]
+    "despesasVinculadas": ["DESP012"],
+    "historico": [
+      { "data": "2023-12-05", "acao": "Cadastro de fornecedor", "executor": "Carlos Mota", "tipo": "manual" },
+      { "data": "2023-12-05", "acao": "CNPJ validado via SEFAZ", "executor": "Automação API", "tipo": "api" },
+      { "data": "2024-04-01", "acao": "Renovação de apólice processada automaticamente", "executor": "Automação API", "tipo": "api" }
+    ]
+  },
+  {
+    "id": "FOR009",
+    "razaoSocial": "Lucas Andrade Ferreira",
+    "nomeFantasia": "Lucas Ferreira Design",
+    "cnpj": "321.654.987-00",
+    "tipoPessoa": "PF",
+    "emailFinanceiro": "lucas.ferreira@email.com",
+    "telefone": "(11) 9 8765-4321",
+    "centroCustoId": "CC005",
+    "status": "ativo",
+    "ativo": true,
+    "despesasVinculadas": [],
+    "historico": [
+      { "data": "2025-09-01", "acao": "Cadastro de fornecedor", "executor": "Fernanda Lima", "tipo": "manual" },
+      { "data": "2025-09-01", "acao": "CPF validado via Receita Federal", "executor": "Automação API", "tipo": "api" }
+    ]
   }
 ]

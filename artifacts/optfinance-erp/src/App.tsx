@@ -18,6 +18,7 @@ import NovoClientePage from './pages/Clientes/NovoCliente.jsx'
 import ColaboradoresPage from './pages/Colaboradores/index.jsx'
 import NovoColaboradorPage from './pages/Colaboradores/NovoColaborador.jsx'
 import FornecedoresPage from './pages/Fornecedores/index.jsx'
+import NovoFornecedorPage from './pages/Fornecedores/NovoFornecedor.jsx'
 import NotasFiscaisPage from './pages/NotasFiscais/index.jsx'
 import DrePage from './pages/DRE/index.jsx'
 import ForecastPage from './pages/Forecast/index.jsx'
@@ -56,6 +57,7 @@ function Router() {
       <Route path="/clientes"               component={pr(ClientesPage, 'clientes')} />
       <Route path="/colaboradores/novo"      component={pr(NovoColaboradorPage, 'colaboradores')} />
       <Route path="/colaboradores"          component={pr(ColaboradoresPage, 'colaboradores')} />
+      <Route path="/fornecedores/novo"       component={pr(NovoFornecedorPage, 'fornecedores')} />
       <Route path="/fornecedores"           component={pr(FornecedoresPage, 'fornecedores')} />
       <Route path="/notas-fiscais"          component={pr(NotasFiscaisPage, 'notas-fiscais')} />
       <Route path="/dre"                    component={pr(DrePage, 'dre')} />
