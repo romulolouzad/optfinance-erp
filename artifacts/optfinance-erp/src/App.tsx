@@ -14,6 +14,7 @@ import DetalheVendaPage from './pages/Vendas/DetalheVenda.jsx'
 import ParcelasPage from './pages/Parcelas/index.jsx'
 import ComissoesPage from './pages/Comissoes/index.jsx'
 import ClientesPage from './pages/Clientes/index.jsx'
+import NovoClientePage from './pages/Clientes/NovoCliente.jsx'
 import ColaboradoresPage from './pages/Colaboradores/index.jsx'
 import FornecedoresPage from './pages/Fornecedores/index.jsx'
 import NotasFiscaisPage from './pages/NotasFiscais/index.jsx'
@@ -50,6 +51,7 @@ function Router() {
       <Route path="/vendas/:id"             component={pr(DetalheVendaPage, 'vendas')} />
       <Route path="/parcelas"               component={pr(ParcelasPage, 'parcelas')} />
       <Route path="/comissoes"              component={pr(ComissoesPage, 'comissoes')} />
+      <Route path="/clientes/novo"           component={pr(NovoClientePage, 'clientes')} />
       <Route path="/clientes"               component={pr(ClientesPage, 'clientes')} />
       <Route path="/colaboradores"          component={pr(ColaboradoresPage, 'colaboradores')} />
       <Route path="/fornecedores"           component={pr(FornecedoresPage, 'fornecedores')} />

@@ -5,9 +5,21 @@
     "cnpj": "45.678.901/0001-23",
     "nomeFantasia": "AMT Engenharia",
     "centroCustoId": "CC001",
+    "tipoPessoa": "PJ",
+    "status": "ativo",
+    "contratos": [
+      { "id": "#C102", "tipo": "Manutenção", "valor": 12400.00, "status": "VIGENTE" },
+      { "id": "#C115", "tipo": "Consultoria", "valor": 45000.00, "status": "VIGENTE" },
+      { "id": "#C098", "tipo": "Locação", "valor": 2850.00, "status": "PENDENTE" }
+    ],
     "contratosVinculados": [
       { "id": "CTR001", "numero": "0038", "valorTotal": 240000.00, "situacao": "ativa" },
       { "id": "CTR003", "numero": "0041", "valorTotal": 85000.00, "situacao": "encerrada" }
+    ],
+    "historico": [
+      { "data": "2024-03-10", "acao": "Cadastro de cliente", "usuario": "Admin" },
+      { "data": "2024-06-15", "acao": "Atualização de dados cadastrais", "usuario": "Carlos Mota" },
+      { "data": "2025-01-20", "acao": "Contrato #C115 vinculado", "usuario": "Admin" }
     ]
   },
   {
@@ -16,8 +28,18 @@
     "cnpj": "56.789.012/0001-34",
     "nomeFantasia": "Nexus Tech",
     "centroCustoId": "CC002",
+    "tipoPessoa": "PJ",
+    "status": "ativo",
+    "contratos": [
+      { "id": "#C139", "tipo": "Consultoria", "valor": 180000.00, "status": "VIGENTE" },
+      { "id": "#C144", "tipo": "Manutenção", "valor": 8500.00, "status": "PENDENTE" }
+    ],
     "contratosVinculados": [
       { "id": "CTR002", "numero": "0039", "valorTotal": 180000.00, "situacao": "ativa" }
+    ],
+    "historico": [
+      { "data": "2024-01-05", "acao": "Cadastro de cliente", "usuario": "Admin" },
+      { "data": "2024-09-12", "acao": "Contrato #C139 renovado", "usuario": "Fernanda Lima" }
     ]
   },
   {
@@ -26,8 +48,17 @@
     "cnpj": "67.890.123/0001-45",
     "nomeFantasia": "Pharmavida",
     "centroCustoId": "CC001",
+    "tipoPessoa": "PJ",
+    "status": "ativo",
+    "contratos": [
+      { "id": "#C160", "tipo": "Locação", "valor": 320000.00, "status": "VIGENTE" }
+    ],
     "contratosVinculados": [
       { "id": "CTR004", "numero": "0042", "valorTotal": 320000.00, "situacao": "ativa" }
+    ],
+    "historico": [
+      { "data": "2023-11-20", "acao": "Cadastro de cliente", "usuario": "Admin" },
+      { "data": "2025-02-28", "acao": "Status alterado para Ativo", "usuario": "Admin" }
     ]
   },
   {
@@ -36,7 +67,14 @@
     "cnpj": "78.901.234/0001-56",
     "nomeFantasia": "Horizonte Verde",
     "centroCustoId": "CC004",
-    "contratosVinculados": []
+    "tipoPessoa": "PJ",
+    "status": "inativo",
+    "contratos": [],
+    "contratosVinculados": [],
+    "historico": [
+      { "data": "2024-05-03", "acao": "Cadastro de cliente", "usuario": "Admin" },
+      { "data": "2024-12-01", "acao": "Status alterado para Inativo", "usuario": "Admin" }
+    ]
   },
   {
     "id": "CLI005",
@@ -44,8 +82,18 @@
     "cnpj": "89.012.345/0001-67",
     "nomeFantasia": "Digital Minds",
     "centroCustoId": "CC002",
+    "tipoPessoa": "PJ",
+    "status": "ativo",
+    "contratos": [
+      { "id": "#C175", "tipo": "Consultoria", "valor": 96000.00, "status": "VIGENTE" },
+      { "id": "#C183", "tipo": "Manutenção", "valor": 14200.00, "status": "PENDENTE" }
+    ],
     "contratosVinculados": [
       { "id": "CTR005", "numero": "0043", "valorTotal": 96000.00, "situacao": "projecao" }
+    ],
+    "historico": [
+      { "data": "2024-07-14", "acao": "Cadastro de cliente", "usuario": "Carlos Mota" },
+      { "data": "2025-03-10", "acao": "Contrato #C183 vinculado", "usuario": "Admin" }
     ]
   },
   {
@@ -54,8 +102,16 @@
     "cnpj": "90.123.456/0001-78",
     "nomeFantasia": "Metalúrgica SP",
     "centroCustoId": "CC004",
+    "tipoPessoa": "PJ",
+    "status": "ativo",
+    "contratos": [
+      { "id": "#C191", "tipo": "Locação", "valor": 64000.00, "status": "VIGENTE" }
+    ],
     "contratosVinculados": [
       { "id": "CTR006", "numero": "0044", "valorTotal": 64000.00, "situacao": "ativa" }
+    ],
+    "historico": [
+      { "data": "2024-02-18", "acao": "Cadastro de cliente", "usuario": "Admin" }
     ]
   },
   {
@@ -64,7 +120,14 @@
     "cnpj": "01.234.567/0001-89",
     "nomeFantasia": "InnovaAgri",
     "centroCustoId": "CC003",
-    "contratosVinculados": []
+    "tipoPessoa": "PJ",
+    "status": "inativo",
+    "contratos": [],
+    "contratosVinculados": [],
+    "historico": [
+      { "data": "2023-08-30", "acao": "Cadastro de cliente", "usuario": "Admin" },
+      { "data": "2024-10-05", "acao": "Status alterado para Inativo", "usuario": "Fernanda Lima" }
+    ]
   },
   {
     "id": "CLI008",
@@ -72,8 +135,18 @@
     "cnpj": "12.345.678/0002-71",
     "nomeFantasia": "Palmares",
     "centroCustoId": "CC001",
+    "tipoPessoa": "PJ",
+    "status": "ativo",
+    "contratos": [
+      { "id": "#C205", "tipo": "Manutenção", "valor": 158000.00, "status": "VIGENTE" },
+      { "id": "#C211", "tipo": "Consultoria", "valor": 32000.00, "status": "PENDENTE" }
+    ],
     "contratosVinculados": [
       { "id": "CTR007", "numero": "0045", "valorTotal": 158000.00, "situacao": "encerrada" }
+    ],
+    "historico": [
+      { "data": "2024-04-22", "acao": "Cadastro de cliente", "usuario": "Admin" },
+      { "data": "2025-01-08", "acao": "Contrato #C211 vinculado", "usuario": "Carlos Mota" }
     ]
   },
   {
@@ -82,8 +155,16 @@
     "cnpj": "23.456.789/0001-90",
     "nomeFantasia": "Saúde Total",
     "centroCustoId": "CC001",
+    "tipoPessoa": "PJ",
+    "status": "ativo",
+    "contratos": [
+      { "id": "#C220", "tipo": "Consultoria", "valor": 72000.00, "status": "VIGENTE" }
+    ],
     "contratosVinculados": [
       { "id": "CTR008", "numero": "0046", "valorTotal": 72000.00, "situacao": "ativa" }
+    ],
+    "historico": [
+      { "data": "2024-06-01", "acao": "Cadastro de cliente", "usuario": "Admin" }
     ]
   },
   {
@@ -92,6 +173,12 @@
     "cnpj": "34.567.890/0001-01",
     "nomeFantasia": "LogBrasil",
     "centroCustoId": "CC004",
-    "contratosVinculados": []
+    "tipoPessoa": "PJ",
+    "status": "ativo",
+    "contratos": [],
+    "contratosVinculados": [],
+    "historico": [
+      { "data": "2025-01-15", "acao": "Cadastro de cliente", "usuario": "Admin" }
+    ]
   }
 ]
