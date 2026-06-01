@@ -1,14 +1,8 @@
 import { createContext, useContext, useState } from 'react'
 import { temPermissao } from '../utils/permissoes'
+import { estadoInicial } from './auth-defaults'
 
 const AuthContext = createContext(null)
-
-export const estadoInicial = {
-  usuario: 'Admin User',
-  email: 'admin@optsolv.com',
-  cargo: 'Finance Director',
-  perfil: 'admin',
-}
 
 export function AuthProvider({ children }) {
   const [autenticado, setAutenticado] = useState(true)

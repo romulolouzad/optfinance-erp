@@ -1,10 +1,9 @@
 import { useState, useMemo } from 'react'
-import { Search } from 'lucide-react'
 import PageHeader from '../../components/shared/PageHeader'
 import FilterBar from '../../components/shared/FilterBar'
 import Pagination from '../../components/shared/Pagination'
 import StatusBadge from '../../components/shared/StatusBadge'
-import { historico } from '../../data/index'
+import { getHistorico } from '../../data/historico-store'
 import { cn } from '../../utils/cn'
 
 const PAGE_SIZE = 15
@@ -15,10 +14,13 @@ export default function HistoricoPage() {
   const [tipoFiltro, setTipoFiltro] = useState('')
   const [page, setPage] = useState(1)
 
+  const historico = getHistorico()
+
   const entidades = [...new Set(historico.map(h => h.entidade))].sort()
 
   const filtered = useMemo(() => {
-    return historico.filter(h => {
+    const all = getHistorico()
+    return all.filter(h => {
       const matchSearch = !search || h.descricaoCompleta.toLowerCase().includes(search.toLowerCase()) || h.usuario.toLowerCase().includes(search.toLowerCase())
       const matchEntidade = !entidadeFiltro || h.entidade === entidadeFiltro
       const matchTipo = !tipoFiltro || h.tipoEvento === tipoFiltro

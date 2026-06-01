@@ -5,7 +5,7 @@ import {
   LayoutDashboard, ShoppingCart, CreditCard, Percent, Users,
   UserCheck, Truck, FileText, BarChart2, TrendingUp, Target,
   Activity, Landmark, Building2, PieChart, BookOpen, Clock,
-  Settings, HelpCircle, LogOut, WalletCards
+  Settings, HelpCircle, LogOut, WalletCards, UserCog
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -51,6 +51,7 @@ const NAV_GROUPS = [
       { label: 'Relatórios', href: '/relatorios', icon: PieChart, recurso: 'relatorios' },
       { label: 'Budget', href: '/budget', icon: BookOpen, recurso: 'budget' },
       { label: 'Histórico', href: '/historico', icon: Clock, recurso: 'historico' },
+      { label: 'Usuários', href: '/usuarios', icon: UserCog, recurso: 'usuarios' },
       { label: 'Configurações', href: '/configuracoes', icon: Settings, recurso: 'configuracoes' },
     ]
   },

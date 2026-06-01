@@ -2,7 +2,8 @@ import { useState, useMemo } from 'react'
 import { Link, useLocation } from 'wouter'
 import { AlertTriangle, ChevronRight, Info } from 'lucide-react'
 import PageHeader from '../../components/shared/PageHeader'
-import { clientes, colaboradores, historico, configuracoes } from '../../data/index'
+import { clientes, colaboradores, historico } from '../../data/index'
+import { getImpostos } from '../../data/configuracoes-store'
 import { vendas, addVenda, getNextVendaId, getNextVendaNumero, detectDuplicatas } from '../../data/vendas-store'
 import { toast } from '../../hooks/use-toast'
 import { useAuth } from '../../context/AuthContext'
@@ -68,8 +69,6 @@ const DIAS_GERACAO = [
   { value: 'ultimo', label: 'Último dia' },
 ]
 
-const IMPOSTOS_PADRAO = configuracoes?.impostos || { iss: 2.0, pis: 0.65, cofins: 3.0, csll: 1.0, irpj: 1.5 }
-
 export default function NovaVenda() {
   const [, navigate] = useLocation()
   const { usuario } = useAuth()
@@ -91,7 +90,7 @@ export default function NovaVenda() {
     qtdParcelas: '',
     periodicidade: 'mensal',
     dataInicio: '',
-    impostos: { ...IMPOSTOS_PADRAO },
+    impostos: { ...getImpostos() },
     recorrencia: {
       intervalo: 1,
       unidade: 'meses',
