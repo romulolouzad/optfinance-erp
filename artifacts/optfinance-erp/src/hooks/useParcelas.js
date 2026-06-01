@@ -119,6 +119,89 @@ export function registrarPagamentoGlobal({
   return parcela
 }
 
+// ─── Commission payment mutation ──────────────────────────────────────────────
+
+export function registrarPagamentoComissao({
+  comissaoId, vendedor, clienteNome, parcelaNumero, valor, dataPagamento, contaId, usuario,
+}) {
+  const hoje = dataPagamento || new Date().toISOString().slice(0, 10)
+
+  // Saída in FluxoDeCaixa
+  const novaMovId = `MOV-COM-${comissaoId}-${Date.now()}`
+  _movimentacoes = [
+    {
+      id: novaMovId,
+      data: hoje,
+      descricao: `Comissão paga — ${vendedor} — ${clienteNome} Parcela ${parcelaNumero}`,
+      categoria: 'Comissão',
+      centroCusto: 'Comercial',
+      conta: contaId || 'CF001',
+      tipo: 'saida',
+      entrada: null,
+      saida: valor,
+      saldo: null,
+      origem: comissaoId,
+    },
+    ..._movimentacoes,
+  ]
+
+  // Audit historico entry
+  const novoHisId = `HIS-COM-${comissaoId}-${Date.now()}`
+  _historico = [
+    {
+      id: novoHisId,
+      dataHora: new Date().toISOString(),
+      entidade: 'Comissão',
+      entidadeId: comissaoId,
+      tipoEvento: 'normal',
+      acao: 'Pagamento de comissão',
+      usuario: usuario || 'Admin User',
+      usuarioId: 'COL001',
+      descricaoCompleta: `Comissão paga para ${vendedor} — ${clienteNome} Parcela ${parcelaNumero} — R$ ${valor.toFixed(2)}`,
+      camposAlterados: [
+        { campo: 'status', valorAnterior: 'pronta', novoValor: 'paga' },
+        { campo: 'dataPagamento', valorAnterior: null, novoValor: hoje },
+      ],
+      ipCliente: '192.168.1.100',
+      empresa: 'Optsolv',
+      filial: 'São Paulo',
+    },
+    ..._historico,
+  ]
+
+  notifyMov()
+}
+
+// ─── Commission percentage adjustment (ação crítica) ──────────────────────────
+
+export function registrarAjusteComissao({
+  comissaoId, vendedor, clienteNome, parcelaNumero,
+  percentualAnterior, novoPercentual, novoValor, motivo, usuario,
+}) {
+  const novoHisId = `HIS-ADJ-${comissaoId}-${Date.now()}`
+  _historico = [
+    {
+      id: novoHisId,
+      dataHora: new Date().toISOString(),
+      entidade: 'Comissão',
+      entidadeId: comissaoId,
+      tipoEvento: 'acao-critica',
+      acao: 'Ajuste de percentual de comissão',
+      usuario: usuario || 'Admin User',
+      usuarioId: 'COL001',
+      descricaoCompleta: `Percentual de comissão ajustado de ${percentualAnterior}% para ${novoPercentual}% — ${vendedor} — ${clienteNome} Parcela ${parcelaNumero}. Motivo: ${motivo}`,
+      camposAlterados: [
+        { campo: 'percentual', valorAnterior: percentualAnterior, novoValor: novoPercentual },
+        { campo: 'valor', valorAnterior: null, novoValor },
+      ],
+      ipCliente: '192.168.1.100',
+      empresa: 'Optsolv',
+      filial: 'São Paulo',
+    },
+    ..._historico,
+  ]
+}
+
 // ─── Fatura payment mutation ───────────────────────────────────────────────────
 
 export function registrarPagamentoFatura({

@@ -19,7 +19,6 @@ const NAV_GROUPS = [
     section: 'COMERCIAL',
     items: [
       { label: 'Vendas & Contratos', href: '/vendas', icon: ShoppingCart, recurso: 'vendas' },
-      { label: 'Comissões', href: '/comissoes', icon: Percent, recurso: 'comissoes' },
       { label: 'Clientes', href: '/clientes', icon: Users, recurso: 'clientes' },
     ]
   },
@@ -29,6 +28,7 @@ const NAV_GROUPS = [
       { label: 'Colaboradores', href: '/colaboradores', icon: UserCheck, recurso: 'colaboradores' },
       { label: 'Fornecedores', href: '/fornecedores', icon: Truck, recurso: 'fornecedores' },
       { label: 'Notas Fiscais', href: '/notas-fiscais', icon: FileText, recurso: 'notas-fiscais' },
+      { label: 'Comissões', href: '/comissoes', icon: Percent, recurso: 'comissoes' },
     ]
   },
   {
