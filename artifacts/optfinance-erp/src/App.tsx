@@ -27,6 +27,7 @@ import RelatoriosPage from './pages/Relatorios/index.jsx'
 import BudgetPage from './pages/Budget/index.jsx'
 import HistoricoPage from './pages/Historico/index.jsx'
 import ConfiguracoesPage from './pages/Configuracoes/index.jsx'
+import CartaoCorporativoPage from './pages/CartaoCorporativo/index.jsx'
 
 const queryClient = new QueryClient()
 
@@ -64,6 +65,7 @@ function Router() {
       <Route path="/budget"                 component={pr(BudgetPage, 'budget')} />
       <Route path="/historico"              component={pr(HistoricoPage, 'historico')} />
       <Route path="/configuracoes"          component={pr(ConfiguracoesPage, 'configuracoes')} />
+      <Route path="/cartao-corporativo"     component={pr(CartaoCorporativoPage, 'cartao-corporativo')} />
     </Switch>
   )
 }

@@ -5,7 +5,7 @@ import {
   LayoutDashboard, ShoppingCart, CreditCard, Percent, Users,
   UserCheck, Truck, FileText, BarChart2, TrendingUp, Target,
   Activity, Landmark, Building2, PieChart, BookOpen, Clock,
-  Settings, HelpCircle, LogOut
+  Settings, HelpCircle, LogOut, WalletCards
 } from 'lucide-react'
 
 const NAV_GROUPS = [
@@ -42,6 +42,7 @@ const NAV_GROUPS = [
       { label: 'Despesas', href: '/despesas', icon: Landmark, recurso: 'despesas' },
       { label: 'Empréstimos', href: '/emprestimos', icon: Landmark, recurso: 'emprestimos' },
       { label: 'Contas Financeiras', href: '/contas-financeiras', icon: Building2, recurso: 'contas-financeiras' },
+      { label: 'Cartão Corporativo', href: '/cartao-corporativo', icon: CreditCard, recurso: 'cartao-corporativo' },
     ]
   },
   {

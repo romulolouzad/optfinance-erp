@@ -18,6 +18,7 @@ export const PERMISSOES = {
     'budget':             ['visualizar', 'editar', 'exportar'],
     'historico':          ['visualizar', 'exportar'],
     'configuracoes':      ['visualizar', 'editar'],
+    'cartao-corporativo': ['visualizar', 'registrar-pagamento'],
     'dashboard':          ['visualizar'],
   },
   financeiro: {
@@ -38,6 +39,7 @@ export const PERMISSOES = {
     'relatorios':         ['visualizar', 'criar', 'exportar', 'agendar'],
     'budget':             ['visualizar', 'editar', 'exportar'],
     'historico':          ['visualizar', 'exportar'],
+    'cartao-corporativo': ['visualizar', 'registrar-pagamento'],
     'dashboard':          ['visualizar'],
   },
   visualizacao: {
@@ -59,6 +61,7 @@ export const PERMISSOES = {
     'budget':             ['visualizar'],
     'historico':          ['visualizar'],
     'configuracoes':      ['visualizar'],
+    'cartao-corporativo': ['visualizar'],
     'dashboard':          ['visualizar'],
   },
 }

@@ -118,3 +118,52 @@ export function registrarPagamentoGlobal({
 
   return parcela
 }
+
+// ─── Fatura payment mutation ───────────────────────────────────────────────────
+
+export function registrarPagamentoFatura({
+  faturaId, nomeCartao, mesReferencia, valorPago, dataPagamento,
+  contaDebitadaId, nomeContaDebitada, usuario,
+}) {
+  const novaMovId = `MOV-FAT-${faturaId}-${Date.now()}`
+  _movimentacoes = [
+    ..._movimentacoes,
+    {
+      id: novaMovId,
+      data: dataPagamento,
+      descricao: `Pagamento fatura ${nomeCartao} ${mesReferencia}`,
+      categoria: 'Pagamento de Fatura',
+      centroCusto: '',
+      conta: nomeContaDebitada,
+      tipo: 'saida',
+      entrada: null,
+      saida: Number(valorPago),
+      saldo: null,
+      origem: faturaId,
+    },
+  ]
+
+  const novoHisId = `HIS-FAT-${faturaId}-${Date.now()}`
+  _historico = [
+    {
+      id: novoHisId,
+      dataHora: new Date().toISOString(),
+      entidade: 'cartao-corporativo',
+      entidadeId: faturaId,
+      tipoEvento: 'normal',
+      acao: 'Pagamento da fatura do cartão',
+      usuario: usuario || 'Admin User',
+      usuarioId: 'COL001',
+      descricaoCompleta: `Pagamento da fatura do cartão ${nomeCartao} referente a ${mesReferencia} — R$ ${Number(valorPago).toFixed(2)}`,
+      camposAlterados: [
+        { campo: 'status', valorAnterior: 'em-aberto', novoValor: 'pago' },
+      ],
+      ipCliente: '192.168.1.100',
+      empresa: 'Optsolv',
+      filial: 'São Paulo',
+    },
+    ..._historico,
+  ]
+
+  notifyMov()
+}
