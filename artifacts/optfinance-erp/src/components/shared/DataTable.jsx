@@ -38,7 +38,8 @@ export default function DataTable({
     : data
 
   return (
-    <div className={cn('overflow-x-auto rounded-xl bg-surface-container-lowest shadow-sm', className)}>
+    <div className={cn('overflow-x-auto rounded-xl bg-surface-container-lowest', className)}
+      style={{ boxShadow: '0 1px 8px -2px rgba(157,67,0,0.06)' }}>
       <table className="w-full text-sm border-collapse">
         <thead>
           <tr className="bg-surface-container">
@@ -75,12 +76,13 @@ export default function DataTable({
               </td>
             </tr>
           ) : (
-            sorted.map(row => (
+            sorted.map((row, rowIdx) => (
               <tr
                 key={row[keyField]}
                 onClick={() => onRowClick && onRowClick(row)}
                 className={cn(
                   'transition-colors',
+                  rowIdx % 2 === 1 ? 'bg-surface-container-low/40' : 'bg-surface-container-lowest',
                   onRowClick ? 'cursor-pointer hover:bg-row-hover' : 'hover:bg-surface-container-low'
                 )}
               >
@@ -88,7 +90,7 @@ export default function DataTable({
                   <td
                     key={col.accessor || col.header}
                     className={cn(
-                      'px-4 py-3 text-on-surface border-t border-surface-container',
+                      'px-4 py-3 text-on-surface',
                       col.align === 'right' ? 'text-right' : '',
                       col.align === 'center' ? 'text-center' : '',
                       col.className
