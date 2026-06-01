@@ -19,7 +19,6 @@ const NAV_GROUPS = [
     section: 'COMERCIAL',
     items: [
       { label: 'Vendas & Contratos', href: '/vendas', icon: ShoppingCart, recurso: 'vendas' },
-      { label: 'Parcelas', href: '/parcelas', icon: CreditCard, recurso: 'parcelas' },
       { label: 'Comissões', href: '/comissoes', icon: Percent, recurso: 'comissoes' },
       { label: 'Clientes', href: '/clientes', icon: Users, recurso: 'clientes' },
     ]
@@ -39,6 +38,7 @@ const NAV_GROUPS = [
       { label: 'Forecast', href: '/forecast', icon: TrendingUp, recurso: 'forecast' },
       { label: 'Metas', href: '/metas', icon: Target, recurso: 'metas' },
       { label: 'Fluxo de Caixa', href: '/fluxo-de-caixa', icon: Activity, recurso: 'fluxo-de-caixa' },
+      { label: 'Parcelas & Recebimentos', href: '/parcelas', icon: CreditCard, recurso: 'parcelas' },
       { label: 'Despesas', href: '/despesas', icon: Landmark, recurso: 'despesas' },
       { label: 'Empréstimos', href: '/emprestimos', icon: Landmark, recurso: 'emprestimos' },
       { label: 'Contas Financeiras', href: '/contas-financeiras', icon: Building2, recurso: 'contas-financeiras' },

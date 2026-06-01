@@ -5,13 +5,14 @@ import DataTable from '../../components/shared/DataTable'
 import FilterBar from '../../components/shared/FilterBar'
 import Pagination from '../../components/shared/Pagination'
 import StatusBadge from '../../components/shared/StatusBadge'
-import { movimentacoes } from '../../data/index'
+import { useMovimentacoes } from '../../hooks/useParcelas'
 import { ArrowUpRight, ArrowDownRight, CandlestickChart } from 'lucide-react'
 
 const fmt = (v) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v)
 const PAGE_SIZE = 12
 
 export default function FluxoDeCaixaPage() {
+  const movimentacoes = useMovimentacoes()
   const [search, setSearch] = useState('')
   const [tipoFiltro, setTipoFiltro] = useState('')
   const [page, setPage] = useState(1)
@@ -22,7 +23,7 @@ export default function FluxoDeCaixaPage() {
       const matchTipo = !tipoFiltro || m.tipo === tipoFiltro
       return matchSearch && matchTipo
     })
-  }, [search, tipoFiltro])
+  }, [movimentacoes, search, tipoFiltro])
 
   const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
 
