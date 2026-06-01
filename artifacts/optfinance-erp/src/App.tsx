@@ -21,6 +21,8 @@ import MetasPage from './pages/Metas/index.jsx'
 import DespesasPage from './pages/Despesas/index.jsx'
 import EmprestimosPage from './pages/Emprestimos/index.jsx'
 import ContasFinanceirasPage from './pages/ContasFinanceiras/index.jsx'
+import NovaContaPage from './pages/ContasFinanceiras/NovaConta.jsx'
+import ConciliacaoPage from './pages/ContasFinanceiras/Conciliacao/index.jsx'
 import RelatoriosPage from './pages/Relatorios/index.jsx'
 import BudgetPage from './pages/Budget/index.jsx'
 import HistoricoPage from './pages/Historico/index.jsx'
@@ -55,8 +57,9 @@ function Router() {
       <Route path="/fluxo-de-caixa"         component={pr(FluxoDeCaixaPage, 'fluxo-de-caixa')} />
       <Route path="/despesas"               component={pr(DespesasPage, 'despesas')} />
       <Route path="/emprestimos"            component={pr(EmprestimosPage, 'emprestimos')} />
-      <Route path="/contas-financeiras"     component={pr(ContasFinanceirasPage, 'contas-financeiras')} />
-      <Route path="/contas-financeiras/nova" component={pr(ContasFinanceirasPage, 'contas-financeiras')} />
+      <Route path="/contas-financeiras"            component={pr(ContasFinanceirasPage, 'contas-financeiras')} />
+      <Route path="/contas-financeiras/nova"       component={pr(NovaContaPage, 'contas-financeiras')} />
+      <Route path="/contas-financeiras/conciliacao" component={pr(ConciliacaoPage, 'contas-financeiras')} />
       <Route path="/relatorios"             component={pr(RelatoriosPage, 'relatorios')} />
       <Route path="/budget"                 component={pr(BudgetPage, 'budget')} />
       <Route path="/historico"              component={pr(HistoricoPage, 'historico')} />
