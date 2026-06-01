@@ -11,6 +11,7 @@ import colaboradores from './colaboradores.json'
 import fornecedores from './fornecedores.json'
 import historico from './historico.json'
 import faturasCartao from './faturas-cartao.json'
+import comissoes from './comissoes.json'
 
 export {
   contasFinanceiras,
@@ -26,6 +27,7 @@ export {
   fornecedores,
   historico,
   faturasCartao,
+  comissoes,
 }
 
 // ===== Filter helpers =====

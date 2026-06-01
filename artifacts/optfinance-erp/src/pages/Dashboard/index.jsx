@@ -1,219 +1,206 @@
-import { useState } from 'react'
-import {
-  TrendingUp, TrendingDown, DollarSign, AlertTriangle,
-  Clock, Landmark, PiggyBank, ChevronRight, ArrowUpRight, ArrowDownRight
-} from 'lucide-react'
+import { TrendingUp, DollarSign, CheckCircle, Award, BarChart2 } from 'lucide-react'
 import PageHeader from '../../components/shared/PageHeader'
-import SummaryCards from '../../components/shared/SummaryCards'
-import StatusBadge from '../../components/shared/StatusBadge'
-import { getSummaryFinanceiro, parcelas, despesas, movimentacoes } from '../../data/index'
-import { useAuth } from '../../context/AuthContext'
-import { Link } from 'wouter'
+import GraficoReceita from './GraficoReceita'
+import GraficoClientes from './GraficoClientes'
+import GraficoStatus from './GraficoStatus'
+import GraficoMetas from './GraficoMetas'
+import vendas from '../../data/vendas.json'
+import parcelas from '../../data/parcelas.json'
+import despesas from '../../data/despesas.json'
+import comissoes from '../../data/comissoes.json'
 
-const fmt = (v) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(v)
+const MES_ATUAL  = '2026-05'
+const MES_ANT    = '2026-04'
 
-function saudacao(usuario) {
-  const h = new Date().getHours()
-  const nome = usuario?.usuario || 'usuário'
-  if (h < 12) return `Bom dia, ${nome}`
-  if (h < 18) return `Boa tarde, ${nome}`
-  return `Boa noite, ${nome}`
+const fmt = (v) =>
+  new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(v)
+
+function pctDelta(current, prior) {
+  if (!prior || prior === 0) return null
+  return Math.round(((current - prior) / prior) * 100)
+}
+
+function calcKpis() {
+  const vendasAtivas = vendas.filter(v => v.situacao === 'ativa')
+  const totalAtivas  = vendasAtivas.length
+  const faturamentoBruto = vendasAtivas.reduce((s, v) => s + v.valorTotal, 0)
+
+  const vendasAtivasAnt  = vendas.filter(v => v.situacao === 'ativa' && v.competencia <= MES_ANT)
+  const totalAtivasAnt   = vendasAtivasAnt.length
+  const fatBrutoAnt      = vendasAtivasAnt.reduce((s, v) => s + v.valorTotal, 0)
+
+  const recebidoMes = parcelas
+    .filter(p => p.situacao === 'paga' && p.recebimento && p.recebimento.startsWith(MES_ATUAL))
+    .reduce((s, p) => s + p.valorRecebido, 0)
+
+  const recebidoMesAnt = parcelas
+    .filter(p => p.situacao === 'paga' && p.recebimento && p.recebimento.startsWith(MES_ANT))
+    .reduce((s, p) => s + p.valorRecebido, 0)
+
+  const comissoesPagar    = comissoes
+    .filter(c => c.status === 'pronta' || c.status === 'aguardando-nf')
+    .reduce((s, c) => s + c.valor, 0)
+
+  const comissoesPagarAnt = comissoes
+    .filter(c => (c.status === 'pronta' || c.status === 'aguardando-nf') && c.competencia <= MES_ANT)
+    .reduce((s, c) => s + c.valor, 0)
+
+  const despMes = despesas
+    .filter(d => d.situacao === 'paga' && d.competencia === MES_ATUAL)
+    .reduce((s, d) => s + d.valor, 0)
+
+  const despAnt = despesas
+    .filter(d => d.situacao === 'paga' && d.competencia === MES_ANT)
+    .reduce((s, d) => s + d.valor, 0)
+
+  const margem    = recebidoMes  > 0 ? Math.round(((recebidoMes  - despMes) / recebidoMes)  * 100) : 0
+  const margemAnt = recebidoMesAnt > 0 ? Math.round(((recebidoMesAnt - despAnt) / recebidoMesAnt) * 100) : null
+
+  return {
+    totalAtivas,
+    faturamentoBruto,
+    recebidoMes,
+    comissoesPagar,
+    margem,
+    despMes,
+    deltaAtivas:        pctDelta(totalAtivas, totalAtivasAnt),
+    deltaFaturamento:   pctDelta(faturamentoBruto, fatBrutoAnt),
+    deltaRecebido:      pctDelta(recebidoMes, recebidoMesAnt),
+    deltaComissoes:     pctDelta(comissoesPagar, comissoesPagarAnt),
+    deltaMargem:        margemAnt !== null ? margem - margemAnt : null,
+  }
+}
+
+function DeltaTag({ pct, positiveGood = true, isPoints = false }) {
+  if (pct === null || pct === undefined) return null
+  const isPos = pct >= 0
+  const color = positiveGood
+    ? (isPos ? 'text-green-700 bg-green-50' : 'text-red-700 bg-red-50')
+    : (isPos ? 'text-red-700 bg-red-50' : 'text-green-700 bg-green-50')
+  const sign = isPos ? '+' : ''
+  const suffix = isPoints ? 'pp' : '%'
+  return (
+    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full flex-shrink-0 ${color}`}>
+      {sign}{pct}{suffix}
+    </span>
+  )
+}
+
+function KpiCard({ icon: Icon, label, value, delta, deltaPoints, positiveGood = true, deltaLabel, iconBg, iconColor }) {
+  return (
+    <div className="bg-surface-container-lowest rounded-xl p-5 shadow-sm flex flex-col gap-3">
+      <div className="flex items-start justify-between gap-2">
+        <div
+          className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0"
+          style={{ backgroundColor: iconBg }}
+        >
+          <Icon size={18} style={{ color: iconColor }} />
+        </div>
+        {deltaPoints !== undefined && deltaPoints !== null
+          ? <DeltaTag pct={deltaPoints} positiveGood={positiveGood} isPoints />
+          : <DeltaTag pct={delta} positiveGood={positiveGood} />
+        }
+      </div>
+      <div>
+        <p className="text-[10px] font-bold uppercase tracking-wider text-text-muted mb-1">{label}</p>
+        <p className="text-2xl font-bold text-on-surface leading-none">{value}</p>
+      </div>
+      {deltaLabel && (
+        <p className="text-[10px] text-text-muted leading-tight">{deltaLabel}</p>
+      )}
+    </div>
+  )
 }
 
 export default function DashboardPage() {
-  const { usuario } = useAuth()
-  const summary = getSummaryFinanceiro()
-
-  const cards = [
-    {
-      title: 'Saldo Total',
-      value: summary.saldoTotal,
-      type: 'currency',
-      icon: Landmark,
-      trend: 1,
-      trendLabel: '+8,2% vs mês anterior',
-    },
-    {
-      title: 'Receitas — Maio/26',
-      value: summary.receitasMes,
-      type: 'currency',
-      icon: TrendingUp,
-      trend: 1,
-      trendLabel: '+3,1% vs Abr',
-      accent: '#2E7D32',
-    },
-    {
-      title: 'Despesas — Maio/26',
-      value: summary.despesasMes,
-      type: 'currency',
-      icon: TrendingDown,
-      trend: -1,
-      trendLabel: '-1,4% vs Abr',
-      accent: '#C62828',
-    },
-    {
-      title: 'A Receber',
-      value: summary.aReceber,
-      type: 'currency',
-      icon: DollarSign,
-      trend: 0,
-      trendLabel: `${parcelas.filter(p => p.situacao === 'em-aberto').length} parcelas pendentes`,
-      accent: '#F57F17',
-    },
-  ]
-
-  const cardsRow2 = [
-    {
-      title: 'A Pagar',
-      value: summary.aPagar,
-      type: 'currency',
-      icon: Clock,
-      trend: 0,
-      trendLabel: `${despesas.filter(d => d.situacao === 'prevista').length} despesas previstas`,
-      accent: '#F97316',
-    },
-    {
-      title: 'Parcelas Vencidas',
-      value: summary.parcelasVencidas,
-      type: 'number',
-      icon: AlertTriangle,
-      trend: -1,
-      trendLabel: 'Requer atenção imediata',
-      accent: '#C62828',
-    },
-    {
-      title: 'Resultado Maio/26',
-      value: summary.lucroMes,
-      type: 'currency',
-      icon: PiggyBank,
-      trend: summary.lucroMes > 0 ? 1 : -1,
-      trendLabel: summary.lucroMes > 0 ? 'Margem positiva' : 'Margem negativa',
-      accent: summary.lucroMes > 0 ? '#2E7D32' : '#C62828',
-    },
-    {
-      title: 'Dívida Total',
-      value: summary.saldoDevedor,
-      type: 'currency',
-      icon: Landmark,
-      trend: -1,
-      trendLabel: 'Empréstimos ativos',
-      accent: '#006398',
-    },
-  ]
-
-  // Recent movimentacoes (excluding projected)
-  const recentes = movimentacoes
-    .filter(m => m.tipo !== 'projetado')
-    .sort((a, b) => b.data.localeCompare(a.data))
-    .slice(0, 6)
-
-  // Parcelas vencidas
-  const parcelasVencidas = parcelas.filter(p => p.situacao === 'vencida').slice(0, 4)
-
-  // Upcoming (em-aberto)
-  const proximas = parcelas
-    .filter(p => p.situacao === 'em-aberto')
-    .sort((a, b) => a.vencimento.localeCompare(b.vencimento))
-    .slice(0, 4)
+  const kpis = calcKpis()
 
   return (
-    <div>
-      <PageHeader
-        title={saudacao(usuario)}
-        subtitle="Aqui está o resumo financeiro de hoje — 01 de junho de 2026"
-      />
+    <div className="flex flex-col min-h-full">
+      <div className="flex-1">
+        <PageHeader
+          title="Dashboard"
+          subtitle="Visão geral do negócio"
+        />
 
-      <SummaryCards cards={cards} />
-      <SummaryCards cards={cardsRow2} />
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-2">
-        {/* Movimentações recentes */}
-        <div className="lg:col-span-2 rounded-xl bg-surface-container-lowest shadow-sm overflow-hidden">
-          <div className="flex items-center justify-between px-5 py-4 bg-surface-container">
-            <h3 className="text-sm font-bold text-on-surface">Movimentações Recentes</h3>
-            <Link href="/fluxo-de-caixa">
-              <a className="text-xs font-semibold text-primary-container hover:text-primary flex items-center gap-1">
-                Ver tudo <ChevronRight className="w-3.5 h-3.5" />
-              </a>
-            </Link>
+        <div className="space-y-5 mt-2">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <KpiCard
+              icon={TrendingUp}
+              label="Total de Vendas Ativas"
+              value={kpis.totalAtivas}
+              delta={kpis.deltaAtivas}
+              iconBg="#FFF7ED"
+              iconColor="#F97316"
+              deltaLabel="vs. mês anterior"
+            />
+            <KpiCard
+              icon={DollarSign}
+              label="Faturamento Bruto"
+              value={fmt(kpis.faturamentoBruto)}
+              delta={kpis.deltaFaturamento}
+              iconBg="#F3F4F6"
+              iconColor="#374151"
+              deltaLabel="vs. mês anterior"
+            />
+            <KpiCard
+              icon={CheckCircle}
+              label="Recebido no Mês"
+              value={fmt(kpis.recebidoMes)}
+              delta={kpis.deltaRecebido}
+              iconBg="#F0FDF4"
+              iconColor="#16a34a"
+              deltaLabel="vs. mês anterior"
+            />
+            <KpiCard
+              icon={Award}
+              label="Comissões a Pagar"
+              value={fmt(kpis.comissoesPagar)}
+              delta={kpis.deltaComissoes}
+              positiveGood={false}
+              iconBg="#FFFBEB"
+              iconColor="#D97706"
+              deltaLabel="vs. mês anterior"
+            />
+            <KpiCard
+              icon={BarChart2}
+              label="Margem Média"
+              value={`${kpis.margem}%`}
+              deltaPoints={kpis.deltaMargem}
+              iconBg="#F3F4F6"
+              iconColor="#374151"
+              deltaLabel={`Receita − ${fmt(kpis.despMes)} despesas`}
+            />
           </div>
-          <div className="divide-y divide-surface-container">
-            {recentes.map(mov => (
-              <div key={mov.id} className="flex items-center gap-3 px-5 py-3 hover:bg-row-hover transition-colors">
-                <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 ${mov.tipo === 'entrada' ? 'bg-green-100' : 'bg-red-100'}`}>
-                  {mov.tipo === 'entrada'
-                    ? <ArrowUpRight className="w-3.5 h-3.5 text-green-600" />
-                    : <ArrowDownRight className="w-3.5 h-3.5 text-red-600" />
-                  }
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-on-surface truncate">{mov.descricao}</p>
-                  <p className="text-xs text-text-muted">{mov.categoria} · {mov.conta}</p>
-                </div>
-                <div className="text-right flex-shrink-0">
-                  <p className={`text-sm font-bold ${mov.tipo === 'entrada' ? 'text-green-700' : 'text-error'}`}>
-                    {mov.tipo === 'entrada' ? '+' : '-'}{fmt(mov.entrada ?? mov.saida ?? 0)}
-                  </p>
-                  <p className="text-[10px] text-text-muted">
-                    {new Date(mov.data + 'T00:00:00').toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' })}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Alertas */}
-        <div className="space-y-4">
-          {/* Parcelas vencidas */}
-          <div className="rounded-xl bg-surface-container-lowest shadow-sm overflow-hidden">
-            <div className="flex items-center justify-between px-5 py-4 bg-surface-container">
-              <h3 className="text-sm font-bold text-on-surface flex items-center gap-2">
-                <AlertTriangle className="w-3.5 h-3.5 text-error" />
-                Vencidas
-              </h3>
-              <Link href="/parcelas">
-                <a className="text-xs font-semibold text-primary-container hover:text-primary">Ver mais</a>
-              </Link>
+          <div className="grid grid-cols-1 lg:grid-cols-10 gap-4" style={{ minHeight: 300 }}>
+            <div className="lg:col-span-6">
+              <GraficoReceita />
             </div>
-            {parcelasVencidas.length === 0 ? (
-              <p className="px-5 py-4 text-xs text-text-muted">Nenhuma parcela vencida. 🎉</p>
-            ) : (
-              <div className="divide-y divide-surface-container">
-                {parcelasVencidas.map(p => (
-                  <div key={p.id} className="px-5 py-3">
-                    <p className="text-xs font-semibold text-on-surface truncate">{p.clienteNome}</p>
-                    <p className="text-[10px] text-text-muted">#{p.numero} · Venc. {new Date(p.vencimento + 'T00:00:00').toLocaleDateString('pt-BR')}</p>
-                    <p className="text-xs font-bold text-error mt-0.5">{fmt(p.valorBruto)}</p>
-                  </div>
-                ))}
-              </div>
-            )}
+            <div className="lg:col-span-4">
+              <GraficoClientes />
+            </div>
           </div>
 
-          {/* Próximos recebimentos */}
-          <div className="rounded-xl bg-surface-container-lowest shadow-sm overflow-hidden">
-            <div className="flex items-center justify-between px-5 py-4 bg-surface-container">
-              <h3 className="text-sm font-bold text-on-surface flex items-center gap-2">
-                <Clock className="w-3.5 h-3.5 text-primary-container" />
-                Próximos
-              </h3>
-              <Link href="/parcelas">
-                <a className="text-xs font-semibold text-primary-container hover:text-primary">Ver mais</a>
-              </Link>
+          <div className="grid grid-cols-1 lg:grid-cols-10 gap-4" style={{ minHeight: 280 }}>
+            <div className="lg:col-span-4">
+              <GraficoStatus />
             </div>
-            <div className="divide-y divide-surface-container">
-              {proximas.map(p => (
-                <div key={p.id} className="px-5 py-3">
-                  <p className="text-xs font-semibold text-on-surface truncate">{p.clienteNome}</p>
-                  <p className="text-[10px] text-text-muted">#{p.numero} · {new Date(p.vencimento + 'T00:00:00').toLocaleDateString('pt-BR')}</p>
-                  <p className="text-xs font-bold text-primary-container mt-0.5">{fmt(p.valorBruto)}</p>
-                </div>
-              ))}
+            <div className="lg:col-span-6">
+              <GraficoMetas />
             </div>
           </div>
         </div>
       </div>
+
+      <footer className="mt-10 pt-5 pb-2 border-t border-surface-container-high">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
+          <span className="text-xs text-text-muted font-medium">© 2026 OPTSOLV ERP</span>
+          <a href="#" className="text-xs text-text-muted hover:text-on-surface transition-colors">Privacy Policy</a>
+          <a href="#" className="text-xs text-text-muted hover:text-on-surface transition-colors">Terms of Service</a>
+          <a href="#" className="text-xs text-text-muted hover:text-on-surface transition-colors">System Status</a>
+        </div>
+      </footer>
     </div>
   )
 }

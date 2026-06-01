@@ -1,0 +1,14 @@
+{
+  "receitaMensalProjetada": [
+    { "mes": "2026-01", "label": "Jan", "projetado": 95000 },
+    { "mes": "2026-02", "label": "Fev", "projetado": 140000 },
+    { "mes": "2026-03", "label": "Mar", "projetado": 125000 },
+    { "mes": "2026-04", "label": "Abr", "projetado": 115000 }
+  ],
+  "metas": [
+    { "vendedor": "Ricardo S.",   "meta": 180000, "realizado": 162000 },
+    { "vendedor": "Ana Clara",    "meta": 200000, "realizado": 210000 },
+    { "vendedor": "M. Oliveira",  "meta": 220000, "realizado": 154000 },
+    { "vendedor": "Juliana P.",   "meta": 160000, "realizado": 175000 }
+  ]
+}

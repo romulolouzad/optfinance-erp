@@ -21,7 +21,8 @@ export default function ParcelasPage() {
 
   const filtered = useMemo(() => {
     return parcelas.filter(p => {
-      const matchSearch = !search || p.clienteNome.toLowerCase().includes(search.toLowerCase()) || p.numero.includes(search)
+      if (p.tipo === 'projetado') return false
+      const matchSearch = !search || (p.clienteNome || '').toLowerCase().includes(search.toLowerCase()) || (p.numero || '').includes(search)
       const matchSituacao = !situacaoFiltro || p.situacao === situacaoFiltro
       return matchSearch && matchSituacao
     })
@@ -45,7 +46,7 @@ export default function ParcelasPage() {
     { title: 'Total Recebido', value: totalPago, icon: DollarSign, accent: '#2E7D32', type: 'currency' },
     { title: 'A Receber', value: totalAReceber, icon: Clock, accent: '#F57F17', type: 'currency' },
     { title: 'Vencido', value: totalVencido, icon: AlertTriangle, accent: '#C62828', type: 'currency' },
-    { title: 'Total de Parcelas', value: parcelas.length, icon: DollarSign, type: 'number' },
+    { title: 'Total de Parcelas', value: parcelas.filter(p => p.tipo !== 'projetado').length, icon: DollarSign, type: 'number' },
   ]
 
   const columns = [

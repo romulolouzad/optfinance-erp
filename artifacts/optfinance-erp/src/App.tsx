@@ -39,6 +39,7 @@ function Router() {
     <Switch>
       <Route path="/login" component={LoginPage} />
       <Route path="/"                       component={pr(DashboardPage, 'dashboard')} />
+      <Route path="/dashboard"              component={pr(DashboardPage, 'dashboard')} />
       <Route path="/vendas"                 component={pr(VendasPage, 'vendas')} />
       <Route path="/vendas/nova"            component={pr(VendasPage, 'vendas')} />
       <Route path="/vendas/:id"             component={pr(VendasPage, 'vendas')} />

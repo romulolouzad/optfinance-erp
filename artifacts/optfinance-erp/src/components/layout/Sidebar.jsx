@@ -12,7 +12,7 @@ const NAV_GROUPS = [
   {
     section: null,
     items: [
-      { label: 'Dashboard', href: '/', icon: LayoutDashboard, recurso: 'dashboard' },
+      { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard, recurso: 'dashboard' },
     ]
   },
   {
@@ -66,8 +66,11 @@ export default function Sidebar({ open, onClose }) {
   const [location] = useLocation()
   const { usuario, perfil, logout } = useAuth()
 
-  const isActive = (href) =>
-    href === '/' ? location === '/' : location.startsWith(href)
+  const isActive = (href) => {
+    if (href === '/dashboard') return location === '/dashboard' || location === '/'
+    if (href === '/') return location === '/'
+    return location.startsWith(href)
+  }
 
   const displayName = usuario?.usuario || 'Admin User'
   const displayCargo = usuario?.cargo || 'Finance Director'
