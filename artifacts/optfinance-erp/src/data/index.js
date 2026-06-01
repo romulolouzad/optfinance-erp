@@ -3,7 +3,8 @@ import centrosCusto from './centros-custo.json'
 import parcelas from './parcelas.json'
 import despesas from './despesas.json'
 import movimentacoes from './movimentacoes.json'
-import vendas from './vendas.json'
+import { vendas } from './vendas-store'
+import configuracoes from './configuracoes.json'
 import contratos from './contratos.json'
 import emprestimos from './emprestimos.json'
 import clientes from './clientes.json'
@@ -28,6 +29,7 @@ export {
   historico,
   faturasCartao,
   comissoes,
+  configuracoes,
 }
 
 // ===== Filter helpers =====

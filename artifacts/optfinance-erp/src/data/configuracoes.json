@@ -1,0 +1,9 @@
+{
+  "impostos": {
+    "iss": 2.0,
+    "pis": 0.65,
+    "cofins": 3.0,
+    "csll": 1.0,
+    "irpj": 1.5
+  }
+}

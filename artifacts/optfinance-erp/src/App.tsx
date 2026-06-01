@@ -9,6 +9,7 @@ import LoginPage from './pages/Login/index.jsx'
 import DashboardPage from './pages/Dashboard/index.jsx'
 import FluxoDeCaixaPage from './pages/FluxoDeCaixa/index.jsx'
 import VendasPage from './pages/Vendas/index.jsx'
+import NovaVendaPage from './pages/Vendas/NovaVenda.jsx'
 import ParcelasPage from './pages/Parcelas/index.jsx'
 import ComissoesPage from './pages/Comissoes/index.jsx'
 import ClientesPage from './pages/Clientes/index.jsx'
@@ -44,7 +45,7 @@ function Router() {
       <Route path="/"                       component={pr(DashboardPage, 'dashboard')} />
       <Route path="/dashboard"              component={pr(DashboardPage, 'dashboard')} />
       <Route path="/vendas"                 component={pr(VendasPage, 'vendas')} />
-      <Route path="/vendas/nova"            component={pr(VendasPage, 'vendas')} />
+      <Route path="/vendas/nova"            component={pr(NovaVendaPage, 'vendas')} />
       <Route path="/vendas/:id"             component={pr(VendasPage, 'vendas')} />
       <Route path="/parcelas"               component={pr(ParcelasPage, 'parcelas')} />
       <Route path="/comissoes"              component={pr(ComissoesPage, 'comissoes')} />

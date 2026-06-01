@@ -254,5 +254,13 @@
     "descricao": "Consultoria em gestão financeira educacional — concluído",
     "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
     "parcelas": []
+  },
+  {
+    "id": "VND026", "numero": "0060", "clienteNome": "AMT Engenharia", "vendedor": "Ana Clara Ferreira",
+    "tipoVenda": "pontual", "estadoInicial": "projecao", "valorTotal": 22000.00,
+    "competencia": "2026-07", "situacao": "projecao", "centroCustoId": "CC001",
+    "descricao": "Proposta análise fusão e aquisição — segunda oferta em negociação",
+    "impostos": { "iss": 2.0, "pis": 0.65, "cofins": 3.0, "csll": 1.0, "irpj": 1.5 },
+    "parcelas": []
   }
 ]
