@@ -1,0 +1,72 @@
+export const PERMISSOES = {
+  admin: {
+    'vendas':             ['visualizar', 'criar', 'editar', 'encerrar', 'inativar', 'marcar-perdida'],
+    'parcelas':           ['visualizar', 'criar', 'registrar-pagamento', 'exportar'],
+    'comissoes':          ['visualizar', 'ajustar', 'exportar'],
+    'clientes':           ['visualizar', 'criar', 'editar'],
+    'colaboradores':      ['visualizar', 'criar', 'editar'],
+    'fornecedores':       ['visualizar', 'criar', 'editar'],
+    'despesas':           ['visualizar', 'criar', 'editar', 'registrar-pagamento', 'exportar'],
+    'emprestimos':        ['visualizar', 'criar', 'editar', 'registrar-pagamento'],
+    'contas-financeiras': ['visualizar', 'criar', 'editar', 'inativar', 'conciliar'],
+    'fluxo-de-caixa':    ['visualizar', 'criar', 'exportar'],
+    'dre':                ['visualizar', 'exportar'],
+    'forecast':           ['visualizar', 'atualizar'],
+    'metas':              ['visualizar', 'criar', 'editar'],
+    'notas-fiscais':      ['visualizar', 'criar', 'editar', 'exportar'],
+    'relatorios':         ['visualizar', 'criar', 'exportar', 'agendar'],
+    'budget':             ['visualizar', 'editar', 'exportar'],
+    'historico':          ['visualizar', 'exportar'],
+    'configuracoes':      ['visualizar', 'editar'],
+    'dashboard':          ['visualizar'],
+  },
+  financeiro: {
+    'vendas':             ['visualizar', 'criar', 'editar', 'encerrar', 'marcar-perdida'],
+    'parcelas':           ['visualizar', 'criar', 'registrar-pagamento', 'exportar'],
+    'comissoes':          ['visualizar', 'exportar'],
+    'clientes':           ['visualizar', 'criar', 'editar'],
+    'colaboradores':      ['visualizar', 'criar', 'editar'],
+    'fornecedores':       ['visualizar', 'criar', 'editar'],
+    'despesas':           ['visualizar', 'criar', 'editar', 'registrar-pagamento', 'exportar'],
+    'emprestimos':        ['visualizar', 'criar', 'editar', 'registrar-pagamento'],
+    'contas-financeiras': ['visualizar', 'criar', 'editar', 'conciliar'],
+    'fluxo-de-caixa':    ['visualizar', 'criar', 'exportar'],
+    'dre':                ['visualizar', 'exportar'],
+    'forecast':           ['visualizar', 'atualizar'],
+    'metas':              ['visualizar', 'criar', 'editar'],
+    'notas-fiscais':      ['visualizar', 'criar', 'editar', 'exportar'],
+    'relatorios':         ['visualizar', 'criar', 'exportar', 'agendar'],
+    'budget':             ['visualizar', 'editar', 'exportar'],
+    'historico':          ['visualizar', 'exportar'],
+    'dashboard':          ['visualizar'],
+  },
+  visualizacao: {
+    'vendas':             ['visualizar'],
+    'parcelas':           ['visualizar'],
+    'comissoes':          ['visualizar'],
+    'clientes':           ['visualizar'],
+    'colaboradores':      ['visualizar'],
+    'fornecedores':       ['visualizar'],
+    'despesas':           ['visualizar'],
+    'emprestimos':        ['visualizar'],
+    'contas-financeiras': ['visualizar'],
+    'fluxo-de-caixa':    ['visualizar'],
+    'dre':                ['visualizar'],
+    'forecast':           ['visualizar'],
+    'metas':              ['visualizar'],
+    'notas-fiscais':      ['visualizar'],
+    'relatorios':         ['visualizar'],
+    'budget':             ['visualizar'],
+    'historico':          ['visualizar'],
+    'configuracoes':      ['visualizar'],
+    'dashboard':          ['visualizar'],
+  },
+}
+
+export function temPermissao(perfil, recurso, acao = 'visualizar') {
+  const perfilPerms = PERMISSOES[perfil]
+  if (!perfilPerms) return false
+  const acoes = perfilPerms[recurso]
+  if (!acoes) return false
+  return acoes.includes(acao)
+}

@@ -1,10 +1,10 @@
-import { Switch, Route, Router as WouterRouter, useLocation } from 'wouter'
+import { Switch, Route, Router as WouterRouter } from 'wouter'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from '@/components/ui/toaster'
-import { AuthProvider, useAuth } from './context/AuthContext'
+import { AuthProvider } from './context/AuthContext'
 import { CentroCustoProvider } from './context/CentroCustoContext'
+import PrivateRoute from './routes/PrivateRoute'
 
-// Pages
 import LoginPage from './pages/Login/index.jsx'
 import DashboardPage from './pages/Dashboard/index.jsx'
 import FluxoDeCaixaPage from './pages/FluxoDeCaixa/index.jsx'
@@ -25,54 +25,41 @@ import RelatoriosPage from './pages/Relatorios/index.jsx'
 import BudgetPage from './pages/Budget/index.jsx'
 import HistoricoPage from './pages/Historico/index.jsx'
 import ConfiguracoesPage from './pages/Configuracoes/index.jsx'
-import SemPermissaoPage from './pages/SemPermissao/index.jsx'
-import AppShell from './components/layout/AppShell.jsx'
 
 const queryClient = new QueryClient()
 
-function PrivateRoute({ component: Component }: { component: React.ComponentType }) {
-  const { autenticado } = useAuth()
-  const [, setLocation] = useLocation()
+type PageComp = React.ComponentType
 
-  if (!autenticado) {
-    setLocation('/login')
-    return null
-  }
-
-  return (
-    <AppShell>
-      <Component />
-    </AppShell>
-  )
+function pr(component: PageComp, recurso?: string) {
+  return () => <PrivateRoute component={component} recurso={recurso} />
 }
 
 function Router() {
   return (
     <Switch>
       <Route path="/login" component={LoginPage} />
-      <Route path="/" component={() => <PrivateRoute component={DashboardPage} />} />
-      <Route path="/fluxo-de-caixa" component={() => <PrivateRoute component={FluxoDeCaixaPage} />} />
-      <Route path="/vendas" component={() => <PrivateRoute component={VendasPage} />} />
-      <Route path="/vendas/nova" component={() => <PrivateRoute component={VendasPage} />} />
-      <Route path="/vendas/:id" component={() => <PrivateRoute component={VendasPage} />} />
-      <Route path="/parcelas" component={() => <PrivateRoute component={ParcelasPage} />} />
-      <Route path="/comissoes" component={() => <PrivateRoute component={ComissoesPage} />} />
-      <Route path="/clientes" component={() => <PrivateRoute component={ClientesPage} />} />
-      <Route path="/colaboradores" component={() => <PrivateRoute component={ColaboradoresPage} />} />
-      <Route path="/fornecedores" component={() => <PrivateRoute component={FornecedoresPage} />} />
-      <Route path="/notas-fiscais" component={() => <PrivateRoute component={NotasFiscaisPage} />} />
-      <Route path="/dre" component={() => <PrivateRoute component={DrePage} />} />
-      <Route path="/forecast" component={() => <PrivateRoute component={ForecastPage} />} />
-      <Route path="/metas" component={() => <PrivateRoute component={MetasPage} />} />
-      <Route path="/despesas" component={() => <PrivateRoute component={DespesasPage} />} />
-      <Route path="/emprestimos" component={() => <PrivateRoute component={EmprestimosPage} />} />
-      <Route path="/contas-financeiras" component={() => <PrivateRoute component={ContasFinanceirasPage} />} />
-      <Route path="/contas-financeiras/nova" component={() => <PrivateRoute component={ContasFinanceirasPage} />} />
-      <Route path="/relatorios" component={() => <PrivateRoute component={RelatoriosPage} />} />
-      <Route path="/budget" component={() => <PrivateRoute component={BudgetPage} />} />
-      <Route path="/historico" component={() => <PrivateRoute component={HistoricoPage} />} />
-      <Route path="/configuracoes" component={() => <PrivateRoute component={ConfiguracoesPage} />} />
-      <Route path="/sem-permissao" component={SemPermissaoPage} />
+      <Route path="/"                       component={pr(DashboardPage, 'dashboard')} />
+      <Route path="/vendas"                 component={pr(VendasPage, 'vendas')} />
+      <Route path="/vendas/nova"            component={pr(VendasPage, 'vendas')} />
+      <Route path="/vendas/:id"             component={pr(VendasPage, 'vendas')} />
+      <Route path="/parcelas"               component={pr(ParcelasPage, 'parcelas')} />
+      <Route path="/comissoes"              component={pr(ComissoesPage, 'comissoes')} />
+      <Route path="/clientes"               component={pr(ClientesPage, 'clientes')} />
+      <Route path="/colaboradores"          component={pr(ColaboradoresPage, 'colaboradores')} />
+      <Route path="/fornecedores"           component={pr(FornecedoresPage, 'fornecedores')} />
+      <Route path="/notas-fiscais"          component={pr(NotasFiscaisPage, 'notas-fiscais')} />
+      <Route path="/dre"                    component={pr(DrePage, 'dre')} />
+      <Route path="/forecast"              component={pr(ForecastPage, 'forecast')} />
+      <Route path="/metas"                  component={pr(MetasPage, 'metas')} />
+      <Route path="/fluxo-de-caixa"         component={pr(FluxoDeCaixaPage, 'fluxo-de-caixa')} />
+      <Route path="/despesas"               component={pr(DespesasPage, 'despesas')} />
+      <Route path="/emprestimos"            component={pr(EmprestimosPage, 'emprestimos')} />
+      <Route path="/contas-financeiras"     component={pr(ContasFinanceirasPage, 'contas-financeiras')} />
+      <Route path="/contas-financeiras/nova" component={pr(ContasFinanceirasPage, 'contas-financeiras')} />
+      <Route path="/relatorios"             component={pr(RelatoriosPage, 'relatorios')} />
+      <Route path="/budget"                 component={pr(BudgetPage, 'budget')} />
+      <Route path="/historico"              component={pr(HistoricoPage, 'historico')} />
+      <Route path="/configuracoes"          component={pr(ConfiguracoesPage, 'configuracoes')} />
     </Switch>
   )
 }
